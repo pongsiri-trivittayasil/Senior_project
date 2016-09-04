@@ -4,6 +4,8 @@ import os
 
 import db_mongo as db
 
+import trilaterlation as cal
+
 appid = "seniorProject"
 gearkey = "mS2SW6zylEzbpKg"
 gearsecret =  "3gSQjYWs5nFBS3WxyEqaQTwOO"
@@ -19,7 +21,8 @@ def senddatatodb(message):
 		#send data to db_mongo.py function
 		print dic
 		print "end"
-		db.insert(dic)
+		cal.findap(dic)
+		#db.insert(dic)
 	else:
 		#split
 		data = message.split(",")
