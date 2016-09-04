@@ -38,9 +38,14 @@ def fsbl(RSSI):
 	distance = 0
 	return distance
 #write function matrix
+# data= [x1,y1,d1,x2,y2,d2,x3,y3,d3]
+#		  0  1  2  3  4  5  6  7  8	
 def trilaterlation(data):
 	print data[0]
-	
+	#find det A
+	# A = [2(x2-x1),2(y2-y1)],[2(x3-x1),2(y3-y1)]
+	A = [[2(data[])]]
+
 
 if __name__ == "__main__":
     findap(dic)
