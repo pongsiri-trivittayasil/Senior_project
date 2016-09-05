@@ -5,8 +5,8 @@
 #include <MicroGear.h>
 #include <String.h>
 
-const char* ssid     = "MALABADOR";
-const char* password = "0837501830";
+const char* ssid     = "jiw";
+const char* password = "12345678";
 
 #define APPID   "seniorProject"
 #define KEY     "0sEvbvtdC5vdWha"
@@ -158,7 +158,7 @@ void loop() {
 
         /* Call this method regularly otherwise the connection may be lost */
         microgear.loop();
-        if (timer >= 60000) {
+        if (timer >= 20000) {
           Scan_WiFi();
           //microgear.publish("/data",send_data);
           timer = 0;

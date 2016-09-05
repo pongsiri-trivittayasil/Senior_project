@@ -4,13 +4,13 @@ import numpy
 ap1 = "003AA99403EF0"
 ap1_x = 21.00
 ap1_y = 11.00
-ap2 = "0CF5A441961x"
+ap2 = "0CF5A4419610"
 ap2_x = 19.50
 ap2_y = 7.00
-ap3 = "E0D1731A998x"
+ap3 = "E0D1731A9983"
 ap3_x = 9.00
 ap3_y = 7.50
-ap4 = "84802DAB4ECx"
+ap4 = "84802DAB4ECF"
 ap4_x = 16.00
 ap4_y = 15.00
 
