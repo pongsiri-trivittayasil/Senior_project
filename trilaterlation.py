@@ -1,16 +1,16 @@
 import math
 import numpy
 
-ap1 = "003AA99403EF0"
+ap1 = "003A99403EF0"
 ap1_x = 21.00
 ap1_y = 11.00
 ap2 = "0CF5A4419610"
 ap2_x = 19.50
 ap2_y = 7.00
-ap3 = "E0D1731A9983"
+ap3 = "E0D1731A9986"
 ap3_x = 9.00
 ap3_y = 7.50
-ap4 = "84802DAB4ECF"
+ap4 = "84802DAB4EC1"
 ap4_x = 16.00
 ap4_y = 15.00
 
@@ -20,7 +20,7 @@ listap = {ap1:{"x":ap1_x,"y":ap1_y},
 		ap4:{"x":ap4_x,"y":ap4_y}
 		}
 
-dic = {"003AA99403EF0":"20","E0D1731A998x":"10","0CF5A441961x":"30","84802DAB4ECx":"40"}
+#dic = {"003AA99403EF0":"20","E0D1731A998x":"10","0CF5A441961x":"30","84802DAB4ECx":"40"}
 
 #find minimum 3 range into dic and we have
 def findap(dic):
@@ -31,13 +31,16 @@ def findap(dic):
 			if i == m:
 				data_ap.append((listap[i]["x"],listap[i]["y"],findDistanceformFSPL(n)))
 				count = count + 1
+				print "found : " + str(i) + "rssi : " + str(n)
 	print "ap have " + str(count)
-	if count == 2:
+	if count == 3:
+		print data_ap
 		x = [i[0] for i in data_ap]
 		y = [i[1] for i in data_ap]
 		d = [i[2] for i in data_ap]
 		trilaterlation(x,y,d)
-	elif count >= 3:
+	elif count >= 4:
+		print "before sort : " + str(data_ap)
 		data_ap = sorted(data_ap,key=lambda tup: tup[2])
 		print data_ap
 		x = [i[0] for i in data_ap]
@@ -47,11 +50,14 @@ def findap(dic):
 	else:
 		print "ap less than three !!!"
 
+
 #function free space pass lost
 def findDistanceformFSPL(RSSI):
 	# [2.4,5.1,5.7]
-    f = 2.4
-    distance = math.pow(10,((float(RSSI)-(20*math.log10(f*math.pow(10,3)))+27.55)/20))
+    RSSI = float(RSSI) * (-1)
+    distance =  (0.0028*math.pow(float(RSSI),2))+(0.1758*float(RSSI))-13.215
+    #f = 5.7
+    #distance = math.pow(10,((float(RSSI)-(20*math.log10(f*math.pow(10,3)))+27.55)/20))
     return distance
 
 def trilaterlation(x,y,d):
@@ -70,4 +76,9 @@ def trilaterlation(x,y,d):
 
 
 if __name__ == "__main__":
-    findap(dic)
+    #findap(dic)
+    		# 84              00             0c
+    #test = [(16.00,15.00,7.8),(21.00,11.00,7),(19.5,7.00,16)]
+    													#84    00    0c
+    trilaterlation((16.00,21.00,19.5),(15.00,11.00,5.00),(7.80,7.00,16.00))
+    # for ans (20,15)

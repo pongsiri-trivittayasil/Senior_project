@@ -13,21 +13,26 @@ gearsecret =  "3gSQjYWs5nFBS3WxyEqaQTwOO"
 """ function send data to mongo database """
 #set grobal "dic" is data for send to database
 dic = {}
+#count_ap = 0
 def senddatatodb(message):
 	if message == "<":
 		print "start"
+		#count_ap = 0
 		dic.clear()
 	elif message == ">":
 		#send data to db_mongo.py function
 		print dic
 		print "end"
+		#print "found ap : " + str(count_ap)
 		cal.findap(dic)
 		#db.insert(dic)
 	else:
 		#split
 		data = message.split(",")
+		#count_ap = count_ap + 1
 		#add to dic
 		dic[data[1]] = data[2]
+
 
 microgear.create(gearkey,gearsecret,appid,{'debugmode': True})
 
@@ -64,4 +69,4 @@ microgear.connect()
 while(True):
 	#microgear.publish("/data","test")
 	send = input("what word to send esp8266:")
-	microgear.chat("esp8266",send)
+	microgear.chat("myhtml",send)

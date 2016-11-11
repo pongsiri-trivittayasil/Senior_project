@@ -5,8 +5,8 @@
 #include <MicroGear.h>
 #include <String.h>
 
-const char* ssid     = "jiw";
-const char* password = "12345678";
+const char* ssid     = "MALABADOR";
+const char* password = "0837501830";
 
 #define APPID   "seniorProject"
 #define KEY     "0sEvbvtdC5vdWha"

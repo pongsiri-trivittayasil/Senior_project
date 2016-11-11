@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<div id="map"></div>
+<div id="label"></div>
+<input type="submit" id="byBtn" value="hide_grid" onclick="hide_grid()"/>
+<input type="submit" id="byBtn" value="show_grid" onclick="show_grid()"/>
+<input type="submit" id="byBtn" value="remove_point" onclick="remove_point()"/>
+<input type="submit" id="byBtn" value="test_realSize" onclick="getImgSize()"/>
+<input type="submit" id="byBtn" value="toggle_create_ap" onclick="toggle_create_ap()"/>
+<input type="submit" id="byBtn" value="delete_ap" onclick="delete_ap()"/>
+<div id="text">
+	<h1>error load real size image on load</h1>
+	<h1>drag point(ap) on grid</h1>
+	<h1>show text on point</h1>
+	<h1>draw room on map</h1>
+</div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/raphael.js"></script>
+
+<!--Global func-->
+<script type="text/javascript" src="/js/global_func.js"></script>
+
+<!--custom-->
+<script type="text/javascript" src="/js/drag.js"></script>
+<script type="text/javascript" src="/js/getsizeImg.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script>
+<script type="text/javascript" src="/js/FromMicrogear.js"></script>
+<!--microgear-->
+<script src="https://cdn.netpie.io/microgear.js"></script>
+<script type="text/javascript" src="/js/microgear.js"></script>
+
+
+</body>
+</html>
