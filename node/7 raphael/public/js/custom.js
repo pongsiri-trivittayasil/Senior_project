@@ -20,6 +20,10 @@ var paper = Raphael('map',scale.width,scale.height);
 // use create ap
 var ap_create = false;
 var ap_list =[];
+
+// select list
+var select_ap = [];
+
 // for y axis
 var loop_j = Math.round(scale.height/10);
 
@@ -129,14 +133,50 @@ function create_point_ap(point_id){
 	var point = paper.circle(axis.x*10,(loop_j-axis.y)*10,5);
 	point.attr({
 		fill:'black',
-		cursor:'point'
+		cursor:'pointer'
 	});
+	var name = String(axis.x) + "," + String(axis.y);
+	point.data('axis',name);
+
+	// add to ap list
 	ap_list.push(point);
+
+	point.click(function() {
+		if(this.data('id') == "selected"){
+			this.attr({
+				opacity:1
+			});
+			this.data('id',"deselected");
+			console.log("deselected");
+			var this_axis = this.data('axis');
+			select_ap = _.reject(select_ap, function(el) { return el.data('axis') === this_axis; });
+		}
+		else{
+			this.attr({
+				opacity:0.5
+			});
+			this.data('id',"selected");
+			console.log("selected");
+			select_ap.push(this);
+		}
+	});
 }
+
+// clear list in ap_list
 function delete_ap(){
 	for (n in ap_list){
 		ap_list[n].remove();
 	}
+	ap_list = [];
 }
+
+// clear list in select_ap
+function delete_select_ap(){
+	for (n in select_ap){
+		select_ap[n].remove();
+	}
+	select_ap = [];
+}
+
 
 //----------------------------------------------------------------------------------//
