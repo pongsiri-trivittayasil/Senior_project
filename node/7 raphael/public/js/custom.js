@@ -147,9 +147,10 @@ function create_point_ap(point_id){
 				opacity:1
 			});
 			this.data('id',"deselected");
-			console.log("deselected");
+			// remove in list select_ap
 			var this_axis = this.data('axis');
 			select_ap = _.reject(select_ap, function(el) { return el.data('axis') === this_axis; });
+			console.log("deselected");
 		}
 		else{
 			this.attr({
@@ -157,6 +158,7 @@ function create_point_ap(point_id){
 			});
 			this.data('id',"selected");
 			console.log("selected");
+			// add to list select_ap
 			select_ap.push(this);
 		}
 	});
