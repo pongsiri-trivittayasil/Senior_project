@@ -2,7 +2,7 @@
 //--------------------------------initial value------------------------------------//
 // scale paper
 var srcImg = "/img/floor5.jpg";
-var scale = {width: 500,height: 707.2405929304447};
+var scale = {height: 500,width: 707.2405929304447};
 
 /*realsize*/
 //var test = getImgSize(srcImg);
@@ -24,8 +24,11 @@ var ap_list =[];
 // select list
 var select_ap = [];
 
-// for y axis
-var loop_j = Math.round(scale.height/10);
+
+// set height for grid
+var setheight = Math.round(scale.height/10);
+// set width for grid
+var setwidth = Math.round(scale.width/10);
 
 //----------------------------------------------------------------------------------//
 
@@ -47,8 +50,8 @@ var paeper_bg = paper.rect(0,0,scale.width,scale.height);
 
 
 //--------------------------------------grid----------------------------------------//
-for (var i=0;i<=50;i++){
-	for (var j=0;j<=loop_j;j++){
+for (var i=0;i<=setwidth;i++){
+	for (var j=0;j<=setheight;j++){
 		var c = paper.circle(10*i,10*j,1.5);
 			c.attr({
 				fill:'red',
@@ -56,7 +59,7 @@ for (var i=0;i<=50;i++){
 				//cursor:'pointer'
 			});
 		//set ID
-		c.id = String(i)+","+String(loop_j-j);	
+		c.id = String(i)+","+String(setheight-j);	
 		//mouse over
 	    c.mouseover(function() {
 	        this.toFront();
@@ -130,7 +133,7 @@ function toggle_create_ap(){
 
 function create_point_ap(point_id){
 	var axis = split_comma(point_id);
-	var point = paper.circle(axis.x*10,(loop_j-axis.y)*10,5);
+	var point = paper.circle(axis.x*10,(setheight-axis.y)*10,5);
 	point.attr({
 		fill:'black',
 		cursor:'pointer'
@@ -182,3 +185,5 @@ function delete_select_ap(){
 
 
 //----------------------------------------------------------------------------------//
+
+

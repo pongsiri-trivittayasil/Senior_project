@@ -3,7 +3,7 @@
 
 //draw point
 function draw_point(x,y){
-	var point = paper.circle(x*10,(loop_j-y)*10,8);
+	var point = paper.circle(x*10,(setheight-y)*10,8);
 	point.attr({
 		fill:'green',
 		stroke:'#fff'
@@ -23,6 +23,7 @@ function remove_point(){
 }
 //show point
 function showpoint(msg){
+	remove_point();
 	var axis = split_comma(msg);
 	draw_point(axis.x,axis.y);
 }

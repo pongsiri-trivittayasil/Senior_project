@@ -9,7 +9,7 @@
     });
 
     microgear.on('message',function(topic,msg) {
-        console.log(msg);
+        console.log("from tag " + msg);
         showpoint(msg);
     });
 

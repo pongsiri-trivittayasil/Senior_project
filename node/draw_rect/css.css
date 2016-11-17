@@ -1,0 +1,61 @@
+.component {
+    position:relative;
+    padding:10px;
+    margin:10px;
+    height:auto;
+    border: #80CCFF solid 1px;
+    display:none;
+}
+.active{
+    display:block;
+}
+.canvas {
+    position:relative;
+    left:60px;
+    cursor:default;
+}
+.canvas svg,.canvas div{
+    border:#000 solid 1px;
+}
+.styled-select select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 34px;
+}
+.tools{
+    width:40px;
+    padding:5px;
+    height:auto;
+    background: #222;
+    position:absolute;
+    top:60px;
+    left:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+.tool {
+    background: #444;
+    color:#CCC;
+    text-align:center;
+    vertical-align:middle;
+    cursor:pointer;
+    
+    width:40px;
+    height:40px;
+    margin-bottom:3px;
+    
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+.tool:hover {
+    background: #666;
+}
+.tool.selected {
+    background: #111;
+    cursor:default;
+}
