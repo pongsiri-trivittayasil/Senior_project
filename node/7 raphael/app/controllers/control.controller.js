@@ -6,8 +6,17 @@ exports.create = function(req,res,next){
 		if(err){
 			return next(err);
 		}else{
-			//res.send(control);
+			res.send(control);
 		}
 	});
+};
 
+exports.list = function(req,res,next){
+	Control.find({},function(err,controls){
+		if(err){
+			return next(err);
+		}else{
+			res.send(controls);
+		}
+	});
 };

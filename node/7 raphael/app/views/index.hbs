@@ -4,13 +4,11 @@
 	<title></title>
 </head>
 <body>
-<form action="test" method="post">
-	<input type="submit" id="byBtn" value="setting">
+<form action="page_data" method="GET">
+	<input type="submit" id="byBtn" value="data">
 </form>
-<form action="create" method="post">
-	Control Name: <input type="text" name="Control_Name"><br>
-	<input type="submit" id="byBtn" value="add control">
-</form>
+<button id ="ajax">ajax</button>
+
 <div id="map"></div>
 <div id="label"></div>
 <input type="submit" id="byBtn" value="hide_grid" onclick="hide_grid()"/>
@@ -22,22 +20,28 @@
 <input type="submit" id="byBtn" value="delete_select_ap" onclick="delete_select_ap()"/>
 <input type="submit" id="byBtn" value="save" onclick="json_save()"/>
 <input type="submit" id="byBtn" value="call" onclick="json_call()"/>
-<div id="text">
-	<h1>read database from mongoose to hbs list</h1>
-	<h1>edit database from hbs setting form</h1>
-	<h1>create name ap</h1>
-	<h1>show text on point</h1>
-	<h1>draw room on map</h1>
-	<h1>check room and point</h1>
-	<h1>database</h1>
-	<h1>front-end</h1>
-	<h1>login-member</h1>
-	<h1>upload map</h1>
-	<h1>back-end state-cookie</h1>
-	<h1>notification line sms</h1>
-	<h1>error load real size image on load</h1>
-</div>
-
+<table id="mytable">
+    <tr>
+    	<td>Control Name</td>
+    	<td>Status</td>
+    </tr>
+</table>
+						<!--
+						<div id="text">
+							<h1>edit database from hbs setting form</h1>
+							<h1>create name ap</h1>
+							<h1>show text on point</h1>
+							<h1>draw room on map</h1>
+							<h1>check room and point</h1>
+							<h1>database</h1>
+							<h1>front-end</h1>
+							<h1>login-member</h1>
+							<h1>upload map</h1>
+							<h1>back-end state-cookie</h1>
+							<h1>notification line sms</h1>
+							<h1>error load real size image on load</h1>
+						</div>
+						-->
 <!--library-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/raphael.js"></script>
@@ -55,6 +59,8 @@
 <!--microgear-->
 <script src="https://cdn.netpie.io/microgear.js"></script>
 <script type="text/javascript" src="/js/microgear.js"></script>
+
+<script type="text/javascript" src="/js/ajax.js"></script>
 
 
 </body>

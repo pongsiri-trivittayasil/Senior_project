@@ -2,6 +2,10 @@ var express = require('express');
 var morgan = require('morgan');
 var compression = require('compression');
 var bodyParser = require('body-parser');
+//var hbs = require('express-handlebars');
+//require('../config/helpers')(hbs);
+var exphbs = require('express-handlebars');
+var handlebars  = require('../config/helpers')(exphbs);
 
 
 module.exports = function(){
@@ -17,11 +21,14 @@ module.exports = function(){
 		extended: true
 	}))
 
-
 	app.use(express.static('./public'));
 
+
 	app.set('views','./app/views');
-	app.set('view engine','hbs');
+	//app.engine('hbs',hbs({extname:'hbs'}))
+	//app.set('view engine','hbs');
+	app.engine('hbs', handlebars.engine);
+	app.set('view engine', 'hbs');
 
 	require('../app/routes/index.routes')(app);
 

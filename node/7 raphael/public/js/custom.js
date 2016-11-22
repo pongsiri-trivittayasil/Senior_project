@@ -1,4 +1,3 @@
-
 //--------------------------------initial value------------------------------------//
 // scale paper
 var srcImg = "/img/floor5.jpg";

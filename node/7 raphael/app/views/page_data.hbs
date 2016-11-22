@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</script>
+</head>
+
+<body>
+<form action="back" method="GET">
+	<input type="submit" id="byBtn" value="back">
+</form>
+<h1>setting</h1>
+<table>
+<tr>
+<td>Control Name</td><td>Status</td>
+</tr>
+{{#each controls_list}}
+<tr>
+<td>{{this.name}}</td>
+<td>{{this.status}}</td>
+</tr>
+{{/each}}
+</table>
+
+</body>
+</html>
