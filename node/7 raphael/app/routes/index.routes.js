@@ -4,5 +4,8 @@ module.exports = function(app){
 	app.get('/',index.render);
 	app.get('/page_data',index.page_data);
 	app.get('/back',index.render);
-	app.route('/create').post(control.list).get(index.page_data);
+	app.route('/createcontrol').post(control.create);
+	app.route('/editcontrol').post(control.edit);
+	app.route('/removecontrol').post(control.remove);
+	app.route('/editap').post(control.list);
 }

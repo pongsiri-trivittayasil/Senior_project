@@ -2,25 +2,83 @@
 <html>
 <head>
 	<title></title>
-</script>
+<style type="text/css">
+	td {border: 1px #DDD solid; padding: 5px; cursor: pointer;}
+	.selected {
+	    background-color: brown;
+	    color: #FFF;
+	}
+</style>
 </head>
 
 <body>
 <form action="back" method="GET">
 	<input type="submit" id="byBtn" value="back">
 </form>
-<h1>setting</h1>
-<table>
-<tr>
-<td>Control Name</td><td>Status</td>
-</tr>
-{{#each controls_list}}
+<h1>Data</h1>
+<!-- Control-->
+<h1>Control</h1>
+<table id="table_control">
+<tr><td>Control Name</td><td>Status</td></tr>
+{{#each Control_list}}
 <tr>
 <td>{{this.name}}</td>
 <td>{{this.status}}</td>
 </tr>
 {{/each}}
 </table>
+<button id ="add_control">add</button>
+<button id ="edit_control">edit</button>
+<button id ="remove_control">remove</button>
+
+<!-- TAG-->
+<h1>Tag</h1>
+<table>
+<tr><td>Tag Name</td><td>x</td><td>y</td></tr>
+{{#each Tag_list}}
+<tr>
+<td>{{this.name}}</td>
+<td>{{this.x}}</td>
+<td>{{this.y}}</td>
+</tr>
+{{/each}}
+</table>
+<button id ="add_Tag">add</button>
+<button id ="edit_Tag">edit</button>
+<button id ="remove_Tag">remove</button>
+
+<!-- Room-->
+<h1>Room</h1>
+<table>
+<tr><td>Room Name</td></tr>
+{{#each Room_list}}
+<tr>
+<td>{{this.name}}</td>
+</tr>
+{{/each}}
+</table>
+<button id ="add_Room">add</button>
+<button id ="edit_Room">edit</button>
+<button id ="remove_Room">remove</button>
+
+
+<!-- AP-->
+<h1>AP</h1>
+<table>
+<tr><td>AP Name</td></tr>
+{{#each AP_list}}
+<tr>
+<td>{{this.name}}</td>
+</tr>
+{{/each}}
+</table>
+<button id ="add_AP">add</button>
+<button id ="edit_AP">edit</button>
+<button id ="remove_AP">remove</button>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/control_button.js"></script>
 
 </body>
 </html>
