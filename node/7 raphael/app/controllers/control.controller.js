@@ -1,8 +1,6 @@
 var Control = require('mongoose').model('Control');
 
 exports.create = function(req,res,next){
-	console.log(req.body);
-	console.log(req.body.Control_Name);
 	var control = new Control ({Control_name:req.body.Control_Name,Status:false});
 	control.save(function(err){
 		if(err){

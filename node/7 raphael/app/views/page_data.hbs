@@ -33,13 +33,14 @@
 
 <!-- TAG-->
 <h1>Tag</h1>
-<table>
-<tr><td>Tag Name</td><td>x</td><td>y</td></tr>
+<table id="table_tag">
+<tr><td>Tag Name</td><td>x</td><td>y</td><td>room</td></tr>
 {{#each Tag_list}}
 <tr>
 <td>{{this.name}}</td>
 <td>{{this.x}}</td>
 <td>{{this.y}}</td>
+<td>{{this.room}}</td>
 </tr>
 {{/each}}
 </table>
@@ -49,11 +50,15 @@
 
 <!-- Room-->
 <h1>Room</h1>
-<table>
-<tr><td>Room Name</td></tr>
+<table id="table_room">
+<tr><td>Room Name</td><td>max_x</td><td>min_x</td><td>max_y</td><td>min_y</td></tr>
 {{#each Room_list}}
 <tr>
 <td>{{this.name}}</td>
+<td>{{this.max_x}}</td>
+<td>{{this.min_x}}</td>
+<td>{{this.max_y}}</td>
+<td>{{this.min_y}}</td>
 </tr>
 {{/each}}
 </table>
@@ -64,11 +69,13 @@
 
 <!-- AP-->
 <h1>AP</h1>
-<table>
-<tr><td>AP Name</td></tr>
+<table id="table_ap">
+<tr><td>AP Name</td><td>x</td><td>y</td></tr>
 {{#each AP_list}}
 <tr>
 <td>{{this.name}}</td>
+<td>{{this.x}}</td>
+<td>{{this.y}}</td>
 </tr>
 {{/each}}
 </table>
