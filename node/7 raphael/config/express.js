@@ -18,7 +18,9 @@ module.exports = function(){
 		app.use(compression);
 	}
 	app.use(bodyParser.urlencoded({
-		extended: true
+		extended: true,
+		limit:'50mb',
+		parameterLimit:1000000
 	}))
 
 	app.use(express.static('./public'));

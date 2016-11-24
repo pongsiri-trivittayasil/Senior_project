@@ -4,9 +4,16 @@ var Room = require('mongoose').model('Room');
 var AP = require('mongoose').model('AP');
 var async = require('async');
 
+
+// call page ------------------------------------------------------------------
+
+
+// call page map -------------------------------------------------------------
 exports.render = function(req,res){
 	res.render('index');
 };
+
+// function page data -------------------------------------------------------------
 var stack = [];
 var find_control = function(callback){
 	var Control_list = [];
@@ -74,6 +81,7 @@ stack.push(find_tag);
 stack.push(find_room);
 stack.push(find_AP);
 
+// call page data -------------------------------------------------------------
 exports.page_data = function(req,res){
 	async.parallel(stack,function(err,result){
 		res.render('page_data',{

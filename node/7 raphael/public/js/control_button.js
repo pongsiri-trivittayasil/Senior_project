@@ -65,8 +65,12 @@ $("table tr").click(function(){
 //room-----------------------------------------------------------------------
 	$("#add_Room").on('click', function(){
 		var data;
-		var name = prompt("Please enter your name Room","");
-		data = {"Room_Name":name};
+		var nameroom = prompt("Please enter your name Room","");
+		var max_x = prompt("Please enter your max x","");
+		var min_x = prompt("Please enter your min x","");
+		var max_y = prompt("Please enter your max y","");
+		var min_y = prompt("Please enter your min y","");
+		data = {"Room_Name":nameroom,"max_x":max_x,"min_x":min_x,"max_y":max_y,"min_y":min_y};
 	    $.post("/createroom",data, function(data, status){
 	    	console.log(status);
 	    });

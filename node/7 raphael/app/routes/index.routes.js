@@ -4,6 +4,7 @@ module.exports = function(app){
 	var tag = require('../controllers/tag.controller');
 	var room = require('../controllers/room.controller');
 	var ap = require('../controllers/ap.controller');
+	var fs = require('../controllers/file.controller');
 
 	//page
 	app.get('/',index.render);
@@ -29,5 +30,8 @@ module.exports = function(app){
 	app.route('/editap').post(ap.edit);
 	app.route('/removeap').post(ap.remove);
 	app.post('/listap',ap.list);
+
+	//file
+	app.post('/savefile',fs.save);
 
 }

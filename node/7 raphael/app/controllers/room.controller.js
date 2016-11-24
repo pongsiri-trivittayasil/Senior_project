@@ -1,7 +1,7 @@
 var Room = require('mongoose').model('Room');
 
 exports.create = function(req,res,next){
-	var room = new Room ({Room_name:req.body.Room_Name,max_x:-1,min_x:-1,max_y:-1,min_y:-1});
+	var room = new Room ({Room_name:req.body.Room_Name,max_x:req.body.max_x,min_x:req.body.min_x,max_y:req.body.max_y,min_y:req.body.min_y});
 	room.save(function(err){
 		if(err){
 			return next(err);
