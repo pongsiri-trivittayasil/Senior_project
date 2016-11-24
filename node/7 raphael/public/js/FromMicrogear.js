@@ -12,17 +12,17 @@ function draw_point(x,y){
 	point.animate({
 		transform: 's1'
 	},200);
-
-	people.push(point);
+	set_tag.push(point);
 }
 
+
 function remove_point(){
-	for (n in people){
-		people[n].remove();
-	}
+	console.log("remove");
+	set_tag.remove();
 }
 //show point
 function showpoint(msg){
+	set_tag.remove();
 	remove_point();
 	var axis = split_comma(msg);
 	draw_point(axis.x,axis.y);

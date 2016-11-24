@@ -2,7 +2,7 @@
 //image
 var srcImg = "/img/floor5.jpg";
 //set grid,image,background,room,ap
-var set_grid,set_background,set_room,set_ap;
+var set_grid,set_background,set_room,set_ap,set_tag;
 //set scale
 var scale;
 //set mouse
@@ -69,6 +69,7 @@ var set_function_onload = function(){
 	set_grid = paper.set();
 	set_ap = paper.set();
 	set_room = paper.set();
+	set_tag = paper.set();
 	background();
 	grid();
 }
