@@ -1,6 +1,6 @@
 //--------------------------------initial value------------------------------------//
 //image
-var srcImg = "/img/floor5.jpg";
+var srcImg = "/img/homegod.jpg";
 //set grid,image,background,room,ap
 var set_grid,set_background,set_room,set_ap,set_tag;
 //set scale
@@ -23,10 +23,13 @@ var select_list=[];
 function keyCommand(eve){
     switch(eve.key){
     	case "c":
-    		// json_call();
+    		json_call();
+    		break
+		case "h":
+    		hide();
     		break
     	case "s":
-    		// json_save();
+    		json_save();
     		break
     	case "t":
     		toggle_create_ap();
@@ -98,7 +101,7 @@ var attr_background = function(set){
 var grid = function(){
 	for (var i=0;i<=setwidth;i++){
 		for (var j=0;j<=setheight;j++){
-			var point_grid = paper.circle(10*i,10*j,1.5);
+			var point_grid = paper.circle(10*i,10*j,1);
 			point_grid.id = String(i)+","+String(setheight-j);	
 			set_grid.push(point_grid);
 			//set ID
@@ -112,7 +115,8 @@ var attr_grid = function(set){
 	}
 	set.attr({
 		fill:'red',
-		stroke:'#fff'
+		stroke:'#fff',
+		"stroke-width":0
 	});
 	set.mouseover(function() {
         this.toFront();
@@ -120,7 +124,7 @@ var attr_grid = function(set){
             cursor: 'pointer',
             fill: 'red',
             stroke: '#fff',
-            'stroke-width': '1'
+            'stroke-width': '0'
         });
         this.animate({
             transform: 's4'
@@ -330,32 +334,22 @@ var json_save = function(){
 		console.log("save");
 		// Serialize the paper
 		json = paper.toJSON(function(el, data) {
-	    // Save the set identifier along with the other data
-	    data.setName = el.setName;
-	    return data;
-	});
-		console.log(json);
+		    // Save the set identifier along with the other data
+		    data.setName = el.setName;
+		    return data;
+		});
+		console.log(typeof json);
 	    paper.clear();
 	    set_ap = null;
 	    set_grid = null;
 	    set_room = null;
 	    set_background = null;
-		$.ajax({
-		    type: "POST",
-		    url: "/savefile",
-		    data: sd,
-		    contentType: "application/json; charset=utf-8",
-		    dataType: "json",
-		    success: function(data){alert(data);},
-		    failure: function(errMsg) {
-		        alert(errMsg);
-		    }
-		});
-		// $.post("/savefile",json, function(data, status){
-	 //    });	    
+	    json.replace('[','').replace(']','');
+		$.post("/savefile",json, function(data, status){
+	    });
 
 
-	    	console.log(json);
+	    console.log(json);
 	    // console.log(typeof JSON.parse(json));
 	    // console.log(JSON.parse(json));
 	    // console.log(typeof JSON.stringify(json));
@@ -364,61 +358,25 @@ var json_save = function(){
 //------------------------------call json-------------------------------------------//
 var json_call = function(){
 	console.log("call");
-	readTextFile("./text.json");
-	// $.getJSON( "./text.json", function( data ) {
-	// 	console.log(typeof data);
-	// 	// console.log((data));
-	// 	// console.log(JSON.stringify(data));
-	// 	var a = JSON.stringify(data);
-	// 	var a = a.replace(/\\n/g, "\\n")
- //              .replace(/\\'/g, "\\'")
- //              .replace(/\\"/g, '\\"')
- //              .replace(/\\&/g, "\\&")
- //              .replace(/\\r/g, "\\r")
- //              .replace(/\\t/g, "\\t")
- //              .replace(/\\b/g, "\\b")
- //              .replace(/\\f/g, "\\f");
-	// 	console.log(a);
-		// console.log(JSON.parse(data));
-		// paper.fromJSON(data, function(el, data) {
-		//     // Recreate the set using the identifier
-		//     if ( !window[data.setName] ) {
-		//     	window[data.setName] = paper.set();
-		//     }
-		//     	console.log(data.setName);
-		//     // Place each element back into the set
-		//     window[data.setName].push(el);
-		//     return el;
-		// });
-		// if(window['set_background']){attr_background(window['set_background']);}
-		// if(window['set_grid']){attr_grid(window['set_grid']);}
-		// if(window['set_room']){setName_room(window['set_room']);attr_room(window['set_room']);}
-		// if(window['set_ap']){attr_ap(window['set_ap']);}
-	// });
+	$.getJSON( "./text.json", function( recieve ) {
+		// console.log(JSON.stringify(recieve));
+		paper.fromJSON(JSON.stringify(recieve), function(el, data) {
+		    // Recreate the set using the identifier
+		    if ( !window[data.setName] ) {
+		    	window[data.setName] = paper.set();
+		    }
+		    	console.log(data.setName);
+		    // Place each element back into the set
+		    window[data.setName].push(el);
+		    return el;
+		});
+		if(window['set_background']){attr_background(window['set_background']);}
+		if(window['set_grid']){attr_grid(window['set_grid']);}
+		if(window['set_room']){setName_room(window['set_room']);attr_room(window['set_room']);}
+		if(window['set_ap']){attr_ap(window['set_ap']);}
+	});
 }
 //----------------------------------------------------------------------------------//
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                str = JSON.stringify(allText);
-                console.log(str.length);
-
-                for (var i = 0, len = str.length; i < len; i++) {
-				  // alert(str[i]);
-				  if(str[i] == '\\'){console.log("found");delete str[i];}
-				}
-				alert(str);
-            }
-        }
-    }
-    rawFile.send(null);
+var hide = function(){
+	paper.clear();
 }
-

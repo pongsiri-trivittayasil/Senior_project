@@ -17,7 +17,6 @@ function draw_point(x,y){
 
 
 function remove_point(){
-	console.log("remove");
 	set_tag.remove();
 }
 //show point

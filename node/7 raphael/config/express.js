@@ -21,7 +21,8 @@ module.exports = function(){
 		extended: true,
 		limit:'50mb',
 		parameterLimit:1000000
-	}))
+	}));
+	app.use(bodyParser.json());
 
 	app.use(express.static('./public'));
 

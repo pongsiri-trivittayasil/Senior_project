@@ -1,6 +1,9 @@
 var jsonfile = require('jsonfile');
+var fs = require('fs');
+var querystring = require('querystring');
+
 // 'use strict'; 
-var file = "./public/text.json";
+var file = "./public/text2.json";
 
 // exports.save = function(req,res,next){
 // 	console.log(req.body);
@@ -13,14 +16,18 @@ var file = "./public/text.json";
 // 		}
 // 	})
 // }
-// var fs = require('fs');
 exports.save = function(req,res,next){
 	// req.body.map((data)=>{
 	// 	console.log(data);
 	// });
 	// console.log(req.body);
-	console.log(req.body);
-	jsonfile.writeFileSync(file,(req.body),'utf8')
+	// console.log(req.body);
+	console.log(typeof req.body);
+	var data = req.body;
+	// console.log(data);
+	console.log(JSON.stringify(data));
+
+	jsonfile.writeFileSync(file,data);
 	//     if(err) {
 	//         return console.log(err);
 	//     }
