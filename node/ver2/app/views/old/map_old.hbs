@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</style>
+</head>
+<body>
+<div id="fakeLoader"></div>
+<h1>Hello {{{username}}}</h1>
+<h1>We In {{{map}}}</h1>
+
+<form action="/page_data" method="get">
+	<input type="submit" value="data">
+</form>
+
+<form action="/choose_map" method="get">
+	<input type="submit" value="back">
+</form>
+
+{{!-- AJAXXXXX  
+<button id ="ajax">ajax</button>
+ --}}
+
+<form action="/logout" method="post">
+	<input type="submit" value="logout">
+</form>
+
+<div id="map"></div>
+<div id="label"></div>
+<input type="submit" id="byBtn" value="hide_grid" onclick="hide_grid()"/>
+<input type="submit" id="byBtn" value="show_grid" onclick="show_grid()"/>
+<input type="submit" id="byBtn" value="remove_point" onclick="remove_point()"/>
+<input type="submit" id="byBtn" value="test_realSize" onclick="getImgSize()"/>
+<input type="submit" id="byBtn" value="toggle_create_ap" onclick="toggle_create_ap()"/>
+<input type="submit" id="byBtn" value="delete_ap" onclick="delete_ap()"/>
+<input type="submit" id="byBtn" value="delete_select_ap" onclick="delete_select_ap()"/>
+<input type="submit" id="byBtn" value="save" onclick="json_save()"/>
+<input type="submit" id="byBtn" value="call" onclick="json_call()"/>
+{{!-- AJAXXXXX
+<table id="mytable">
+    <tr>
+    	<td>Control Name</td>
+    	<td>Status</td>
+    </tr>
+</table>
+ --}}
+						<!--
+						<div id="text">
+							<h1>edit database from hbs setting form</h1>
+							<h1>front-end</h1>
+							<h1>upload map</h1>
+							<h1>notification line sms</h1>
+							<h1>error load real size image on load</h1>
+						</div>
+						-->
+
+{{!-- initialize value from handlebars --}}
+<script type="text/javascript">
+	var nameMap = "{{map}}"
+</script>
+<!--library-->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/js/raphael.js"></script>
+<script type="text/javascript" src="/lib/js/raphael.json.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+<!--Global func-->
+<script type="text/javascript" src="/js/work/global_func.js"></script>
+
+<!--custom-->
+<script type="text/javascript" src="/js/work/getsizeImg.js"></script>
+<script type="text/javascript" src="/js/work/custom.js"></script>
+<script type="text/javascript" src="/js/work/FromMicrogear.js"></script>
+<!--microgear-->
+<script src="https://cdn.netpie.io/microgear.js"></script>
+<script type="text/javascript" src="/js/work/microgear.js"></script>
+
+<script type="text/javascript" src="/js/work/ajax.js"></script>
+
+</body>
+</html>

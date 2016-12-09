@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+{{#each map}}
+	<form action="/map" method="post">
+		<input type="submit" name="map" value="{{this.name}}">
+	</form>
+{{/each}}
+<form action="/logout" method="post">
+	<input type="submit" value="logout">
+</form>
+
+</body>
+</html>

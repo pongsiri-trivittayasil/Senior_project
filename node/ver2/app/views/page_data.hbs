@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ==========================
+    	Meta Tags 
+    =========================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ==========================
+    	Title 
+    =========================== -->
+    <title>Smart Home</title>
+    <link rel="shortcut icon" href="/img/icontitle.ico" />
+    <!-- ==========================
+    	Fonts 
+    =========================== -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- ==========================
+    	CSS 
+    =========================== -->
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-colorselector.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+</head>
+<body>
+    <!-- ==========================
+        Preloader
+    =========================== -->
+    <div id='preloader'>
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+	<!-- ==========================
+    	HEADER - START 
+    =========================== -->
+    <header>
+	<!-- ==========================
+    	Nav-bar - START 
+    =========================== -->
+    	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    		<div class="container">
+    		<!-- Brand and toggle get grouped for better mobile display -->
+    			<div class="navbar-header">
+    				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavigation"><i class="fa fa-bars"></i></button>
+                    {{#if username}}    {{!-- if loggedin --}}
+                    <i class="fa fa-user fa-3x navbar-logo pull-left"></i>
+                    <a href='/'class="navbar-brand">{{{username}}}</a>
+                    {{else}}
+                    <img src="img/icon.png" class="navbar-logo pull-left" alt="" />
+                    <a href='/' class="navbar-brand">Smart Home WiFi</a>
+                    {{/if}}
+                </div>  {{!-- /navbar-header --}}
+            <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="myNavigation">
+                    <ul class="nav navbar-nav navbar-right">
+                    {{#if username}}    {{!-- if loggedin --}}
+                        <li><a href='/'>Home</a></li>
+                        <li><a href='/choose_map'>Map</a></li>
+                        <li class='logout'><a href='/logout'>Logout</a></li>
+                    {{else}}
+                        <li><a href='#'id="botton_login">Login</a></li>
+                    {{/if}}
+                    </ul>
+                </div>	{{!-- /navbar collpase --}}
+    		</div>	{{!-- /container --}}
+    	</nav>	{{!-- /nav-bar --}}
+
+
+	</header>	{{!-- /header --}}
+
+	<!-- ==========================
+    	Section Your data
+    =========================== -->
+    <section id='data' class='content'>
+    	<div class='container'>
+    		<div class='row'>	{{!-- /Header Name --}}
+    			<div class='col-md-5'>
+                    <h3>{{{map}}}<h3> 
+                </div>
+                <div class="col-md-7"style='text-align:right'>
+                    <a class='block' href="/map"><p>back</p></a>
+                </div>
+    		</div>	{{!-- /row --}}
+
+    		<div class='row'>
+
+
+    			{{!-- Control table--}}
+    			<div class='col-md-6'>
+    				<div class='panel'>	{{!-- panel --}}
+    					
+    					<div class="panel-heading">	{{!-- /heading --}}
+    						<p >Control<p>
+    						<a href="#" class='panel-actions' id="control_add" ><i  class="fa fa-plus" aria-hidden="true"></i></a>
+    					</div>	{{!-- /end heading --}}
+
+    					<div class='panel-body'>
+    						<table class="table  table-condensed table-hover">
+    							<thead style="text-align:center">		{{!-- head table --}}
+    								<tr>	
+    									<th>Control Name</th>
+    									<th>Status</th>
+    									<th></th>
+    									<th></th>
+    								</tr>
+    							</thead>	{{!-- /.head table--}}
+	    						{{!-- table body --}}
+		                        <tbody>		
+
+                                    {{#each Control_list}}
+                                        <tr>
+                                        <td  id='control-name'>{{this.name}}</td>
+                                        {{#if this.status}}
+                                            <td><span class="label label-success">On</span></td>
+                                        {{else}}
+                                            <td><span class="label label-danger">Off</span></td>
+                                        {{/if}}
+                                        <td scope="row"><button type="button" class="btn btn-default btn-sm" id='edit-control'>Edit</button></td>
+                                        <td scope="row"><button type="button" class="btn btn-default btn-sm"  id='delete-control'>Delete</button></td>
+                                        </tr>
+                                    {{/each}}
+
+								</tbody>
+	                        </table>	{{!-- /table--}}
+    					</div>	{{!-- / panel body--}}
+
+    				</div> {{!-- /end panel --}}
+    			</div> {{!-- /end col-md-6 table --}}
+
+
+
+       			{{!-- Tag table--}}
+    			<div class='col-md-6'>
+    				<div class='panel'>	{{!-- panel --}}
+    					
+    					<div class="panel-heading">	{{!-- /heading --}}
+    						<p>Tag<p>
+                            <a href="#" class='panel-actions' id="tag_add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+    					</div>	{{!-- /end heading --}}
+
+    					<div class='panel-body'>
+    						<table class="table  table-condensed table-hover">
+    							<thead style="text-align:center">		{{!-- head table --}}
+    								<tr>	
+    									<th>Tag Name</th>
+    									<th>X</th>
+    									<th>y</th>
+    									<th>room</th>
+    									<th></th>
+    									<th></th>
+    								</tr>
+    							</thead>	{{!-- /.head table--}}
+	    						{{!-- table body --}}
+		                        <tbody>		
+                                    {{#each Tag_list}}
+                                    <tr>
+                                        <td id='tag-name'>{{this.name}}</td>
+                                        <td>{{this.x}}</td>
+                                        <td>{{this.y}}</td>
+                                        <td>{{this.room}}</td>
+                                        <td scope="row"><button type="button" class="btn btn-default btn-sm" id='edit-tag'>Edit</button></td>
+                                        <td scope="row"><button type="button" class="btn btn-default btn-sm" id='delete-tag'>Delete</button></td>
+                                    </tr>
+                                    {{/each}}
+
+								</tbody>
+	                        </table>	{{!-- /table--}}
+    					</div>	{{!-- / panel body--}}
+
+    				</div> {{!-- /end panel --}}
+    			</div> {{!-- /end col-md-6 table --}}
+
+    		</div>	{{!-- /row --}}
+
+    		<div class='row'>
+
+       			{{!-- Room table--}}
+    			<div class='col-md-6'>
+    				<div class='panel'>	{{!-- panel --}}
+    					
+    					<div class="panel-heading">	{{!-- /heading --}}
+    						<p>Room<p>
+                            <a href="#" class='panel-actions' id="room_add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+    					</div>	{{!-- /end heading --}}
+
+    					<div class='panel-body'>
+    						<table class="table  table-condensed table-hover">
+    							<thead style="text-align:center">		{{!-- head table --}}
+    								<tr>	
+    									<th>Room Name</th>
+    									<th>max x</th>
+    									<th>min x</th>
+    									<th>max y</th>
+    									<th>min y</th>
+    									<th></th>
+    									<th></th>
+    								</tr>
+    							</thead>	{{!-- /.head table--}}
+	    						{{!-- table body --}}
+		                        <tbody>		
+
+
+									{{#each Room_list}}
+                                        <tr>
+                                            <td id='room-name'>{{this.name}}</td>
+                                            <td>{{this.max_x}}</td>
+                                            <td>{{this.min_x}}</td>
+                                            <td>{{this.max_y}}</td>
+                                            <td>{{this.min_y}}</td>
+                                            <td scope="row"><button type="button" class="btn btn-default btn-sm"id='edit-room'>Edit</button></td>
+                                            <td scope="row"><button type="button" class="btn btn-default btn-sm"id='delete-room'>Delete</button></td>
+                                        </tr>
+                                    {{/each}}
+
+								</tbody>
+	                        </table>	{{!-- /table--}}
+    					</div>	{{!-- / panel body--}}
+
+    				</div> {{!-- /end panel --}}
+    			</div> {{!-- /end col-md-6 table --}}
+
+
+
+       			{{!-- AP table--}}
+    			<div class='col-md-6'>
+    				<div class='panel'>	{{!-- panel --}}
+    					
+    					<div class="panel-heading">	{{!-- /heading --}}
+    						<p>Access Point<p>
+                            <a href="#" class='panel-actions' id="ap_add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+    					</div>	{{!-- /end heading --}}
+
+    					<div class='panel-body'>
+    						<table class="table  table-condensed table-hover">
+    							<thead style="text-align:center">		{{!-- head table --}}
+    								<tr>	
+    									<th>AP Name</th>
+    									<th>x</th>
+    									<th>y</th>
+    									<th></th>
+    									<th></th>
+    								</tr>
+    							</thead>	{{!-- /.head table--}}
+	    						{{!-- table body --}}
+		                        <tbody>		
+                                    {{#each AP_list}}
+                                        <tr>
+                                            <td id='ap-name'>{{this.name}}</td>
+                                            <td>{{this.x}}</td>
+                                            <td>{{this.y}}</td>
+                                            <td scope="row"><button type="button" class="btn btn-default btn-sm" id='edit-ap'>Edit</button></td>
+                                            <td scope="row"><button type="button" class="btn btn-default btn-sm"id='delete-ap'>Delete</button></td>
+                                        </tr>
+                                    {{/each}}
+
+								</tbody>
+	                        </table>	{{!-- /table--}}
+    					</div>	{{!-- / panel body--}}    		</div>	{{!-- /row --}}
+
+    				</div> {{!-- /end panel --}}
+    			</div> {{!-- /end col-md-6 table --}}
+
+    	</div>	{{!-- /container --}}
+    </section>
+
+
+
+
+
+    <!-- ==========================
+        Modal Add
+    =========================== -->
+    <div class="modal fade" id="modal_add" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">title</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-control --}}
+                <div class="modal-body" id="modal-body-control">
+                    <form id="form_add_control">
+                        <div class="form-group">
+                            <label for="username">Name:</label>
+                            <input name="Control_Name"type="text" class="form-control"  value="admin">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-control --}}
+
+
+
+                {{!-- modal-body-tag --}}
+                <div class="modal-body" id="modal-body-tag">
+                    <form id="form_add_tag">
+                        <div class="form-group">
+                            <label for="username">Nametag:</label>
+                            <input name="Tag_name"type="text" class="form-control"  value="admin">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-tag --}}
+
+
+
+                {{!-- modal-body-room --}}
+                <div class="modal-body" id="modal-body-room">
+                    <form id="form_add_room">
+                        <div class="form-group">
+                            <label for="username">Name:</label>
+                            <input name="Room_name"type="text" class="form-control"  value="admin">
+                            <label for="username">max x:</label>
+                            <input name="max_x"type="text" class="form-control"  value="-1">
+                            <label for="username">min x:</label>
+                            <input name="min_x"type="text" class="form-control"  value="-1">
+                            <label for="username">max y:</label>
+                            <input name="max_y"type="text" class="form-control"  value="-1">
+                            <label for="username">min y:</label>
+                            <input name="min_y"type="text" class="form-control"  value="-1">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-room --}}
+
+
+
+                {{!-- modal-body-ap --}}
+                <div class="modal-body" id="modal-body-ap">
+                    <form id="form_add_ap">
+                        <div class="form-group">
+                            <label for="username">Name:</label>
+                            <input name="AP_name"type="text" class="form-control"  value="admin">
+                            <label for="username">x:</label>
+                            <input name="x"type="text" class="form-control"  value="-1">
+                            <label for="username">y:</label>
+                            <input name="y"type="text" class="form-control"  value="-1">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-ap --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+
+
+
+    <!-- ==========================
+        Modal Edit 
+    =========================== -->
+    {{!-- Control --}}
+    <div class="modal fade" id="modal-edit-control" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Edit Control</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-control --}}
+                <div class="modal-body" id="modal-body-control">
+                    <form id="form-edit-control">
+                        <div class="form-group">
+                            <label for="username">old Name:</label>
+                        <fieldset disabled>
+                            <input name="oldname"type="text" class="form-control" id="oldname" value="oldname">
+                        </fieldset>
+                            <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
+                            <label for="username">New Name:</label>
+                            <input name="newname"type="text" class="form-control"  value="newname">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-control --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+    {{!-- tag --}}
+    <div class="modal fade" id="modal-edit-tag" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Edit Tag</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-tag --}}
+                <div class="modal-body" id="modal-body-tag">
+                    <form id="form-edit-tag">
+                        <div class="form-group">
+                            <label for="username">old Name:</label>
+                        <fieldset disabled>
+                            <input name="oldname"type="text" class="form-control" id="oldname" value="oldname">
+                        </fieldset>
+                            <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
+                            <label for="username">New Name:</label>
+                            <input name="newname"type="text" class="form-control"  value="newname">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-tag --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+
+    {{!-- room --}}
+    <div class="modal fade" id="modal-edit-room" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Edit Room</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-room --}}
+                <div class="modal-body" id="modal-body-room">
+                    <form id="form-edit-room">
+                        <div class="form-group">
+                            <label for="username">old Name:</label>
+                        <fieldset disabled>
+                            <input name="oldname"type="text" class="form-control" id="oldname" value="oldname">
+                        </fieldset>
+                            <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
+                            <label for="username">New Name:</label>
+                            <input name="newname"type="text" class="form-control"  value="newname">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-room --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+    {{!-- ap --}}
+    <div class="modal fade" id="modal-edit-ap" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Edit Access Point</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-ap --}}
+                <div class="modal-body" id="modal-body-ap">
+                    <form id="form-edit-ap">
+                        <div class="form-group">
+                            <label for="username">old Name:</label>
+                        <fieldset disabled>
+                            <input name="oldname"type="text" class="form-control" id="oldname" value="oldname">
+                        </fieldset>
+                            <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
+                            <label for="username">New Name:</label>
+                            <input name="newname"type="text" class="form-control"  value="newname">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-ap --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+
+
+    <!-- ==========================
+        Modal Delete
+    =========================== -->
+    {{!-- Control --}}
+    <div class="modal fade" id="modal-delete-control" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Delete Control</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-control --}}
+                <div class="modal-body" id="modal-body-control">
+                    <form id="form-delete-control">
+                        <div class="form-group">
+                            <label for="username">Delete AP Name:</label>
+                        <fieldset disabled>
+                            <input name="name"type="text" class="form-control" id="name" value="name">
+                        </fieldset>
+                            <input name="name"type="hidden" class="form-control" id="name-set" value="name">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-control --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+    {{!-- Tag --}}
+    <div class="modal fade" id="modal-delete-tag" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Delete Tag</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-tag --}}
+                <div class="modal-body" id="modal-body-tag">
+                    <form id="form-delete-tag">
+                        <div class="form-group">
+                            <label for="username">Delete Tag Name:</label>
+                        <fieldset disabled>
+                            <input name="name"type="text" class="form-control" id="name" value="name">
+                        </fieldset>
+                            <input name="name"type="hidden" class="form-control" id="name-set" value="name">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-tag --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+
+    {{!-- Room --}}
+    <div class="modal fade" id="modal-delete-room" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Delete Room</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-room --}}
+                <div class="modal-body" id="modal-body-room">
+                    <form id="form-delete-room">
+                        <div class="form-group">
+                            <label for="username">Delete Room Name:</label>
+                        <fieldset disabled>
+                            <input name="name"type="text" class="form-control" id="name" value="name">
+                        </fieldset>
+                            <input name="name"type="hidden" class="form-control" id="name-set" value="name">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-room --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+    {{!-- AP --}}
+    <div class="modal fade" id="modal-delete-ap" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Delete Access Point</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-ap --}}
+                <div class="modal-body" id="modal-body-ap">
+                    <form id="form-delete-ap">
+                        <div class="form-group">
+                            <label for="username">Delete AP Name:</label>
+                        <fieldset disabled>
+                            <input name="name"type="text" class="form-control" id="name" value="name">
+                        </fieldset>
+                            <input name="name"type="hidden" class="form-control" id="name-set" value="name">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-ap --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+
+
+
+
+
+
+
+    <!-- ==========================
+    	JS 
+    =========================== -->
+    {{!-- lib --}}
+    <script src="/lib/js/jquery-3.1.1.min.js"></script>
+    <script src="/lib/js/bootstrap.min.js"></script>
+
+    {{!-- design js --}}
+    <script src="/js/design/custom.js"></script>
+    {{!-- work js --}}
+    <script src="/js/work/custom-data.js"></script>
+
+
+
+</body>
+</html>

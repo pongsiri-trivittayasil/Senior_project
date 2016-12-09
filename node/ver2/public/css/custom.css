@@ -1,0 +1,550 @@
+/*------------------------------
+	Body
+------------------------------*/
+body {
+	background-color: #f2f2f2;
+}
+header {
+	text-align:center;
+}
+
+
+/* ------------------------------------------------------------- *
+ *  Page preloader (display loading animation while page loads)
+/* ------------------------------------------------------------- */
+#preloader{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #f2f2f2;
+	z-index: 99999;
+}
+.loader {
+  
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  margin-left: 10%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 99999;
+}
+.dot {
+  width: 24px;
+  height: 24px;
+  background: #3ac;
+  border-radius: 100%;
+  display: inline-block;
+  animation: slide 1s infinite;
+}
+.dot:nth-child(1) {
+  animation-delay: 0.1s;
+  background: #32aacc;
+}
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+  background: #64aacc;
+}
+.dot:nth-child(3) {
+  animation-delay: 0.3s;
+  background: #96aacc;
+}
+.dot:nth-child(4) {
+  animation-delay: 0.4s;
+  background: #c8aacc;
+}
+.dot:nth-child(5) {
+  animation-delay: 0.5s;
+  background: #faaacc;
+}
+@-moz-keyframes slide {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes slide {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-o-keyframes slide {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes slide {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ------------------------------------------------------------- *
+ *  Page Saving
+/* ------------------------------------------------------------- */
+
+#saving {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #f2f2f2;
+	z-index: 99999;
+	opacity: 0.5;
+}
+#saving .pulse {
+	position: absolute;
+	display: inline-block;
+	top: 50%;
+	left: 50%;
+	width: 80px;
+	height: 80px;
+	margin-top: -40px;
+	margin-left: -40px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background-color: #3498db;
+	-webkit-animation: scaleout 1.0s infinite ease;
+	animation: scaleout 1.0s infinite ease;
+}
+@-webkit-keyframes scaleout {
+	0% { -webkit-transform: scale(0.0) }
+	100% {
+		-webkit-transform: scale(1.0);
+		opacity: 0;
+	}
+}
+@keyframes scaleout {
+	0% { 
+		transform: scale(0.0);
+		-webkit-transform: scale(0.0);
+	} 100% {
+		transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+		opacity: 0;
+	}
+}
+
+
+/*------------------------------
+	Switch
+------------------------------*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 21px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2ecc71;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(19px);
+  -ms-transform: translateX(19px);
+  transform: translateX(19px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*------------------------------
+	NAVBAR
+------------------------------*/
+.navbar-default {
+	margin:0;
+	background-color:white;
+	border:none;
+	border-radius:0;
+	padding-top:3px;
+	padding-bottom:3px;
+	border-bottom:3px solid rgba(0,0,0,0.1);
+}
+.navbar-logo {
+	padding:7px 0 0 0;
+	width:40px;
+} 
+.navbar-default .navbar-brand {
+	font-family: 'Quicksand';
+	font-size:22px;
+	font-weight: 900;
+	color:#7f8c8d;
+	padding:20px 0 0 23px;
+}
+.navbar-default .navbar-nav > li > a {
+	color:#7f8c8d;
+	font-family: 'Quicksand';
+	font-size:22px;
+	font-weight: 800;
+	transition-duration:0.7s;
+}
+.navbar-default .navbar-nav > .active > a {
+	color:black;
+	font-family: 'Quicksand';
+	font-size:22px;
+	font-weight: 800;
+	transition-duration:0.7s;
+	background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a:hover {
+	background-color: transparent;
+}
+.navbar-default .navbar-nav > li > a:hover {
+	color:black;
+}
+.navbar-default .navbar-nav > .logout > a:hover {
+	color:red;
+}
+
+/*------------------------------
+	Modal
+------------------------------*/
+.modal-dialog {
+	width: 500px;
+}
+.modal-header .modal-title {
+	color:#7f8c8d;
+	font-family: 'Quicksand';
+	font-size:30px;
+}
+.modal-body .form-group > label {
+	color:#7f8c8d;
+	font-family: 'Quicksand';
+	font-size:20px;	
+}
+.modal-body .form-group > p {
+	color:#7f8c8d;
+	font-family: 'Quicksand';
+	font-size:20px;	
+}
+
+.modal-body .form-group > fieldset > input {
+	color:#7f8c8d;
+	font-family: 'Quicksand';
+}
+.modal-body .form-group > input {
+	color:#7f8c8d;
+	font-family: 'Quicksand';
+}
+.modal-body .error {
+	color:red;
+}
+
+/*------------------------------
+	Content
+------------------------------*/
+.content{
+	padding-top: 60px;
+}
+
+/*------------------------------
+	Content --- Choose Map
+------------------------------*/
+#choose-map h3{
+	font-size: 30px;
+	font-family: 'Montserrat';
+	color:#2c3e50;
+}
+#choose-map .block {
+	margin-top:10px;
+	background-color:#3498db;
+	height:50px;
+	width: 350px;
+	border-radius:6px;
+	text-align: center;
+	cursor: pointer;
+}
+#choose-map .block:hover {
+	background-color:#2980b9;
+}
+#choose-map p{
+	padding-top:10px;
+	color:white;
+	font-size: 18px;
+	font-family: 'Montserrat';
+}
+
+/*------------------------------
+	Content --- Your Selected Map
+------------------------------*/
+#your-selected-map h3{
+	font-size: 30px;
+	font-family: 'Montserrat';
+	color:#2c3e50;
+}
+#your-selected-map svg {
+	// border:3px solid rgba(0,0,0,0.1);
+	// box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+	background-color: white;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+	border-style:solid;
+	border-width: 1px;
+	border-color: #95a5a6;
+
+}
+#your-selected-map .option {
+	background-color: none;
+	height: auto;
+}
+#your-selected-map .option .option-header {
+	padding: 0 0 0 10px;
+	border-bottom-style:solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #95a5a6;
+}
+#your-selected-map .option .option-header h2{
+	font-size: 20px;
+	font-family: 'Montserrat';
+	color:#2c3e50;
+	margin: 0 0 9px 0;
+}
+#your-selected-map .option .text-option {
+	margin-top: 10px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-family: 'Montserrat';
+	color:#7f8c8d;
+}
+#your-selected-map .option .switch {
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+#your-selected-map .option .edit-map {
+	background-color: #27ae60;
+	border-radius: 4px;
+	padding-bottom: 10px;
+}
+#your-selected-map .option .row {
+	margin: 0;
+}
+#your-selected-map .option .edit-header {
+	padding: 0 0 0 10px;
+	border-bottom-style:solid;
+	border-bottom-width: 1px;
+	border-bottom-color: white;
+}
+#your-selected-map .option .edit-header h2{
+	font-size: 20px;
+	font-family: 'Montserrat';
+	color:white;
+	margin: 9px 0 9px 0;
+}
+#your-selected-map .option .text-edit {
+	margin-top: 10px;
+	margin-bottom: 0;
+	font-size: 13px;
+	font-family: 'Montserrat';
+	color:white;
+}
+#your-selected-map .option .dropdown{
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+#your-selected-map .option .dropdown span{
+	border-style: solid;
+	border-width: 2px;
+	boder-color:white;
+}
+
+#your-selected-map .option .form .form-group {
+	margin-bottom: 5px;
+}
+#your-selected-map .option .form .form-group input{
+	font-size: 15px;
+	font-family: 'Montserrat';
+	color:black;
+	width: 130px;
+	background-color: transparent;
+	margin-top: 5px;
+}
+#your-selected-map .option .rename {
+	text-align: right;
+}
+#your-selected-map .option .rename button{
+	margin-top: 0px;
+	margin-right: 10px;
+	font-size: 15px;
+	font-family: 'Montserrat';
+	color:white;
+}
+
+#your-selected-map .option .submit button{
+	margin-top: 10px;
+	margin-right: 10px;
+	font-size: 15px;
+	font-family: 'Montserrat';
+	color:white;
+}
+
+#your-selected-map .panel {
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+#your-selected-map .panel .panel-heading {
+	font-family:  'Montserrat';
+	padding:0 0 0 20px;
+	font-size: 20px;
+	border-bottom:2px solid #f2f2f2;
+}
+#your-selected-map .table {
+	font-family:  'Quicksand';
+}
+#your-selected-map .table td {
+   text-align: center;   
+	font-weight: 590;
+}
+#your-selected-map .table th {
+   text-align: center;   
+	font-weight: 900;
+}
+#your-selected-map .block {
+	float: right;
+	background-color:#3498db;
+	height:40px;
+	width:120px;
+	border-radius:6px;
+	text-align: center;
+	cursor: pointer;
+	margin: 10px 20px 0 0;
+}
+#your-selected-map .block:hover {
+	background-color:#2980b9;
+	text-decoration: none;
+}
+#your-selected-map .block p{
+	padding-top:5px;
+	color:white;
+	font-size: 18px;
+	font-family: 'Quicksand';
+}
+
+/*------------------------------
+	Content --- data
+------------------------------*/
+#data h3{
+	font-size: 30px;
+	font-family: 'Montserrat';
+	color:#2c3e50;
+}
+#data .panel {
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+#data .table {
+	font-family:  'Quicksand';
+}
+#data .table td {
+   text-align: center;   
+	font-weight: 590;
+}
+#data .table th {
+   text-align: center;   
+	font-weight: 900;
+}
+#data .panel .panel-heading {
+	padding:0 0 0 20px;
+	border-bottom:2px solid #f2f2f2;
+	position: relative;
+}
+#data .panel .panel-heading .panel-actions {
+	right: 10px;
+	position: absolute;
+	top: 0;
+}
+#data .panel .panel-heading .panel-actions  i{
+	color:#7f8c8d;
+	transition-duration:0.7s;
+	cursor: pointer;
+}
+#data .panel .panel-heading .panel-actions  i:hover{
+	color:#2980b9;
+	transition-duration:0.7s;
+}
+#data .panel .panel-heading p {
+	font-family:  'Montserrat';
+	font-size: 20px;
+}
+#data .block {
+	float: right;
+	background-color:#3498db;
+	height:40px;
+	width:120px;
+	border-radius:6px;
+	text-align: center;
+	cursor: pointer;
+	margin: 10px 20px 0 0;
+}
+#data .block:hover {
+	background-color:#2980b9;
+	text-decoration: none;
+}
+#data .block p{
+	padding-top:5px;
+	color:white;
+	font-size: 18px;
+	font-family: 'Quicksand';
+}

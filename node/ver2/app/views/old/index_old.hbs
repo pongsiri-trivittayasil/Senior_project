@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{{#if username}}
+		<h1>Hello {{{username}}}</h1>
+		<form action="/logout" method="post">
+			<input type="submit" value="logout">
+		</form>
+	{{else}}
+		<div><a href="/signup">Sign Up</a></div>
+		<div><a href="/login">Log in</a></div>
+	{{/if}}
+	1. go to login <br>
+	2. username:admin password:admin
+	{{!-- 
+	<script type="text/javascript">
+	var test = "{{test}}"
+	console.log(test);
+	</script>
+	 --}}
+</body>
+</html>

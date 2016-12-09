@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ==========================
+    	Meta Tags 
+    =========================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ==========================
+    	Title 
+    =========================== -->
+    <title>Smart Home</title>
+    <link rel="shortcut icon" href="/img/icontitle.ico" />
+    <!-- ==========================
+    	Fonts 
+    =========================== -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- ==========================
+    	CSS 
+    =========================== -->
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+</head>
+<body>
+
+    <!-- ==========================
+        Preloader
+    =========================== -->
+    {{!-- <div id='preloader'>
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div> --}}
+    <!-- ==========================
+    	HEADER - START 
+    =========================== -->
+	<header>
+	<!-- ==========================
+    	Nav-bar - START 
+    =========================== -->
+    	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    		<div class="container">
+    		<!-- Brand and toggle get grouped for better mobile display -->
+    			<div class="navbar-header">
+    				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavigation"><i class="fa fa-bars"></i></button>
+                    {{#if username}}    {{!-- if loggedin --}}
+                    <i class="fa fa-user fa-3x navbar-logo pull-left"></i>
+                    <a href='/'class="navbar-brand">{{{username}}}</a>
+                    {{else}}
+                    <img src="img/icon.png" class="navbar-logo pull-left" alt="" />
+                    <a href='/' class="navbar-brand">Smart Home WiFi</a>
+                    {{/if}}
+                </div>  {{!-- /navbar-header --}}
+            <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="myNavigation">
+                    <ul class="nav navbar-nav navbar-right">
+                    {{#if username}}    {{!-- if loggedin --}}
+                        <li class='active'><a href='/'>Home</a></li>
+                        <li><a href='/choose_map'>Map</a></li>
+                        <li class='logout'><a href='/logout'>Logout</a></li>
+                    {{else}}
+                        <li><a href='#'id="botton_login">Login</a></li>
+                    {{/if}}
+                    </ul>
+                </div>	{{!-- /navbar collpase --}}
+    		</div>	{{!-- /container --}}
+    	</nav>	{{!-- /nav-bar --}}
+
+
+	</header>	{{!-- /header --}}
+
+
+	<!-- ==========================
+    	Modal Login
+    =========================== -->
+	<div class="modal fade" id="modal_login" role="dialog">
+		<div class="modal-dialog">
+
+		  <!-- Modal content-->
+		  <div class="modal-content">
+		    <div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      <div class="modal-title">Login</div>
+		    </div>	{{!-- /modal-header --}}
+
+		    <div class="modal-body">
+		      	<form id="form_login">
+				  	<div class="form-group">
+						<label for="username">Uesrname:</label>
+						<input name="username"type="text" class="form-control" id="username" value="admin">
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input name="password" type="password" class="form-control" id="pwd" value="admin">
+					</div>
+                    <div class="row">
+                        <div class="col-md-6">
+					       <button type="submit" class="btn btn-primary ">Submit</button>
+                        </div>
+                    <div class="col-md-6 error" id="error"></div>
+                    </div>
+				</form>
+		    </div>
+		  </div>	{{!-- /modal-body --}}
+		  
+		</div>	
+	</div>	{{!-- /modal --}}
+
+    <!-- ==========================
+    	JS 
+    =========================== -->
+    {{!-- lib --}}
+    <script src="/lib/js/jquery-3.1.1.min.js"></script>
+    <script src="/lib/js/bootstrap.min.js"></script>
+    {{!-- design --}}
+    <script src="/js/design/custom.js"></script>
+
+{{!-- preloading --}}
+{{!-- 
+    <script type="text/javascript">
+        $("#preloader").fadeOut("slow");
+    </script>
+     --}}
+</body>
+</html>
