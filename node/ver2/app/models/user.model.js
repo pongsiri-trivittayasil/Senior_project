@@ -20,6 +20,7 @@ UserSchema.pre('save',function(next){
 	if (this.Password){
 		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'),'base64');
 		this.Password = this.hashPassword(this.Password);
+		console.log(this.Password);
 	}
 	next();
 });
@@ -27,6 +28,7 @@ UserSchema.methods.hashPassword = function(password){
 	return crypto.pbkdf2Sync(password,this.salt,10000,64).toString('base64');
 };
 UserSchema.methods.authenticate = function(password){
+	console.log(this.hashPassword(password));
 	return this.Password === this.hashPassword(password);
 };
 mongoose.model('User',UserSchema);
