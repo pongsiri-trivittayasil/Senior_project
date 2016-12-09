@@ -102,6 +102,7 @@ $('#switch_draw_ap').on('click',function(){
 $('#switch_edit_map').on('click',function(){
   var x = document.getElementById("switch_edit_map").checked;
   if(x !== true){
+  	cant_draw();
   	room_deselect_all();
   	ap_deselect_all();
   }
