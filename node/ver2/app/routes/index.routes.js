@@ -3,6 +3,7 @@ module.exports = function(app){
 	var choose_map = require('../controllers/choose-map.controller');
 	var map = require('../controllers/map.controller');
 	var page_data = require('../controllers/page-data.controller');
+	var rule = require('../controllers/rule.controller');
 	var user = require('../controllers/user.controller');
 	var fs = require('../controllers/file.controller');
 	var passport = require('passport');
@@ -20,6 +21,9 @@ module.exports = function(app){
 	//-------------------------Page Data----------------------------------
 	app.get('/page_data',page_data.render_page_data);
 	app.get('/back',map.render_map);
+
+	//-------------------------Rule---------------------------------------
+	app.get('/rule',rule.render_rule);
 
 	//-------------------------User---------------------------------------
 	app.route('/signup').get(user.rendersignup).post(user.signup);

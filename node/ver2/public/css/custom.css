@@ -491,6 +491,10 @@ input:checked + .slider:before {
 	font-family: 'Montserrat';
 	color:#2c3e50;
 }
+#data .help-title {
+	font-size: 20px;
+	color:#95a5a6;
+}
 #data .panel {
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 }
@@ -547,4 +551,109 @@ input:checked + .slider:before {
 	color:white;
 	font-size: 18px;
 	font-family: 'Quicksand';
+}
+
+/*------------------------------
+	Content --- Rule
+------------------------------*/
+#rule h3{
+	font-size: 30px;
+	font-family: 'Montserrat';
+	color:#2c3e50;
+}
+#rule .help-title {
+	font-size: 20px;
+	color:#95a5a6;
+}
+#rule .block {
+	float: right;
+	background-color:#3498db;
+	height:40px;
+	width:120px;
+	border-radius:6px;
+	text-align: center;
+	cursor: pointer;
+	margin: 10px 20px 0 0;
+}
+#rule .block:hover {
+	background-color:#2980b9;
+	text-decoration: none;
+}
+#rule .block p{
+	padding-top:3px;
+	color:white;
+	font-size: 18px;
+	font-family: 'Quicksand';
+}
+#rule .rule {
+	margin-top: 10px;
+}
+// #rule #list {
+// 	background-color: white;
+// 	border-radius:6px;
+// 	margin-bottom: 5px;
+// 	border-bottom:3px solid rgba(0,0,0,0.1);
+// }
+#rule p{
+	color:white;
+	font-size: 18px;
+	font-family: 'Quicksand';
+	margin: 3px;
+}
+#rule .choice-box {
+	padding: 3px;
+	display: inline-block;
+	width: 120px;
+	background-color:#7f8c8d;
+	border-radius:6px;
+	text-align: center;
+}
+#rule .choice {
+	margin-left: 25%;
+	width: 60px;
+	background-color:#1abc9c;
+	border-radius:3px;
+	text-align: center;
+	cursor: pointer;
+}
+#rule .choice:hover {
+	background-color:#2c3e50;
+}
+#rule .choice p{
+	font-size: 14px;
+}
+#rule .if {
+	display: inline-block;
+	width: 25px;
+	background-color:#3498db;
+	border-radius:6px;
+	text-align: center;
+	margin: 3px;
+}
+#rule .then {
+	display: inline-block;
+	width: 50px;
+	background-color:#c0392b;
+	border-radius:6px;
+	text-align: center;
+	margin: 3px;
+}
+#rule .select {
+	width: 200px;
+	background: #e67e22;
+	text-align: center;
+	border-radius:6px;
+	display: inline-block;
+}
+#rule .select select {
+	display: inline-block;
+	color:black;
+}
+#rule .in {
+	display: inline-block;
+	width: 25px;
+	background-color:#2ecc71;
+	border-radius:6px;
+	text-align: center;
+	margin: 3px;
 }

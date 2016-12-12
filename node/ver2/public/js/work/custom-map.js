@@ -484,6 +484,7 @@ var drawroom = function(x,y,w,h){
 	attr_room(element);
 	create_room_selected = element;
 	element.attr({
+		title:String(x/10)+","+ String(setheight- (mouseDownY/10)),
 		fill:"#2980b9",
 		opacity:0.7,
 		stroke: "#7f8c8d",
@@ -570,7 +571,8 @@ var room_deselect_all = function(){
 }
 var delete_room = function(){
 	if(room_selected){
-		var data = {"name":room_selected.data('name')};
+		var data = {"name":room_selected.attr('title')};
+		// var data = {"name":room_selected.data('name')};
 		$.post("/removeroom",data, function(data, status){
 	    	console.log(status);        
 	    });
@@ -602,7 +604,9 @@ var room_detail = function(){
 				console.log(data[0].Room_name);
 				var name = data[0].Room_name;
 				document.getElementById("name-selected").value = name;
-				room_selected.data('name',name);
+				room_selected.attr({'title':name});
+				// room_selected.data('name',name);
+
 			}
 		});
 		$("#colorselector").colorselector("setColor", room_selected.attrs.fill);
@@ -611,13 +615,15 @@ var room_detail = function(){
 
 var room_rename = function(){
 	if(room_selected){
-		var oldname = String(room_selected.data('name'));
+		// var oldname = String(room_selected.data('name'));
+		var oldname = room_selected.attr('title');
 		var newname = document.getElementById("name-selected").value;
 		console.log(oldname);
 		console.log(newname);
 		data = {"oldname":oldname,"newname":newname};
 	    $.post("/editroom",data, function(data, status){
-			room_selected.data('name',newname);
+			// room_selected.data('name',newname);
+			room_selected.attr({'title':newname});
 			console.log(status); 
 		});
 	}
@@ -636,6 +642,9 @@ var room_check_db = function(set){
 				if(data == 'err'){
 					console.log('not found');
 					set_room[i].remove();
+				}else {
+					var name = data[0].Room_name;
+					set_room[i].attr({'title':name});
 				}
 				i++;
 				loop();

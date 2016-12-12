@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ==========================
+    	Meta Tags 
+    =========================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ==========================
+    	Title 
+    =========================== -->
+    <title>Smart Home</title>
+    <link rel="shortcut icon" href="/img/icontitle.ico" />
+    <!-- ==========================
+    	Fonts 
+    =========================== -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- ==========================
+    	CSS 
+    =========================== -->
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-colorselector.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+</head>
+<body>
+    <!-- ==========================
+        Preloader
+    =========================== -->
+    <div id='preloader'>
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+	<!-- ==========================
+    	HEADER - START 
+    =========================== -->
+    <header>
+	<!-- ==========================
+    	Nav-bar - START 
+    =========================== -->
+    	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    		<div class="container">
+    		<!-- Brand and toggle get grouped for better mobile display -->
+    			<div class="navbar-header">
+    				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavigation"><i class="fa fa-bars"></i></button>
+                    {{#if username}}    {{!-- if loggedin --}}
+                    <i class="fa fa-user fa-3x navbar-logo pull-left"></i>
+                    <a href='/'class="navbar-brand">{{{username}}}</a>
+                    {{else}}
+                    <img src="img/icon.png" class="navbar-logo pull-left" alt="" />
+                    <a href='/' class="navbar-brand">Smart Home WiFi</a>
+                    {{/if}}
+                </div>  {{!-- /navbar-header --}}
+            <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="myNavigation">
+                    <ul class="nav navbar-nav navbar-right">
+                    {{#if username}}    {{!-- if loggedin --}}
+                        <li><a href='/'>Home</a></li>
+                        <li><a href='/choose_map'>Map</a></li>
+                        <li class='logout'><a href='/logout'>Logout</a></li>
+                    {{else}}
+                        <li><a href='#'id="botton_login">Login</a></li>
+                    {{/if}}
+                    </ul>
+                </div>	{{!-- /navbar collpase --}}
+    		</div>	{{!-- /container --}}
+    	</nav>	{{!-- /nav-bar --}}
+
+
+	</header>	{{!-- /header --}}
+
+	<!-- ==========================
+    	Section Your Rule
+    =========================== -->
+    <section id='rule' class='content'>
+        <div class='container'>
+            <div class='row'>   {{!-- /Header Name --}}
+                <div class='col-md-5'>
+                    <h3>{{{map}}} <span class='help-title'>rule</span><h3> 
+                </div>
+                <div class="col-md-7"style='text-align:right'>
+                    <a class='block' href="/map"><p>back</p></a>
+                </div>
+            </div>  {{!-- /row --}}
+
+
+            <!-- start rule list -->
+            <div class='row rule' id='rule-list'>
+
+            <!-- add right -->
+                <div id='list'>
+                    <div class='if'><p>if</p></div>
+                    <button id='add-right'>add right</button>
+                </div>
+
+            <!-- choice -->
+                <div id='list'>
+                    <div class='if'><p>if</p></div>
+                    <div class='choice-box'>
+                        <div class="choice">
+                            <p>time<p>
+                        </div>
+                        <div class="choice">
+                            <p>Tag<p>
+                        </div>
+                    </div>
+                </div>
+
+
+            <!-- then -->
+                <div id='list'>
+                    <div class='if'><p>if</p></div>
+                    <div class='in'><p>in</p></div>
+                    <div class='then'><p>then</p></div>
+
+                </div>
+
+
+            <!-- select form -->
+                <div id='list'>
+                    <div class='if'><p>if</p></div>
+                    <div class='select' >
+                    <p>Tag
+                    <select class="custom-select">
+                        <option selected>none</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </p>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <!-- add down -->
+            <div class='row'>
+                <button type="button" class="btn btn-primary" id='add-down' title='new room'>new room</button>   
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================
+    	JS 
+    =========================== -->
+    {{!-- lib --}}
+    <script src="/lib/js/jquery-3.1.1.min.js"></script>
+    <script src="/lib/js/bootstrap.min.js"></script>
+
+    {{!-- design js --}}
+    <script src="/js/design/custom.js"></script>
+    {{!-- work js --}}
+    <script src="/js/work/custom-rule.js"></script>
+
+
+
+</body>
+</html>
