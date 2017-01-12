@@ -42,4 +42,6 @@ exports.render_choose_map = function(req,res){
 function save_map(req){
 	var save_map = new choose_map({Mapname:"homegod",User:req.user.Username});
 	save_map.save();
+	var save_map2 = new choose_map({Mapname:"floor5",User:req.user.Username});
+	save_map2.save();
 }

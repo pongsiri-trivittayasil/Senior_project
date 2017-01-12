@@ -633,21 +633,42 @@ input:checked + .slider:before {
 #rule .then {
 	display: inline-block;
 	width: 50px;
-	background-color:#c0392b;
+	background-color:#2980b9;
 	border-radius:6px;
 	text-align: center;
 	margin: 3px;
 }
-#rule .select {
-	width: 200px;
-	background: #e67e22;
-	text-align: center;
+#rule .and {
+	display: inline-block;
+	width: 50px;
+	background-color:#8e44ad;
 	border-radius:6px;
-	display: inline-block;
+	text-align: center;
+	margin: 3px;
 }
-#rule .select select {
+#rule .or {
 	display: inline-block;
-	color:black;
+	width: 50px;
+	background-color:#8e44ad;
+	border-radius:6px;
+	text-align: center;
+	margin: 3px;
+}
+#rule .on {
+	display: inline-block;
+	width: 50px;
+	background-color:#27ae60;
+	border-radius:6px;
+	text-align: center;
+	margin: 3px;
+}
+#rule .off {
+	display: inline-block;
+	width: 50px;
+	background-color:#c0392b;
+	border-radius:6px;
+	text-align: center;
+	margin: 3px;
 }
 #rule .in {
 	display: inline-block;
@@ -656,4 +677,29 @@ input:checked + .slider:before {
 	border-radius:6px;
 	text-align: center;
 	margin: 3px;
+}
+#rule select {
+	display: inline-block;
+	color:black;
+}
+#rule .select-tag {
+	width: 230px;
+	background: #e67e22;
+	text-align: center;
+	border-radius:6px;
+	display: inline-block;
+}
+#rule .select-controltag {
+	width: 230px;
+	background: #f39c12;
+	text-align: center;
+	border-radius:6px;
+	display: inline-block;
+}
+#rule .select-room {
+	width: 230px;
+	background: #27ae60;
+	text-align: center;
+	border-radius:6px;
+	display: inline-block;
 }
