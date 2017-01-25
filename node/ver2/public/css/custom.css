@@ -295,7 +295,36 @@ input:checked + .slider:before {
 .modal-body .error {
 	color:red;
 }
-
+/*--rule--*/
+.modal-body .head {
+	color:#7f8c8d;
+	font-family: 'Quicksand';
+	font-size:25px;	
+	font-weight: 700;
+	max-width: 100%;
+	margin-bottom: 5px;
+}
+.modal-body .if-choice {
+	display: inline-block;
+	background-color:#3498db;
+	border-radius:6px;
+	text-align: center;
+	margin: 3px;
+	cursor: pointer;	
+}
+.modal-body .if-choice > p {
+	color:white;
+	font-size: 18px;
+	font-family: 'Quicksand';
+	margin: 3px;
+}
+.modal-body .rule-if {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	padding-left: 15px;
+}
+.modal-body button {
+	margin-top: 10px;
+}
 /*------------------------------
 	Content
 ------------------------------*/

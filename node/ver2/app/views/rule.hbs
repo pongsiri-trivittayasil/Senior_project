@@ -103,10 +103,13 @@
                 <div id='list'>
                     <div class='if'><p>if</p></div>
                     <div class='choice-box'>
-                        <div class="choice">
+                        <div class="choice" id='time'>
                             <p>time<p>
                         </div>
-                        <div class="choice">
+                        <div class="choice" id='time'>
+                            <p>time<p>
+                        </div>
+                        <div class="choice" id='tag'>
                             <p>Tag<p>
                         </div>
                     </div>
@@ -173,9 +176,10 @@
 
 
             </div>
-            <!-- add down -->
+            <!-- new rule -->
             <div class='row'>
-                <button type="button" class="btn btn-primary" id='add-down' title='new room'>new room</button>   
+                <button type="button" class="btn btn-primary" id='add-down' title='new rule'>new rule</button>   
+                <button type="button" class="btn btn-primary" id='add-rule' title='new rule'>new rule</button>   
             </div>
 
 
@@ -183,6 +187,59 @@
 
 
     </section>
+
+
+
+    <!-- ==========================
+        Modal add rule
+    =========================== -->
+    <div class="modal fade" id="modal-add-rule" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                    <div class="modal-title">Add new rule</div>
+                </div>  {{!-- /modal-header --}}
+                {{!-- modal-body --}}
+                <div class="modal-body" id="modal-body">
+                {{!-- If --}}
+                    <div class="head">If</div>
+
+                    <div class='if-list'>
+
+
+                    <div class='row rule-if'>test</div>
+                    <div class='row rule-if'>tag</div>
+
+
+
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-default" id='if-tag'>Tag</button>
+                        <button type="button" class="btn btn-default">Time</button>
+                        <button type="button" class="btn btn-default">Date</button>
+                        <button type="button" class="btn btn-default">Day</button>
+                    </div>
+
+                {{!-- Then --}}
+                    <div class="head">Then</div>
+
+                    <button type="button" class="btn btn-default">Notify</button>
+                    <button type="button" class="btn btn-default">Control Tag</button>
+
+                {{!-- Submit --}}
+                    <div class='submit'>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Cancel</button>
+                    </div>
+
+                </div>  {{!-- /modal-body --}}
+
+            </div> {{!-- /modal content --}}
+        </div>
+    </div> {{!-- /modal --}}
+
 
 
 

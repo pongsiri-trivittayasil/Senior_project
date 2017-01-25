@@ -34,8 +34,14 @@ var APointSchema = new Schema({
 	User: String,
 	Map: String
 });
-
+//Rule
+var RuleSchema = new Schema({
+	Time: Date,
+	Notify:String,
+	Line:String
+});
 mongoose.model('Control',ControlSchema);
 mongoose.model('Tag',TagSchema);
 mongoose.model('Room',RoomSchema);
 mongoose.model('AP',APointSchema);
+mongoose.model('Rule',RuleSchema);

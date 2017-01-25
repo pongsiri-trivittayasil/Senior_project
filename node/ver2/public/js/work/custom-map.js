@@ -60,6 +60,8 @@ function keyCommand(eve){
 	Edit Map Option Switch
 ------------------------------*/
 // switch image
+$('#switch_image').attr('checked','checked')[0].checked = false;
+$('#switch_grid').attr('checked','checked')[0].checked = false;
 $('#switch_image').on('click',function(){
   var x = document.getElementById("switch_image").checked;
   if(x===true){show_background();}
@@ -735,6 +737,8 @@ var json_call = function(){
 			ap_check_db(window['set_ap']);
 		}
 		$("#preloader").fadeOut("slow");
+		hide_background();
+		hide_grid();
 	});
 }
 /*------------------------------
