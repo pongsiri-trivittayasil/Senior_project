@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="/lib/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
     <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-formhelpers.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-select.min.css">
 </head>
 <body>
     <!-- ==========================
@@ -134,6 +137,10 @@
                     </div>
                     </div>
 
+
+                    <!-- ==========================
+                        If List
+                    =========================== -->
                     <div id='if-list'>
                     </div> {{!-- /if-list --}}
 
@@ -142,7 +149,10 @@
                         {{!-- title --}}
                         <div class="col-md-2">Time</div>
                         {{!-- helper --}}
-                        <div class="col-md-6 bfh-timepicker" data-time="now" id='if-time'></div>
+                        {{!-- <div class="col-md-6 bfh-timepicker" data-time="now" id='if-time'></div> --}}
+                        <div class="col-md-6 "id='if-time'>
+                            <input type="text" class="form-control timepicker">
+                        </div>
                         {{!-- close --}}
                         <div class="col-md-4" style="text-align:right">
                             <i class="fa fa-times remove" aria-hidden="true"></i>
@@ -154,7 +164,8 @@
                         {{!-- title --}}
                         <div class="col-md-2" >Date</div>
                         {{!-- helper --}}
-                        <div class="col-md-6 bfh-datepicker" data-min="today" id="if-date">
+                        <div class="col-md-6 ">
+                            <input class='form-control datepicker' type='text'>
                         </div>
                         {{!-- close --}}
                         <div class="col-md-4" style="text-align:right">
@@ -167,15 +178,17 @@
                         {{!-- title --}}
                         <div class="col-md-2" >Day</div>
                         {{!-- helper --}}
-                        <div class="col-md-6 bfh-selectbox" data-name="selectbox1" data-value="Monday" data-filter="true" id="if-day">
-                            <div data-value="Monday">Monday</div>
-                            <div data-value="Tuesday">Tuesday</div>
-                            <div data-value="Wednesday">Wednesday</div>
-                            <div data-value="Thursday">Thursday</div>
-                            <div data-value="Friday">Friday</div>
-                            <div data-value="Saturday">Saturday</div>
-                            <div data-value="Sunday">Sunday</div>
-                        </div>                        
+                        <div class='col-md-6'>
+                            <select class="selectpicker">
+                                <option>Monday</option>
+                                <option>Tuesday</option>
+                                <option>Wednesday</option>
+                                <option>Thursday</option>
+                                <option>Friday</option>
+                                <option>Saturday</option>
+                                <option>Sunday</option>
+                            </select>
+                        </div>
                         {{!-- close --}}
                         <div class="col-md-4" style="text-align:right">
                             <i class="fa fa-times remove" aria-hidden="true"></i>
@@ -187,13 +200,17 @@
                         {{!-- title --}}
                         <div class="col-md-1" >Tag</div>
                         {{!-- helper tag --}}
-                        <div class="col-md-4 bfh-selectbox" data-name="selectbox1" data-value="Tag" data-filter="true" id="if-tag">
-                            <div data-value="Tag">tagname</div>
+                        <div class="col-md-4" >
+                            <select class='selectpicker'>
+                                <option>tag</option>
+                            </select>
                         </div>                        
                         <div class="col-md-1">in</div>
-                        {{!-- helper room--}}
-                        <div class="col-md-4 bfh-selectbox" data-name="selectbox1" data-value="Tag" data-filter="true" id="if-tag">
-                            <div data-value="Tag">tagname</div>
+                        {{!-- helper room--}}    
+                        <div class="col-md-4" >
+                            <select class='selectpicker'>
+                                <option>room</option>
+                            </select>
                         </div>                        
                         {{!-- close --}}
                         <div class="col-md-2" style="text-align:right">
@@ -205,19 +222,27 @@
                     <div class='row '>
                         <div class="col-md-2 head">Then</div>
                         <div class='col-md-10'>
-                            <button type="button" class="btn btn-default">Notify Line</button>
-                            <button type="button" class="btn btn-default">Control Tag</button>
+                            <button type="button" class="btn btn-default" id='then-button-line'>Notify Line</button>
+                            <button type="button" class="btn btn-default" id='then-button-control'>Control Tag</button>
                         </div>
                     </div>
+
+                    <!-- ==========================
+                        then List
+                    =========================== -->
+                    <div id='then-list'>
+                    </div> {{!-- /if-list --}}
 
                     {{!-- notify Line --}}
                     <div class='row list'>
                         {{!-- title --}}
                         <div class="col-md-1" >Line</div>
                          {{!-- helper line --}}
-                        <div class="col-md-4 bfh-selectbox" data-name="selectbox1" data-value="Tag" data-filter="true" id="if-tag">
-                            <div data-value="Tag">token</div>
-                        </div>   
+                        <div class="col-md-4" >
+                            <select class='selectpicker'>
+                                <option>token</option>
+                            </select>
+                        </div>           
                         {{!-- message --}}
                         <div class="col-md-2">Message</div>
                         <div class='col-md-4'>
@@ -234,14 +259,20 @@
                         {{!-- title --}}
                         <div class="col-md-2">Control</div>
                          {{!-- helper name control --}}
-                        <div class="col-md-4 bfh-selectbox" data-name="selectbox1" data-value="Tag" data-filter="true" id="if-tag">
-                            <div data-value="Tag">controlname</div>
-                        </div>   
+                        <div class="col-md-4" >
+                            <select class='selectpicker'>
+                                <option>control name</option>
+                            </select>
+                        </div>           
                          {{!-- helper status --}}
-                        <div class="col-md-4 bfh-selectbox" data-name="selectbox1" data-value="on" id="if-tag">
-                            <div data-value="on">on</div>
-                            <div data-value="off">off</div>
-                        </div>   
+                        <div class="col-md-4" >
+                            <select class='selectpicker'>
+                                <option>on</option>
+                                <option>off</option>
+                            </select>
+                        </div>           
+
+
                         {{!-- close --}}
                         <div class="col-md-2" style="text-align:right">
                             <i class="fa fa-times remove" aria-hidden="true"></i>
@@ -271,6 +302,9 @@
     <script src="/lib/js/jquery-3.1.1.min.js"></script>
     <script src="/lib/js/bootstrap.min.js"></script>
     <script src="/lib/js/bootstrap-formhelpers.js"></script>
+    <script src="/lib/js/bootstrap-datepicker.min.js"></script>
+    <script src="/lib/js/bootstrap-timepicker.min.js"></script>
+    <script src="/lib/js/bootstrap-select.min.js"></script>
 
     {{!-- design js --}}
     <script src="/js/design/custom.js"></script>

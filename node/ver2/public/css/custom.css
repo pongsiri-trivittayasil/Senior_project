@@ -333,6 +333,9 @@ input:checked + .slider:before {
 .modal-body button {
 	margin-top: 0px;
 }
+.modal-body .bootstrap-select > .dropdown-toggle {
+	width: 70%;
+}
 /*------------------------------
 	Content
 ------------------------------*/
