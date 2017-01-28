@@ -105,7 +105,8 @@
     						<table class="table  table-condensed table-hover">
     							<thead style="text-align:center">		{{!-- head table --}}
     								<tr>	
-    									<th>Control Name</th>
+                                        <th>Control Name</th>
+    									<th>Control ID</th>
     									<th>Status</th>
     									<th></th>
     									<th></th>
@@ -117,6 +118,7 @@
                                     {{#each Control_list}}
                                         <tr>
                                         <td  id='control-name'>{{this.name}}</td>
+                                        <td >{{this.id}}</td>
                                         {{#if this.status}}
                                             <td><span class="label label-success">On</span></td>
                                         {{else}}
@@ -149,9 +151,8 @@
     						<table class="table  table-condensed table-hover">
     							<thead style="text-align:center">		{{!-- head table --}}
     								<tr>	
-    									<th>Tag Name</th>
-    									<th>X</th>
-    									<th>y</th>
+                                        <th>Tag Name</th>
+    									<th>Tag ID</th>
     									<th>room</th>
     									<th></th>
     									<th></th>
@@ -162,8 +163,7 @@
                                     {{#each Tag_list}}
                                     <tr>
                                         <td id='tag-name'>{{this.name}}</td>
-                                        <td>{{this.x}}</td>
-                                        <td>{{this.y}}</td>
+                                        <td>{{this.id}}</td>
                                         <td>{{this.room}}</td>
                                         <td scope="row"><button type="button" class="btn btn-default btn-sm" id='edit-tag'>Edit</button></td>
                                         <td scope="row"><button type="button" class="btn btn-default btn-sm" id='delete-tag'>Delete</button></td>
@@ -194,11 +194,10 @@
     						<table class="table  table-condensed table-hover">
     							<thead style="text-align:center">		{{!-- head table --}}
     								<tr>	
-    									<th>Room Name</th>
-    									<th>max x</th>
-    									<th>min x</th>
-    									<th>max y</th>
-    									<th>min y</th>
+                                        <th>Room Name</th>
+                                        <th>Room ID</th>
+                                        <th>Room mac</th>
+    									<th>IntitialValue</th>
     									<th></th>
     									<th></th>
     								</tr>
@@ -210,10 +209,9 @@
 									{{#each Room_list}}
                                         <tr>
                                             <td id='room-name'>{{this.name}}</td>
-                                            <td>{{this.max_x}}</td>
-                                            <td>{{this.min_x}}</td>
-                                            <td>{{this.max_y}}</td>
-                                            <td>{{this.min_y}}</td>
+                                            <td>{{this.id}}</td>
+                                            <td>{{this.mac}}</td>
+                                            <td>{{this.IntitialValue}}</td>
                                             <td scope="row"><button type="button" class="btn btn-default btn-sm"id='edit-room'>Edit</button></td>
                                             <td scope="row"><button type="button" class="btn btn-default btn-sm"id='delete-room'>Delete</button></td>
                                         </tr>
@@ -262,10 +260,54 @@
 
 								</tbody>
 	                        </table>	{{!-- /table--}}
-    					</div>	{{!-- / panel body--}}    		</div>	{{!-- /row --}}
+    					</div>	{{!-- / panel body--}}    		
 
-    				</div> {{!-- /end panel --}}
-    			</div> {{!-- /end col-md-6 table --}}
+                    </div> {{!-- /end panel --}}
+                </div> {{!-- /end col-md-6 table --}}
+
+            </div>  {{!-- /row --}}
+
+
+            <div class='row'>
+
+
+                {{!-- Line table--}}
+                <div class='col-md-6'>
+                    <div class='panel'> {{!-- panel --}}
+                        
+                        <div class="panel-heading"> {{!-- /heading --}}
+                            <p>Line<p>
+                            <a href="#" class='panel-actions' id="line_add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                        </div>  {{!-- /end heading --}}
+
+                        <div class='panel-body'>
+                            <table class="table  table-condensed table-hover">
+                                <thead style="text-align:center">       {{!-- head table --}}
+                                    <tr>    
+                                        <th>Line Name</th>
+                                        <th>Line Token</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>    {{!-- /.head table--}}
+                                {{!-- table body --}}
+                                <tbody>     
+                                    {{#each Line_list}}
+                                    <tr>
+                                        <td id='line-name'>{{this.name}}</td>
+                                        <td>{{this.token}}</td>
+                                        <td scope="row"><button type="button" class="btn btn-default btn-sm" id='edit-line'>Edit</button></td>
+                                        <td scope="row"><button type="button" class="btn btn-default btn-sm" id='delete-line'>Delete</button></td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>    {{!-- /table--}}
+                        </div>  {{!-- / panel body--}}          
+
+                    </div> {{!-- /end panel --}}
+                </div> {{!-- /end col-md-6 table --}}
+            
+            </div>	{{!-- /row --}}
 
     	</div>	{{!-- /container --}}
     </section>
@@ -292,6 +334,8 @@
                         <div class="form-group">
                             <label for="username">Name:</label>
                             <input name="Control_Name"type="text" class="form-control"  value="admin">
+                            <label for="control_id">ID:</label>
+                            <input name="Control_id"type="text" class="form-control"  value="1">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -310,6 +354,8 @@
                         <div class="form-group">
                             <label for="username">Nametag:</label>
                             <input name="Tag_name"type="text" class="form-control"  value="admin">
+                            <label for="Tag_id">ID:</label>
+                            <input name="Tag_id"type="text" class="form-control"  value="1">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -328,14 +374,12 @@
                         <div class="form-group">
                             <label for="username">Name:</label>
                             <input name="Room_name"type="text" class="form-control"  value="admin">
-                            <label for="username">max x:</label>
-                            <input name="max_x"type="text" class="form-control"  value="-1">
-                            <label for="username">min x:</label>
-                            <input name="min_x"type="text" class="form-control"  value="-1">
-                            <label for="username">max y:</label>
-                            <input name="max_y"type="text" class="form-control"  value="-1">
-                            <label for="username">min y:</label>
-                            <input name="min_y"type="text" class="form-control"  value="-1">
+                            <label for="username">ID:</label>
+                            <input name="Room_id"type="text" class="form-control"  value="1">
+                            <label for="username">mac:</label>
+                            <input name="Room_mac"type="text" class="form-control"  value="mac">
+                            <label for="username">Intitial Value:</label>
+                            <input name="IntitialValue"type="text" class="form-control"  value="-1">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -367,6 +411,29 @@
                         </div>
                     </form>
                 </div>  {{!-- /modal-body-ap --}}
+
+
+
+                {{!-- modal-body-line --}}
+                <div class="modal-body" id="modal-body-line">
+                    <form id="form_add_line">
+                        <div class="form-group">
+                            <label for="username">Line Name:</label>
+                            <input name="Line_name"type="text" class="form-control"  value="Name">
+                            <label for="username">Line Token:</label>
+                            <input name="Line_token"type="text" class="form-control"  value="Token">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-line --}}
+
+
+
 
 
             </div>    {{!-- /modal-content --}}
@@ -524,6 +591,42 @@
         </div>  
     </div>  {{!-- /modal --}}
 
+    {{!-- line --}}
+    <div class="modal fade" id="modal-edit-line" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Edit Line</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-line --}}
+                <div class="modal-body" id="modal-body-line">
+                    <form id="form-edit-line">
+                        <div class="form-group">
+                            <label for="username">Old name:</label>
+                        <fieldset disabled>
+                            <input name="oldname"type="text" class="form-control" id="oldname" value="oldname">
+                        </fieldset>
+                            <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
+                            <label for="username">New Name:</label>
+                            <input name="newname"type="text" class="form-control"  value="newname">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-line --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
 
 
     <!-- ==========================
@@ -660,6 +763,41 @@
                         </div>
                     </form>
                 </div>  {{!-- /modal-body-ap --}}
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
+
+    {{!-- line --}}
+    <div class="modal fade" id="modal-delete-line" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Delete Access Point</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body-line --}}
+                <div class="modal-body" id="modal-body-line">
+                    <form id="form-delete-line">
+                        <div class="form-group">
+                            <label for="username">Delete Line Name:</label>
+                        <fieldset disabled>
+                            <input name="name"type="text" class="form-control" id="name" value="name">
+                        </fieldset>
+                            <input name="name"type="hidden" class="form-control" id="name-set" value="name">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        <div class="col-md-6 error" id="error"></div>
+                        </div>
+                    </form>
+                </div>  {{!-- /modal-body-line --}}
 
 
             </div>    {{!-- /modal-content --}}

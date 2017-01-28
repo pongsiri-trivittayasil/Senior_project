@@ -3,7 +3,7 @@ var Tag = require('mongoose').model('Tag');
 exports.create = function(req,res,next){
 	try {
 		var Tag_name = req.body.Tag_name;
-		var tag = new Tag ({Tag_name:Tag_name,x:-1,y:-1,room:"-1",User:req.user.Username,Map:req.session.map});
+		var tag = new Tag ({Tag_name:Tag_name,Tag_id:req.body.Tag_id,room:"-1",User:req.user.Username,Map:req.session.map});
 		tag.save(function(err){
 			if(err){
 				return next(err);

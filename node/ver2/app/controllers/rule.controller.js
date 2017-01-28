@@ -1,4 +1,4 @@
-var Control = require('mongoose').model('Rule');
+// var Control = require('mongoose').model('Rule');
 
 // call page data -------------------------------------------------------------
 exports.render_rule = function(req,res){

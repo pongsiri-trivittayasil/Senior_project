@@ -125,7 +125,12 @@
                 </div>  {{!-- /modal-header --}}
                 {{!-- modal-body --}}
                 <div class="modal-body" id="modal-body">
-                {{!-- If --}}
+
+
+
+                <!-- ==========================
+                    If
+                =========================== -->
                     <div class='row'>
                     <div class="col-md-2 head">If</div>
                     <div class='col-md-10'>                    
@@ -144,81 +149,9 @@
                     <div id='if-list'>
                     </div> {{!-- /if-list --}}
 
-                    {{!-- time --}}
-                    <div class='row list' id='time'>
-                        {{!-- title --}}
-                        <div class="col-md-2">Time</div>
-                        {{!-- helper --}}
-                        {{!-- <div class="col-md-6 bfh-timepicker" data-time="now" id='if-time'></div> --}}
-                        <div class="col-md-6 "id='if-time'>
-                            <input type="text" class="form-control timepicker">
-                        </div>
-                        {{!-- close --}}
-                        <div class="col-md-4" style="text-align:right">
-                            <i class="fa fa-times remove" aria-hidden="true"></i>
-                        </div>
-                    </div>
-
-                    {{!-- date --}}
-                    <div class='row list' id='date'>
-                        {{!-- title --}}
-                        <div class="col-md-2" >Date</div>
-                        {{!-- helper --}}
-                        <div class="col-md-6 ">
-                            <input class='form-control datepicker' type='text'>
-                        </div>
-                        {{!-- close --}}
-                        <div class="col-md-4" style="text-align:right">
-                            <i class="fa fa-times remove" aria-hidden="true"></i>
-                        </div>
-                    </div>
-
-                    {{!-- day --}}
-                    <div class='row list'>
-                        {{!-- title --}}
-                        <div class="col-md-2" >Day</div>
-                        {{!-- helper --}}
-                        <div class='col-md-6'>
-                            <select class="selectpicker">
-                                <option>Monday</option>
-                                <option>Tuesday</option>
-                                <option>Wednesday</option>
-                                <option>Thursday</option>
-                                <option>Friday</option>
-                                <option>Saturday</option>
-                                <option>Sunday</option>
-                            </select>
-                        </div>
-                        {{!-- close --}}
-                        <div class="col-md-4" style="text-align:right">
-                            <i class="fa fa-times remove" aria-hidden="true"></i>
-                        </div>
-                    </div>
-
-                    {{!-- tag in room --}}
-                    <div class='row list'>
-                        {{!-- title --}}
-                        <div class="col-md-1" >Tag</div>
-                        {{!-- helper tag --}}
-                        <div class="col-md-4" >
-                            <select class='selectpicker'>
-                                <option>tag</option>
-                            </select>
-                        </div>                        
-                        <div class="col-md-1">in</div>
-                        {{!-- helper room--}}    
-                        <div class="col-md-4" >
-                            <select class='selectpicker'>
-                                <option>room</option>
-                            </select>
-                        </div>                        
-                        {{!-- close --}}
-                        <div class="col-md-2" style="text-align:right">
-                            <i class="fa fa-times remove" aria-hidden="true"></i>
-                        </div>
-                    </div>
-
-                {{!-- Then --}}
+                <!-- ==========================
+                    then
+                =========================== -->
                     <div class='row '>
                         <div class="col-md-2 head">Then</div>
                         <div class='col-md-10'>
@@ -233,57 +166,11 @@
                     <div id='then-list'>
                     </div> {{!-- /if-list --}}
 
-                    {{!-- notify Line --}}
-                    <div class='row list'>
-                        {{!-- title --}}
-                        <div class="col-md-1" >Line</div>
-                         {{!-- helper line --}}
-                        <div class="col-md-4" >
-                            <select class='selectpicker'>
-                                <option>token</option>
-                            </select>
-                        </div>           
-                        {{!-- message --}}
-                        <div class="col-md-2">Message</div>
-                        <div class='col-md-4'>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-                        </div>
-                        {{!-- close --}}
-                        <div class="col-md-1" style="text-align:right">
-                            <i class="fa fa-times remove" aria-hidden="true"></i>
-                        </div>
-                    </div>
-
-                    {{!-- Control --}}
-                    <div class='row list'>
-                        {{!-- title --}}
-                        <div class="col-md-2">Control</div>
-                         {{!-- helper name control --}}
-                        <div class="col-md-4" >
-                            <select class='selectpicker'>
-                                <option>control name</option>
-                            </select>
-                        </div>           
-                         {{!-- helper status --}}
-                        <div class="col-md-4" >
-                            <select class='selectpicker'>
-                                <option>on</option>
-                                <option>off</option>
-                            </select>
-                        </div>           
-
-
-                        {{!-- close --}}
-                        <div class="col-md-2" style="text-align:right">
-                            <i class="fa fa-times remove" aria-hidden="true"></i>
-                        </div>
-                    </div>
-
 
                 {{!-- Submit --}}
                     <div class='submit'>
-                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-                        <button type="submit" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="submit-modal">Submit</button>
+                        <button type="submit" class="btn btn-primary" id='cancel-modal'>Cancel</button>
                     </div>
 
                 </div>  {{!-- /modal-body --}}

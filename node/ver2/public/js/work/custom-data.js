@@ -72,14 +72,14 @@ $('#form-edit-room').submit(function(e){
 
 // edit ap
 $('[id^="edit-ap"]').each(function(){
-	$(this).on('click',function(){
-		$('#modal-edit-ap').modal('show');
-		//old name
-		var oldname = $(this).closest('tr').find('#ap-name').html();
-		var modal = $('#modal-edit-ap');
-		modal.find('#oldname').val(oldname);
-		modal.find('#oldname-set').val(oldname);
-	});
+  $(this).on('click',function(){
+    $('#modal-edit-ap').modal('show');
+    //old name
+    var oldname = $(this).closest('tr').find('#ap-name').html();
+    var modal = $('#modal-edit-ap');
+    modal.find('#oldname').val(oldname);
+    modal.find('#oldname-set').val(oldname);
+  });
 });
 
 $('#form-edit-ap').submit(function(e){
@@ -88,6 +88,29 @@ $('#form-edit-ap').submit(function(e){
   $.post("/editap",data_form, function(data, status){
         console.log(status);
         $('#modal-edit-ap').hide();
+        location.reload();
+  });
+  e.preventDefault();
+});
+
+// edit line
+$('[id^="edit-line"]').each(function(){
+	$(this).on('click',function(){
+		$('#modal-edit-line').modal('show');
+		//old name
+		var oldname = $(this).closest('tr').find('#line-name').html();
+		var modal = $('#modal-edit-line');
+		modal.find('#oldname').val(oldname);
+		modal.find('#oldname-set').val(oldname);
+	});
+});
+
+$('#form-edit-line').submit(function(e){
+  var data_form = $('#form-edit-line').serialize();
+  console.log(data_form);
+  $.post("/editline",data_form, function(data, status){
+        console.log(status);
+        $('#modal-edit-line').hide();
         location.reload();
   });
   e.preventDefault();
@@ -167,14 +190,14 @@ $('#form-delete-room').submit(function(e){
 
 // delete ap
 $('[id^="delete-ap"]').each(function(){
-	$(this).on('click',function(){
-		$('#modal-delete-ap').modal('show');
-		//old name
-		var name = $(this).closest('tr').find('#ap-name').html();
-		var modal = $('#modal-delete-ap');
-		modal.find('#name').val(name);
-		modal.find('#name-set').val(name);
-	});
+  $(this).on('click',function(){
+    $('#modal-delete-ap').modal('show');
+    //old name
+    var name = $(this).closest('tr').find('#ap-name').html();
+    var modal = $('#modal-delete-ap');
+    modal.find('#name').val(name);
+    modal.find('#name-set').val(name);
+  });
 });
 $('#form-delete-ap').submit(function(e){
   var data_form = $('#form-delete-ap').serialize();
@@ -182,6 +205,28 @@ $('#form-delete-ap').submit(function(e){
   $.post("/removeap",data_form, function(data, status){
         console.log(status);
         $('#modal-delete-ap').hide();
+        location.reload();
+  });
+  e.preventDefault();
+});
+
+// delete line
+$('[id^="delete-line"]').each(function(){
+	$(this).on('click',function(){
+		$('#modal-delete-line').modal('show');
+		//old name
+		var name = $(this).closest('tr').find('#line-name').html();
+		var modal = $('#modal-delete-line');
+		modal.find('#name').val(name);
+		modal.find('#name-set').val(name);
+	});
+});
+$('#form-delete-line').submit(function(e){
+  var data_form = $('#form-delete-line').serialize();
+  console.log(data_form);
+  $.post("/removeline",data_form, function(data, status){
+        console.log(status);
+        $('#modal-delete-line').hide();
         location.reload();
   });
   e.preventDefault();
@@ -198,13 +243,15 @@ $('#modal-body-control').hide();
 $('#modal-body-tag').hide();
 $('#modal-body-room').hide();
 $('#modal-body-ap').hide();
+$('#modal-body-line').hide();
 
 
 $('#modal_add').on('hide.bs.modal', function (event) {
 	$('#modal-body-control').hide();
 	$('#modal-body-tag').hide();
 	$('#modal-body-room').hide();
-	$('#modal-body-ap').hide();
+  $('#modal-body-ap').hide();
+	$('#modal-body-line').hide();
 })
 
 // control
@@ -264,7 +311,7 @@ $('#form_add_room').submit(function(e){
   e.preventDefault();
 });
 
-
+// ap
 $('#ap_add').on('click',function(){
   $('#modal-body-ap').show();
   $('#modal_add').modal('show');
@@ -279,6 +326,26 @@ $('#form_add_ap').submit(function(e){
         console.log(status);
         $('#modal_add').modal('hide');
         $('#modal-body-ap').hide();
+        location.reload();
+  });
+  e.preventDefault();
+});
+
+// line
+$('#line_add').on('click',function(){
+  $('#modal-body-line').show();
+  $('#modal_add').modal('show');
+    var modal = $('#modal_add');
+    modal.find('.modal-title').text('Add line');
+});
+
+$('#form_add_line').submit(function(e){
+  var data_form = $('#form_add_line').serialize();
+  console.log(data_form);
+  $.post("/createline",data_form, function(data, status){
+        console.log(status);
+        $('#modal_line').modal('hide');
+        $('#modal-body-line').hide();
         location.reload();
   });
   e.preventDefault();

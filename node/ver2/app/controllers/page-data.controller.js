@@ -2,6 +2,7 @@ var Control = require('mongoose').model('Control');
 var Tag = require('mongoose').model('Tag');
 var Room = require('mongoose').model('Room');
 var AP = require('mongoose').model('AP');
+var Line = require('mongoose').model('Line');
 var async = require('async');
 
 // function page data -------------------------------------------------------------
@@ -14,7 +15,7 @@ var find_control = function(req,callback){
 				return next(err);
 			}else{
 				for( n in controls){
-					Control_list.push({name:controls[n].Control_name,status:controls[n].Status});
+					Control_list.push({name:controls[n].Control_name,status:controls[n].Status,id:controls[n].Control_id});
 				}
 			}
 			callback(null,Control_list);
@@ -32,7 +33,7 @@ var find_tag = function(req,callback){
 				return next(err);
 			}else{
 				for( n in tags){
-					Tag_list.push({name:tags[n].Tag_name,x:tags[n].x,y:tags[n].y,room:tags[n].room});
+					Tag_list.push({name:tags[n].Tag_name,x:tags[n].x,y:tags[n].y,room:tags[n].room,id:tags[n].Tag_id});
 				}
 			}
 		callback(null,Tag_list);
@@ -51,7 +52,7 @@ var find_room = function(req,callback){
 				return next(err);
 			}else{
 				for( n in rooms){
-					Room_list.push({name:rooms[n].Room_name,max_x:rooms[n].max_x,min_x:rooms[n].min_x,max_y:rooms[n].max_y,min_y:rooms[n].min_y});
+					Room_list.push({name:rooms[n].Room_name,max_x:rooms[n].max_x,min_x:rooms[n].min_x,max_y:rooms[n].max_y,min_y:rooms[n].min_y,id:rooms[n].Room_id,mac:rooms[n].Room_mac,InitialValue:rooms[n].InitialValue});
 				}
 			}
 		callback(null,Room_list);
@@ -79,6 +80,25 @@ var find_AP = function(req,callback){
 		console.log(err);
 	}
 }
+var find_Line = function(req,callback){
+	var Line_list = [];
+	try {
+		//ap
+		Line.find({User:req.user.Username,Map:req.session.map},function(err,lines){
+			if(err){
+				return next(err);
+			}else{
+				for( n in lines){
+					Line_list.push({name:lines[n].Line_name,token:lines[n].Line_token});
+				}
+			}
+		callback(null,Line_list);
+		});
+	} catch (err){
+		console.log(err);
+	}
+}
+
 
 // call page data -------------------------------------------------------------
 exports.render_page_data = function(req,res){
@@ -92,6 +112,7 @@ exports.render_page_data = function(req,res){
 				tag:find_tag.bind(null,req),
 				room:find_room.bind(null,req),
 				AP:find_AP.bind(null,req),
+				Line:find_Line.bind(null,req),
 			},function(err,result){
 				// console.log(result.control);
 				// console.log(result.Tag);
@@ -102,6 +123,7 @@ exports.render_page_data = function(req,res){
 					Tag_list:result.tag,
 					Room_list:result.room,
 					AP_list:result.AP,
+					Line_list:result.Line,
 					username:req.user ? req.user.Username : '',			
 					map:req.session.map
 				});

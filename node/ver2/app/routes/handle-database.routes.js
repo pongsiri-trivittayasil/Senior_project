@@ -3,6 +3,7 @@ module.exports = function(app){
 	var tag = require('../controllers/tag.controller');
 	var room = require('../controllers/room.controller');
 	var ap = require('../controllers/ap.controller');
+	var line = require('../controllers/line.controller');
 
 	//control
 	app.route('/createcontrol').post(control.create);
@@ -26,5 +27,11 @@ module.exports = function(app){
 	app.route('/removeap').post(ap.remove);
 	app.post('/listap',ap.list);
 	app.post('/selectap',ap.select);
+	//line
+	app.route('/createline').post(line.create);
+	app.route('/editline').post(line.edit);
+	app.route('/removeline').post(line.remove);
+	app.post('/listline',line.list);
+	app.post('/selectline',line.select);
 
 }
