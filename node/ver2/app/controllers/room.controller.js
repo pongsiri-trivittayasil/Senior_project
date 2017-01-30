@@ -6,6 +6,8 @@ exports.create = function(req,res,next){
 		var room = new Room ({Room_name:room_name,Room_id:req.body.Room_id,Room_mac:req.body.Room_mac,IntitialValue:req.body.IntitialValue, max_x:req.body.max_x,min_x:req.body.min_x,max_y:req.body.max_y,min_y:req.body.min_y,User:req.user.Username,Map:req.session.map});
 		room.save(function(err){
 			if(err){
+				console.log('err');
+				console.log(err);
 				res.send(err);
 			}else{
 				res.send("done");
@@ -17,7 +19,7 @@ exports.create = function(req,res,next){
 };
 exports.edit = function(req,res,next){
 	try {
-		Room.findOneAndUpdate({Room_name:req.body.oldname,User:req.user.Username,Map:req.session.map},{Room_name:req.body.newname},function(err,user){
+		Room.findOneAndUpdate({Room_name:req.body.oldname,User:req.user.Username,Map:req.session.map},{Room_name:req.body.newname,Room_id:req.body.newid,Room_mac:req.body.newmac,IntitialValue:req.body.newintitialvalue},function(err,user){
 			if(err){
 				res.send(err);
 			}else{
@@ -49,7 +51,7 @@ exports.list = function(req,res,next){
 			if(err){
 				res.send(err);
 			}else{
-				res.send("done");
+				res.send(room);
 			}
 		});
 	} catch (err){

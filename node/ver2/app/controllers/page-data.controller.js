@@ -52,7 +52,7 @@ var find_room = function(req,callback){
 				return next(err);
 			}else{
 				for( n in rooms){
-					Room_list.push({name:rooms[n].Room_name,max_x:rooms[n].max_x,min_x:rooms[n].min_x,max_y:rooms[n].max_y,min_y:rooms[n].min_y,id:rooms[n].Room_id,mac:rooms[n].Room_mac,InitialValue:rooms[n].InitialValue});
+					Room_list.push({name:rooms[n].Room_name,max_x:rooms[n].max_x,min_x:rooms[n].min_x,max_y:rooms[n].max_y,min_y:rooms[n].min_y,id:rooms[n].Room_id,mac:rooms[n].Room_mac,IntitialValue:rooms[n].IntitialValue});
 				}
 			}
 		callback(null,Room_list);

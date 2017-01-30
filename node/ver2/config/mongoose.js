@@ -9,6 +9,7 @@ module.exports = function(){
 	require('../app/models/user.model');
 	require('../app/models/map.model');
 	require('../app/models/data.model');
+	require('../app/models/rule.model');
 
 	return db;
 }

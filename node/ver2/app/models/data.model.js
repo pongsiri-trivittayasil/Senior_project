@@ -11,7 +11,7 @@ var ControlSchema = new Schema({
 //Tag
 var TagSchema = new Schema({
 	Tag_name: {type:String,unique:true,index:true,trim:true,require:true},
-	Tag_id: {type:Number,unique:true,trim:true},
+	Tag_id: {type:Number,trim:true},
 	room: String,
 	User: String,
 	Map: String

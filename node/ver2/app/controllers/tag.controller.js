@@ -18,7 +18,7 @@ exports.create = function(req,res,next){
 exports.edit = function(req,res,next){
 	try {
 		console.log(req.body);
-		Tag.findOneAndUpdate({Tag_name:req.body.oldname,User:req.user.Username,Map:req.session.map},{Tag_name:req.body.newname},function(err,user){
+		Tag.findOneAndUpdate({Tag_name:req.body.oldname,User:req.user.Username,Map:req.session.map},{Tag_name:req.body.newname,Tag_id:req.body.newid},function(err,user){
 			if(err){
 				return next(err);
 			}else{

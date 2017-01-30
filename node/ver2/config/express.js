@@ -51,6 +51,7 @@ module.exports = function(){
 	//set path routes
 	require('../app/routes/index.routes')(app);
 	require('../app/routes/handle-database.routes')(app);
+	require('../app/routes/handle-rule.routes')(app);
 
 	return app;
 }

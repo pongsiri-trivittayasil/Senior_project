@@ -22,7 +22,7 @@ exports.edit = function(req,res,next){
 	console.log(oldname);
 	console.log(newname);
 	try {
-		Line.findOneAndUpdate({Line_name:oldname,User:req.user.Username,Map:req.session.map},{Line_name:newname},function(err,user){
+		Line.findOneAndUpdate({Line_name:oldname,User:req.user.Username,Map:req.session.map},{Line_name:newname,Line_token:req.body.newtoken},function(err,user){
 			if(err){
 				return next(err);
 			}else{
