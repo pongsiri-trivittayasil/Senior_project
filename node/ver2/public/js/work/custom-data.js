@@ -6,10 +6,13 @@ $('[id^="edit-control"]').each(function(){
 	$(this).on('click',function(){
 		$('#modal-edit-control').modal('show');
 		//old name
-		var oldname = $(this).closest('tr').find('#control-name').html();
+    var oldname = $(this).closest('tr').find('#control-name').html();
+		var oldid = $(this).closest('tr').find('#control-id').html();
 		var modal = $('#modal-edit-control');
 		modal.find('#oldname').val(oldname);
-		modal.find('#oldname-set').val(oldname);
+    modal.find('#oldname-set').val(oldname);
+    modal.find('#newname').val(oldname);
+		modal.find('#newid').val(oldid);
 	});
 });
 
@@ -30,9 +33,12 @@ $('[id^="edit-tag"]').each(function(){
 		$('#modal-edit-tag').modal('show');
 		//old name
 		var oldname = $(this).closest('tr').find('#tag-name').html();
+    var oldid = $(this).closest('tr').find('#tag-id').html();
 		var modal = $('#modal-edit-tag');
 		modal.find('#oldname').val(oldname);
-		modal.find('#oldname-set').val(oldname);
+    modal.find('#oldname-set').val(oldname);
+		modal.find('#newname').val(oldname);
+    modal.find('#newid').val(oldid);
 	});
 });
 
@@ -52,10 +58,18 @@ $('[id^="edit-room"]').each(function(){
 	$(this).on('click',function(){
 		$('#modal-edit-room').modal('show');
 		//old name
-		var oldname = $(this).closest('tr').find('#room-name').html();
+    var oldname = $(this).closest('tr').find('#room-name').html();
+    var oldid = $(this).closest('tr').find('#room-id').html();
+    var oldmac = $(this).closest('tr').find('#room-mac').html();
+		var oldinitialvalue = $(this).closest('tr').find('#initialvalue').html();
 		var modal = $('#modal-edit-room');
+    console.log(oldinitialvalue);
 		modal.find('#oldname').val(oldname);
-		modal.find('#oldname-set').val(oldname);
+    modal.find('#oldname-set').val(oldname);
+		modal.find('#newname').val(oldname);
+    modal.find('#newid').val(oldid);
+    modal.find('#newmac').val(oldmac);
+    modal.find('#newinitialvalue').val(oldinitialvalue);
 	});
 });
 
@@ -98,10 +112,13 @@ $('[id^="edit-line"]').each(function(){
 	$(this).on('click',function(){
 		$('#modal-edit-line').modal('show');
 		//old name
-		var oldname = $(this).closest('tr').find('#line-name').html();
+    var oldname = $(this).closest('tr').find('#line-name').html();
+		var oldtoken = $(this).closest('tr').find('#line-token').html();
 		var modal = $('#modal-edit-line');
 		modal.find('#oldname').val(oldname);
-		modal.find('#oldname-set').val(oldname);
+    modal.find('#oldname-set').val(oldname);
+    modal.find('#newname').val(oldname);
+		modal.find('#newtoken').val(oldtoken);
 	});
 });
 

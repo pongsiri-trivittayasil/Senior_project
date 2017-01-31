@@ -141,11 +141,11 @@ def check_time_rule():
 
 def clear_status_tag(tagid):
 	print 'clear status tag ...'
-	temp = db.tags.find({'Tag_id':int(tagid)})
-	cursor = db.iftags.find({'IfTag_name':tagid , 'IfTag_room':temp[0]['room']})
-	for document in cursor:
-		db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTag':'0'}})
-
+	temp = db.tags.find_one({'Tag_id':int(tagid)})
+	if(temp != None):
+		cursor = db.iftags.find({'IfTag_name':tagid , 'IfTag_room':temp['room']})
+		for document in cursor:
+			db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTag':'0'}})
 
 '''---------------------------------
 	check tag rule and set room in db_tag
@@ -174,7 +174,7 @@ def then_control(id,status):
 		print 'control id :' + str(id) + ' Status : True'
 		#  do something .. netpie
 	else:
-		db.controls.update({'Control_id':id},{'$set':{'Status':False}})
+		db.controls.update({'Control_id':int(id)},{'$set':{'Status':False}})
 		print 'control id :' + str(id) + ' Status : False'
 		#  do something .. netpie
 
@@ -182,4 +182,4 @@ def then_control(id,status):
 # ----------------------   example    ------------------------------------------
 		
 check_time_rule()
-# check_tag('-1','2')
+check_tag('-1','30')

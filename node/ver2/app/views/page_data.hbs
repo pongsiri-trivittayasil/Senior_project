@@ -118,7 +118,7 @@
                                     {{#each Control_list}}
                                         <tr>
                                         <td  id='control-name'>{{this.name}}</td>
-                                        <td >{{this.id}}</td>
+                                        <td id='control-id'>{{this.id}}</td>
                                         {{#if this.status}}
                                             <td><span class="label label-success">On</span></td>
                                         {{else}}
@@ -163,8 +163,8 @@
                                     {{#each Tag_list}}
                                     <tr>
                                         <td id='tag-name'>{{this.name}}</td>
-                                        <td>{{this.id}}</td>
-                                        <td>{{this.room}}</td>
+                                        <td id='tag-id'>{{this.id}}</td>
+                                        <td >{{this.room}}</td>
                                         <td scope="row"><button type="button" class="btn btn-default btn-sm" id='edit-tag'>Edit</button></td>
                                         <td scope="row"><button type="button" class="btn btn-default btn-sm" id='delete-tag'>Delete</button></td>
                                     </tr>
@@ -197,7 +197,7 @@
                                         <th>Room Name</th>
                                         <th>Room ID</th>
                                         <th>Room mac</th>
-    									<th>IntitialValue</th>
+    									<th>initialvalue</th>
     									<th></th>
     									<th></th>
     								</tr>
@@ -209,9 +209,9 @@
 									{{#each Room_list}}
                                         <tr>
                                             <td id='room-name'>{{this.name}}</td>
-                                            <td>{{this.id}}</td>
-                                            <td>{{this.mac}}</td>
-                                            <td>{{this.IntitialValue}}</td>
+                                            <td id='room-id'>{{this.id}}</td>
+                                            <td id='room-mac'>{{this.mac}}</td>
+                                            <td id='initialvalue'>{{this.initialvalue}}</td>
                                             <td scope="row"><button type="button" class="btn btn-default btn-sm"id='edit-room'>Edit</button></td>
                                             <td scope="row"><button type="button" class="btn btn-default btn-sm"id='delete-room'>Delete</button></td>
                                         </tr>
@@ -295,7 +295,7 @@
                                     {{#each Line_list}}
                                     <tr>
                                         <td id='line-name'>{{this.name}}</td>
-                                        <td>{{this.token}}</td>
+                                        <td id='line-token'>{{this.token}}</td>
                                         <td scope="row"><button type="button" class="btn btn-default btn-sm" id='edit-line'>Edit</button></td>
                                         <td scope="row"><button type="button" class="btn btn-default btn-sm" id='delete-line'>Delete</button></td>
                                     </tr>
@@ -378,8 +378,8 @@
                             <input name="Room_id"type="text" class="form-control"  value="1">
                             <label for="username">mac:</label>
                             <input name="Room_mac"type="text" class="form-control"  value="mac">
-                            <label for="IntitialValue">Intitial Value:</label>
-                            <input name="IntitialValue"type="text" class="form-control"  value="-1">
+                            <label for="initialvalue">Intitial Value:</label>
+                            <input name="initialvalue"type="text" class="form-control"  value="-1">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -466,9 +466,9 @@
                         </fieldset>
                             <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
                             <label for="username">New Name:</label>
-                            <input name="newname"type="text" class="form-control"  value="newname">
+                            <input name="newname"type="text" class="form-control"  value="newname" id='newname'>
                             <label for="username">New ID:</label>
-                            <input name="newid"type="text" class="form-control"  value="-1">
+                            <input name="newid"type="text" class="form-control"  value="-1" id='newid'>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -504,9 +504,9 @@
                         </fieldset>
                             <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
                             <label for="username">New Name:</label>
-                            <input name="newname"type="text" class="form-control"  value="newname">
+                            <input name="newname"type="text" class="form-control"  value="newname" id='newname'>
                             <label for="username">New ID:</label>
-                            <input name="newid"type="text" class="form-control"  value="-1">
+                            <input name="newid"type="text" class="form-control"  value="-1" id='newid'>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -543,13 +543,13 @@
                         </fieldset>
                             <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
                             <label for="username">New Name:</label>
-                            <input name="newname"type="text" class="form-control"  value="newname">
+                            <input name="newname"type="text" class="form-control"  value="newname" id='newname'>
                             <label for="username">New ID:</label>
-                            <input name="newid"type="text" class="form-control"  value="-1">
+                            <input name="newid"type="text" class="form-control"  value="-1" id='newid'>
                             <label for="username">New mac:</label>
-                            <input name="newmac"type="text" class="form-control"  value="-1">
-                            <label for="username">New intitialvalue:</label>
-                            <input name="newintitialvalue"type="text" class="form-control"  value="-1">
+                            <input name="newmac"type="text" class="form-control"  value="-1" id='newmac'>
+                            <label for="username">New initialValue:</label>
+                            <input name="newinitialvalue"type="text" class="form-control"  value="-1" id='newinitialvalue'>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -621,9 +621,9 @@
                         </fieldset>
                             <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
                             <label for="username">New Name:</label>
-                            <input name="newname"type="text" class="form-control"  value="newname">
+                            <input name="newname"type="text" class="form-control"  value="newname" id='newname'>
                             <label for="username">New Token:</label>
-                            <input name="newtoken"type="text" class="form-control"  value="-1">
+                            <input name="newtoken"type="text" class="form-control"  value="-1" id='newtoken'>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
