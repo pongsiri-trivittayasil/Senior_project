@@ -182,4 +182,4 @@ def then_control(id,status):
 # ----------------------   example    ------------------------------------------
 		
 check_time_rule()
-check_tag('-1','30')
+check_tag('1','1')
