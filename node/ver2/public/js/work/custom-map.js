@@ -163,7 +163,6 @@ var save = function(){
 	json_save();	
 	$("#saving").show();
 }
-
 var cant_draw = function(){
 	$('#switch_draw_room').attr('checked','checked')[0].checked = false;
 	create_ap = false;
@@ -175,11 +174,10 @@ var cant_draw = function(){
 	Onload
 ------------------------------*/
 window.onload = function(){
-		var newImg = new Image();
-		newImg.src = srcImg;
-		newImg.onload = function(){
+	var newImg = new Image();
+	newImg.src = srcImg;
+	newImg.onload = function(){
 		console.log("done");
-		
 		//set value
 		scale = getImgSize({height:newImg.height,width:newImg.width});
 		// set height for grid

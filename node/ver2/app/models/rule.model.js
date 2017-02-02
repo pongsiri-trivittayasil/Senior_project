@@ -42,7 +42,7 @@ var IfStatusSchema = new Schema({
 });
 // Then Line
 var ThenLineSchema = new Schema({
-	ThenLine_id : {type:String,unique:true},
+	ThenLine_id : String,
 	ThenLine_token : String,
 	ThenLine_message : String,
 	User:String,
@@ -50,7 +50,7 @@ var ThenLineSchema = new Schema({
 });
 // Then Control
 var ThenControlSchema = new Schema({
-	ThenControl_id : {type:String,unique:true},
+	ThenControl_id : String,
 	ThenControl_Control_id : String,
 	ThenControl_status : String,
 	User:String,

@@ -70,7 +70,7 @@ exports.If_Create_Date = function(req,res,next){
 // if Status
 exports.If_Create_Status = function(req,res,next){
 	try {
-		var status = new IfStatus ({IfID:req.body.IfID,IfTime:req.body.IfTime,IfDay:req.body.IfDay,IfDate:req.body.IfDate,IfTag:req.body.IfTag});
+		var status = new IfStatus ({IfID:req.body.IfID,IfTime:req.body.IfTime,IfDay:req.body.IfDay,IfDate:req.body.IfDate,IfTag:req.body.IfTag,User:req.user.Username,Map:req.session.map});
 		status.save(function(err){
 			if(err){
 				return next(err);
@@ -112,3 +112,88 @@ exports.Then_Create_Control = function(req,res,next){
 		console.log(err);
 	}
 };
+
+exports.remove = function(req,res,next){
+// var remove = function(id){
+	try{
+		// IfTime.findOne({IfTime_id:id},function(err,times){
+		IfTime.findOne({IfTime_id:req.body.id},function(err,times){
+			if(err){
+				return next(err);
+			} else {
+				if(times != null){
+					times.remove();
+				}
+			}
+		});
+		// IfDate.findOne({IfDate_id:id},function(err,dates){
+		IfDate.findOne({IfDate_id:req.body.id},function(err,dates){
+			if(err){
+				return next(err);
+			} else {
+				if(dates != null){
+					dates.remove();
+				}
+			}
+		});
+		// IfDay.findOne({IfDay_id:id},function(err,days){
+		IfDay.findOne({IfDay_id:req.body.id},function(err,days){
+			if(err){
+				return next(err);
+			} else {
+				if(days != null){
+					days.remove();
+				}
+			}
+		});
+		// IfTag.findOne({IfTag_id:id},function(err,tags){
+		IfTag.findOne({IfTag_id:req.body.id},function(err,tags){
+			if(err){
+				return next(err);
+			} else {
+				if(tags != null){
+					tags.remove();
+				}
+			}
+		});
+		// IfStatus.findOne({IfID:id},function(err,statuses){
+		IfStatus.findOne({IfID:req.body.id},function(err,statuses){
+			if(err){
+				return next(err);
+			} else {
+				if(statuses != null){
+					statuses.remove();
+				}
+			}
+		});
+		// ThenLine.find({ThenLine_id:id},function(err,lines){
+		ThenLine.find({ThenLine_id:req.body.id},function(err,lines){
+			if(err){
+				return next(err);
+			} else {
+				if(lines.length > 0){
+					for(n in lines){
+						lines[n].remove();
+					}
+				}
+			}
+		})
+		// ThenControl.find({ThenControl_id:id},function(err,controls){
+		ThenControl.find({ThenControl_id:req.body.id},function(err,controls){
+			if(err){
+				return next(err);
+			} else {
+				if(controls.length > 0){
+					for(n in controls){
+						controls[n].remove();
+					}
+				}
+			}
+		})
+		res.send('success');
+	} catch (err){
+		console.log(err);
+	}
+}
+
+// remove(0.1411899021483609);

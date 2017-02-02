@@ -625,12 +625,33 @@ input:checked + .slider:before {
 	font-size: 18px;
 	font-family: 'Quicksand';
 }
+#rule button{
+	margin-top:10px;
+}
 #rule .rule {
 	margin-top: 10px;
+	background-color: #ecf0f1;
+	border-radius:6px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+	font-size: 20px;
 }
 #rule p{
 	color:white;
 	font-size: 18px;
 	font-family: 'Quicksand';
 	margin: 3px;
+}
+#rule .removelist {
+	cursor:pointer;
+}
+#rule .removelist:hover {
+	color:red;
+	transition-duration:0.3s;
+}
+#rule .rule:hover{
+	background-color: #bdc3c7;		;
+}
+#rule .rule .if{
+	background-color: red;
 }

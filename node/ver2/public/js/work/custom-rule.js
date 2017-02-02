@@ -1,41 +1,7 @@
-var newrule = "<div id='list'><div class='if'><p>if</p></div><div class='choice-box'><div class='choice' id='time'><p>time<p></div><div class='choice' id='tag'><p>Tag<p></div></div></div>";
-
-
-// $("#add-down").on('click', function(){
-// 	console.log('ok');
-// 	$( "#rule-list" ).append( $( "<div id='list'><div class='if'><p>if</p></div></div>" ) );
-// });
-
-
-$("#add-right").on('click', function(){
-	console.log('ok');
-	$(this).parent().append( $("<div class='if'><p>if</p></div>"));
-	$(this).remove();
-	// $(this).fadeOut("slow");
-});
-
-// new rule
-$("#add-down").on('click', function(){
-	console.log('ok');
-	$( "#rule-list" ).append( $( newrule ));
-});
-
-// for all id click new dom element
-$(document).on('click', '#time', function(e) {
-	// console.log('new f');
-	//do whatever
-});
-
-
-/*--------------------------------------------------------------------------------------------------------------------------*/
-
-
 /*------------------------------
   init if choice
 ------------------------------*/
-$('#modal-add-rule').modal('show');
 var if_time = "<div class='row list' id='if-time'><div class='col-md-2'>Time</div><div class='col-md-6'id='if-time'><input class='form-control timepicker'type='text' id='val-time'></div><div class='col-md-4'style='text-align:right'><i class='fa fa-times remove'aria-hidden='true'></i></div></div>";
-// var if_tag = "<div class='row list'id='if-tag'><div class='col-md-1' >Tag</div><div class='col-md-4' ><select class='selectpicker' id='tag-name'><option>tag1</option><option>tag2</option></select></div><div class='col-md-1'>in</div><div class='col-md-4' ><select class='selectpicker'id='room-name'><option>room</option></select></div><div class='col-md-2' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
 var if_tag = "<div class='row list'id='if-tag'><div class='col-md-1'>Tag</div><div class='col-md-4' ><select class='selectpicker' id='tag-name'>"
 var if_tag2 = "</select></div><div class='col-md-1'>in</div><div class='col-md-4' ><select class='selectpicker'id='room-name'>"
 var if_tag3 = "</select></div><div class='col-md-2' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
@@ -46,13 +12,12 @@ var then_line2 = "</select></div><div class='col-md-2'>Message</div><div class='
 var then_control = "<div class='row list' id='then-control'><div class='col-md-2'>Control</div><div class='col-md-4' ><select class='selectpicker' id='val-control'>"
 var then_control2 = "</select></div><div class='col-md-4' ><select class='selectpicker' id='val-status'><option>on</option><option>off</option></select></div><div class='col-md-2' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
 
-
 /*------------------------------
   button add new rule
 ------------------------------*/
 // show modal
 $('#add-rule').on('click',function(){
-	console.log('ok');
+	// console.log('ok');
 	$('#modal-add-rule').modal('show');
 });
 
@@ -147,7 +112,7 @@ $('#then-button-control').on('click',function(){
 
 
 /*------------------------------
-  remove list
+  remove list in modal
 ------------------------------*/
 $(document).on('click', '.remove', function(e) {
 	console.log('remove');
@@ -266,7 +231,14 @@ $('#submit-modal').on('click',function(){
 		// then control
 	}
 
-
+	$('#if-list').children().remove();
+	$('#then-list').children().remove();
+	$('#if-button-day').show();
+	$('#if-button-date').show();
+	$('#if-button-tag').show();
+	$('#if-button-time').show();
+	$('#modal-add-rule').modal('toggle');
+	location.reload();
 	// console.log($('#if-time').val());
 	// console.log($('#if-date').val());
 	// console.log($('#if-day').val());
@@ -277,12 +249,92 @@ $('#cancel-modal').on('click',function(){
 	$('#modal-add-rule').modal('toggle');
 });
 
+/*------------------------------
+  window onload
+  pull rule list
+------------------------------*/
+var rule_list = "<div class='row rule'><div class='col-md-11'>"
+var rule_list2 = "</div><div class='col-md-1' style='text-align:right'><i class='fa fa-times removelist' aria-hidden='true'></i></div></div>";
+window.onload = function(){
+	$.post("/listRule",function(data,status){
+		console.log(data);
+		if(data != 'None'){
+			// sort by num
+			data.sort(function (a, b) {
+				return a.num - b.num;
+			});
+			console.log('list');
+			for (n in data){
+				var temp = rule_list;
+				// id
+				temp = temp + "<span style='display:none' id='rule-id'>"+data[n].id+"</span>"
+				// if
+				temp = temp + "<span>if</span>"
+				// if time
+				if(data[n].IfTime != undefined){
+					temp = temp + "<span> Time :" + data[n].IfTime + "</span>";
+				}
+				// if Date
+				if(data[n].IfDate != undefined){
+					temp = temp + "<span> Date :" + data[n].IfDate + "</span>";
+				}
+				// if Day
+				if(data[n].IfDay != undefined){
+					temp = temp + "<span> Day :" + data[n].IfDay + "</span>";
+				}
+				// if Tag
+				if(data[n].IfTag != undefined){
+					temp = temp + "<span> Tag : " + data[n].IfTag.IfTag_name + " In room : " + data[n].IfTag.IfTag_room+ "</span>";
+				}
+				// then
+				temp = temp + "<span> Then </span>";
+				// then line
+				if(data[n].Line != undefined){
+					for (m in data[n].Line){
+						temp = temp + "<span> Line : " + data[n].Line[m].Line_name + " message : " + '"' + data[n].Line[m].message + '"';
+					}
+				}
+				// then Control
+				if(data[n].Control != undefined){
+					for (m in data[n].Control){
+						temp = temp + "<span> Control : " + data[n].Control[m].Control_name + " status : " + data[n].Control[m].status;
+					}
+				}
 
+
+				temp = temp + rule_list2;
+				$('#rule-list').append(temp);
+			}
+		} 
+		endpreload();
+	})
+	// add rule list
+	// var rule_list = 	"<div class='row rule'><div class='col-md-11'>test</div><div class='col-md-1' style='text-align:right'><i class='fa fa-times removelist' aria-hidden='true'></i></div></div>";
+	// $('#rule-list').append(rule_list);
+}
+
+/*------------------------------
+  remove rule list
+------------------------------*/
+var q;
+$(document).on('click', '.removelist', function(e) {
+	q = $(this).parent().parent();
+	var rule_id = $(this).parent().parent().find('#rule-id').html();
+	var data = {id:rule_id}
+	$.post("/ruleremove",data,function(data,status){
+		console.log(status);
+		location.reload();
+	});
+	// $(this).parent().parent().remove();
+	console.log('remove');
+});
 
 
 /*------------------------------
   End page loding
 ------------------------------*/
-$("#preloader").fadeOut("hide");
+function endpreload(){
+	$("#preloader").fadeOut("hide");
+}
 
 
