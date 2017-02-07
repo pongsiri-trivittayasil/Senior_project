@@ -201,6 +201,7 @@ function startTimer(duration, display) {
         //start
         // done
         if (--timer < 0) {
+        		clearInterval(temp_timer);
         		var temp = $('#choose-tag');
 			    microgear.chat('Server',temp.val()+',stopinitValue');
         }
