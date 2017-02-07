@@ -169,7 +169,7 @@ $('#start-time').on('click',function(){
 	var temp = $('#choose-tag');
 	var fiveMinutes = 60*1,
 	    display = $('#timer');
-    microgear.chat('test',temp.val()+',startinitValue');
+    microgear.chat('Server',temp.val()+',startinitValue');
     clearInterval(temp_timer);  // stop setinterval
 	startTimer(fiveMinutes, display);	
 });
@@ -210,7 +210,7 @@ function stopTimer(){
 	$(".selectpicker").removeAttr('disabled');
 	var temp = $('#choose-tag');
 	clearInterval(temp_timer);
-    microgear.chat('test',temp.val()+',stopinitValue');
+    microgear.chat('Server',temp.val()+',stopinitValue');
 	$('#timer').text('01 : 00');
 	$('#avg-init').text('0');
 	$('#set-init').text("");
