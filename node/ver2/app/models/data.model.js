@@ -34,6 +34,7 @@ var APointSchema = new Schema({
 	AP_name: {type:String,unique:true,index:true,trim:true,require:true},
 	x: Number,
 	y: Number,
+	AP_mac: String,
 	User: String,
 	Map: String
 });

@@ -336,6 +336,23 @@ input:checked + .slider:before {
 .modal-body .bootstrap-select > .dropdown-toggle {
 	width: 70%;
 }
+.modal-body .timer {
+	font-family: 'Quicksand';
+	font-size: 50px;
+}
+.modal-body .avg-init {
+	font-family: 'Quicksand';
+	font-size: 15px;
+}
+.modal-body .header-set-init{	
+	font-family: 'Quicksand';
+	font-size: 30px;	
+    text-decoration: underline;
+}
+.modal-body .init{
+	font-family: 'Quicksand';
+	font-size: 20px;	
+}
 /*------------------------------
 	Content
 ------------------------------*/
@@ -522,7 +539,6 @@ input:checked + .slider:before {
 	font-size: 18px;
 	font-family: 'Quicksand';
 }
-
 /*------------------------------
 	Content --- data
 ------------------------------*/
@@ -636,6 +652,14 @@ input:checked + .slider:before {
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 	font-size: 20px;
 }
+#rule .rule-None {	
+	margin-top: 10px;
+	background-color: #e67e22;
+	border-radius:6px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+	font-size: 20px;
+}
 #rule p{
 	color:white;
 	font-size: 18px;
@@ -651,6 +675,9 @@ input:checked + .slider:before {
 }
 #rule .rule:hover{
 	background-color: #bdc3c7;		;
+}
+#rule .rule-None:hover{
+	background-color: #d35400;		;
 }
 #rule .rule .if{
 	background-color: red;

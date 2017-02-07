@@ -30,6 +30,19 @@ exports.edit = function(req,res,next){
 		console.log(err);
 	}
 };
+exports.editName = function(req,res,next){
+	try {
+		Room.findOneAndUpdate({Room_name:req.body.oldname,User:req.user.Username,Map:req.session.map},{Room_name:req.body.newname},function(err,user){
+			if(err){
+				res.send(err);
+			}else{
+				res.send("done");
+			}
+		});
+	} catch (err){
+		console.log(err);
+	}
+};
 exports.remove = function(req,res,next){
 	try {
 		Room.findOne({Room_name:req.body.name,User:req.user.Username,Map:req.session.map},function(err,user){

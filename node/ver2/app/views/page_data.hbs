@@ -240,8 +240,7 @@
     							<thead style="text-align:center">		{{!-- head table --}}
     								<tr>	
     									<th>AP Name</th>
-    									<th>x</th>
-    									<th>y</th>
+    									<th>AP mac</th>
     									<th></th>
     									<th></th>
     								</tr>
@@ -251,8 +250,7 @@
                                     {{#each AP_list}}
                                         <tr>
                                             <td id='ap-name'>{{this.name}}</td>
-                                            <td>{{this.x}}</td>
-                                            <td>{{this.y}}</td>
+                                            <td id='ap-mac'>{{this.mac}}</td>
                                             <td scope="row"><button type="button" class="btn btn-default btn-sm" id='edit-ap'>Edit</button></td>
                                             <td scope="row"><button type="button" class="btn btn-default btn-sm"id='delete-ap'>Delete</button></td>
                                         </tr>
@@ -398,10 +396,8 @@
                         <div class="form-group">
                             <label for="username">Name:</label>
                             <input name="AP_name"type="text" class="form-control"  value="admin">
-                            <label for="username">x:</label>
-                            <input name="x"type="text" class="form-control"  value="-1">
-                            <label for="username">y:</label>
-                            <input name="y"type="text" class="form-control"  value="-1">
+                            <label for="username">Mac:</label>
+                            <input name="AP_mac"type="text" class="form-control"  value="-1">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -585,7 +581,9 @@
                         </fieldset>
                             <input name="oldname"type="hidden" class="form-control" id="oldname-set" value="oldname">
                             <label for="username">New Name:</label>
-                            <input name="newname"type="text" class="form-control"  value="newname">
+                            <input name="newname"type="text" class="form-control"  value="newname" id='newname'>
+                            <label for="username">New Mac:</label>
+                            <input name="newmac"type="text" class="form-control"  value="newmac" id='newmac'>
                         </div>
                         <div class="row">
                             <div class="col-md-6">

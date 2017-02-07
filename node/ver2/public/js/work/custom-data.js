@@ -90,8 +90,11 @@ $('[id^="edit-ap"]').each(function(){
     $('#modal-edit-ap').modal('show');
     //old name
     var oldname = $(this).closest('tr').find('#ap-name').html();
+    var oldmac = $(this).closest('tr').find('#ap-mac').html();
     var modal = $('#modal-edit-ap');
     modal.find('#oldname').val(oldname);
+    modal.find('#newname').val(oldname);
+    modal.find('#newmac').val(oldmac);
     modal.find('#oldname-set').val(oldname);
   });
 });

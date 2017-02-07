@@ -71,7 +71,7 @@ var find_AP = function(req,callback){
 				return next(err);
 			}else{
 				for( n in aps){
-					AP_list.push({name:aps[n].AP_name,x:aps[n].x,y:aps[n].y});
+					AP_list.push({name:aps[n].AP_name,x:aps[n].x,y:aps[n].y,mac:aps[n].AP_mac});
 				}
 			}
 		callback(null,AP_list);

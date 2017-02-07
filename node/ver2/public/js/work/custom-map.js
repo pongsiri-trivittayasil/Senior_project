@@ -28,6 +28,9 @@ var ap_selected;
 // var newmap = true;
 var newmap = false;
 
+// initial value
+var temp_timer;
+var set_init = [];
 /*------------------------------
 	window key up
 ------------------------------*/
@@ -88,7 +91,7 @@ $('#switch_ap').on('click',function(){
 // switch draw room
 $('#switch_draw_room').on('click',function(){
 	toggle_create_room();
-	$('#switch_draw_ap').attr('checked','checked')[0].checked = false;
+	// $('#switch_draw_ap').attr('checked','checked')[0].checked = false;
 	create_ap = false;
 });
 // switch draw ap
@@ -142,19 +145,70 @@ $('#button-rename').on('click',function(){
 		ap_rename();
 	}
 });
+$('#button-initvalue').on('click',function(){
+	if(room_selected){
+		initvalue();
+	}
+});
+
+/*------------------------------
+	Initial Value
+------------------------------*/
+$('#modal-initialvalue').modal('show'); // -------------------------------------------------- show immediately
+
+var initvalue = function(){
+	console.log('init');
+	$('#modal-initialvalue').modal('show');
+}
+$('#start-time').on('click',function(){
+	var fiveMinutes = 60*1,
+	    display = $('#timer');
+	startTimer(fiveMinutes, display);	
+});
+$('#stop-time').on('click',function(){
+	clearInterval(temp_timer);
+    microgear.chat('Server','1,stopinitValue');
+	$('#timer').text('00 : 00');
+});
+
+
+function startTimer(duration, display) {
+    clearInterval(temp_timer);  // stop setinterval
+    var timer = duration, minutes, seconds;
+    	temp_timer  = setInterval(function () {	// start setinterval
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + " : " + seconds);
+        //start
+        microgear.chat('Server','1,startinitValue');
+        // done
+        if (--timer < 0) {
+        	console.log('done');
+        	clearInterval(temp_timer);  // stop setinterval
+        	//stop
+        	microgear.chat('Server','stopinitValue');
+        }
+    }, 1000);
+}
+
+
 
 /*------------------------------
 	Save
 ------------------------------*/
 var save = function(){
-	$('#switch_image').attr('checked','checked')[0].checked = true;
-	show_background();
-	$('#switch_grid').attr('checked','checked')[0].checked = true;
-	show_grid();
-	$('#switch_room').attr('checked','checked')[0].checked = true;
-	show_room();
-	$('#switch_ap').attr('checked','checked')[0].checked = true;
-	show_ap();
+	// $('#switch_image').attr('checked','checked')[0].checked = true;
+	// show_background();
+	// $('#switch_grid').attr('checked','checked')[0].checked = true;
+	// show_grid();
+	// $('#switch_room').attr('checked','checked')[0].checked = true;
+	// show_room();
+	// $('#switch_ap').attr('checked','checked')[0].checked = true;
+	// show_ap();
 
 	cant_draw();
 	//deselect all
@@ -166,7 +220,7 @@ var save = function(){
 var cant_draw = function(){
 	$('#switch_draw_room').attr('checked','checked')[0].checked = false;
 	create_ap = false;
-	$('#switch_draw_ap').attr('checked','checked')[0].checked = false;
+	// $('#switch_draw_ap').attr('checked','checked')[0].checked = false;
 	create_room = false;
 }
 
@@ -310,7 +364,6 @@ var toggle_create_ap = function(){
 		console.log("close create ap done");
 	}
 	else{
-		show_grid();
 		console.log("open create ap done");
 	}
 	create_ap = !create_ap;
@@ -621,7 +674,7 @@ var room_rename = function(){
 		console.log(oldname);
 		console.log(newname);
 		data = {"oldname":oldname,"newname":newname};
-	    $.post("/editroom",data, function(data, status){
+	    $.post("/editroomName",data, function(data, status){
 			// room_selected.data('name',newname);
 			room_selected.attr({'title':newname});
 			console.log(status); 

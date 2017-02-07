@@ -253,10 +253,13 @@ $('#cancel-modal').on('click',function(){
   window onload
   pull rule list
 ------------------------------*/
-var rule_list = "<div class='row rule'><div class='col-md-11'>"
+var rule_list = "<div class='row rule'><div class='col-md-11'>";
+var rule_list_None = "<div class='row rule-None'><div class='col-md-11'>"
 var rule_list2 = "</div><div class='col-md-1' style='text-align:right'><i class='fa fa-times removelist' aria-hidden='true'></i></div></div>";
+var aa;
 window.onload = function(){
 	$.post("/listRule",function(data,status){
+		aa = data;
 		console.log(data);
 		if(data != 'None'){
 			// sort by num
@@ -316,9 +319,7 @@ window.onload = function(){
 /*------------------------------
   remove rule list
 ------------------------------*/
-var q;
 $(document).on('click', '.removelist', function(e) {
-	q = $(this).parent().parent();
 	var rule_id = $(this).parent().parent().find('#rule-id').html();
 	var data = {id:rule_id}
 	$.post("/ruleremove",data,function(data,status){

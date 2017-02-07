@@ -133,16 +133,20 @@
 							</label>
 		    			</div>
 		    		</div>{{!-- /row --}}
+
     				{{!-- Switch AP --}}
+                    {{!-- 
     				<div class='row'>
 	    				<div class="col-md-8 text-option">Show AP</div>
 		    			<div class="col-md-4">
-		    				<label class="switch">	{{!-- check box --}}
+		    				<label class="switch">	
 								<input type="checkbox" id="switch_ap" checked>
 								<div class="slider round"></div>
 							</label>
 		    			</div>
-		    		</div>{{!-- /row --}}
+		    		</div>
+                     --}}
+                    {{!-- /row --}}
 
     				{{!-- Switch Edit Map --}}
     				<div class='row'>
@@ -175,15 +179,18 @@
 			    			</div>
 			    		</div>	{{!-- /row --}}
 	    				{{!-- Draw AP --}}
+                        {{!-- 
 	    				<div class='row'>
 		    				<div class="col-md-8 text-edit">Draw AP</div>
 			    			<div class="col-md-4">
-			    				<label class="switch">	{{!-- check box --}}
+			    				<label class="switch">	
 									<input type="checkbox" id="switch_draw_ap">
 									<div class="slider round"></div>
 								</label>
 			    			</div>
-			    		</div>	{{!-- /row --}}
+			    		</div>	
+                        --}}
+                        {{!-- /row --}}
 
 	    				{{!-- Name --}}
 	    				<div class='row'>
@@ -196,6 +203,7 @@
 			    					</div>
 			    				</form>
 			    				<div class="rename">
+                                     <button class="btn btn-primary" id="button-initvalue">initial Value</button>
 			    					 <button class="btn btn-primary" id="button-rename">rename</button>
 			    				</div>
 			    		
@@ -325,6 +333,51 @@
 
     	</div>	{{!-- /end container --}}
     </section> 
+
+
+    {{!-- initial Value --}}
+    <div class="modal fade" id="modal-initialvalue" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Set Initial Value</div>
+                </div>  {{!-- /modal-header --}}
+
+                {{!-- modal-body --}}
+                <div class="modal-body" id="modal-body">
+                <div class='row'>
+                    <div class='col-md-6'>
+                        <div class='col-md-12'>
+                            <span class='timer' id='timer'>01 : 00</span>
+                        </div>
+                        <div class='col-md-12'>
+                            <button type="button" class="btn btn-primary" id='start-time'>Start</button>
+                            <button type="button" class="btn btn-primary" id='stop-time'>Stop</button>
+                        </div>
+                        <div class='col-md-12'>
+                            <span class='avg-init'>avg.Initial Value :</span>
+                            <span class='timer'>0</span>
+                        </div>
+                        <div class='col-md-12'>
+                            <button type="button" class="btn btn-primary" id='submit-init'>Submit</button>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class='header-set-init'>Set</div>
+                        <div class='init'> 2 </div>
+                        <div class='init'> 2 </div>
+                        <div class='init'> 2 </div>
+                        <div class='init'> 2 </div>
+                    </div>
+                </div>
+                    
+
+                </div>  {{!-- /modal-body --}}
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
 
 
 
