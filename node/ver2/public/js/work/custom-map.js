@@ -211,7 +211,7 @@ function stopTimer(){
 	var temp = $('#choose-tag');
 	clearInterval(temp_timer);
     microgear.chat('test',temp.val()+',stopinitValue');
-	$('#timer').text('00 : 00');
+	$('#timer').text('01 : 00');
 	$('#avg-init').text('0');
 	$('#set-init').text("");
 	set_init = [];
@@ -226,7 +226,12 @@ $('#submit-init').on('click',function(){
     	$('#modal-initialvalue').modal('hide');
     });
 });
+// cancel init
+$('#cancel-init').on('click',function(){
+	stopTimer();
+    $('#modal-initialvalue').modal('hide');
 
+});
 
 /*------------------------------
 	Save
