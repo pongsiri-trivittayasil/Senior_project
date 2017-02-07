@@ -33,13 +33,13 @@ $('#if-button-tag').on('click',function(){
 	$.post("/listtag",function(data,status){
 		for (x in data){
 			console.log(data[x].Tag_name);
-			temp = temp +"<option>"+String(data[x].Tag_name) + "," + String(data[x].Tag_id) +"</option>";
+			temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
 		}
 		temp = temp + if_tag2;
 		$.post("/listroom",function(data,status){
 			for (x in data){
 				// console.log(data[x]);
-				temp = temp + "<option>"+String(data[x].Room_name)+ "," + String(data[x].Room_id)+"</option>";
+				temp = temp + "<option value='"+ String(data[x].Room_id)+"'>"+String(data[x].Room_name)+"</option>";
 			}
 		temp = temp + if_tag3;
 		$('#if-list').append( $(temp)).slideDown("fast");
@@ -90,7 +90,7 @@ $('#then-button-line').on('click',function(){
 	$.post("/listline",function(data,status){
 		var temp = then_line;
 		for (x in data){
-			temp = temp + "<option>"+String(data[x].Line_name)+","+String(data[x].Line_token)+"</option>";
+			temp = temp + "<option value='"+String(data[x].Line_token)+"'>"+String(data[x].Line_name)+"</option>";
 		}
 	temp = temp + then_line2;
 	$(temp).appendTo($('#then-list')).slideDown("slow");
@@ -102,7 +102,7 @@ $('#then-button-control').on('click',function(){
 	$.post("/listControl",function(data,status){
 		var temp = then_control;
 		for (x in data){
-			temp = temp + "<option>"+String(data[x].Control_name)+","+ String(data[x].Control_id)+"</option>";
+			temp = temp + "<option value='"+ String(data[x].Control_id)+"'>"+String(data[x].Control_name)+"</option>";
 		}
 	temp = temp + then_control2;
 	$(temp).appendTo($('#then-list')).slideDown("slow");
@@ -148,9 +148,7 @@ $('#submit-modal').on('click',function(){
 			var tag_name = $(list_if[i]).find('#tag-name').val();
 			var room_name = $(list_if[i]).find('#room-name').val();
 			console.log("tag-name : "+String(tag_name)+" in room-name : " + String(room_name))
-			tag_name = tag_name.split(',');
-			room_name = room_name.split(',');
-			var data = {IfTag_id:random_id,IfTag_name:tag_name[1],IfTag_room:room_name[1]};
+			var data = {IfTag_id:random_id,IfTag_name:tag_name,IfTag_room:room_name};
 			console.log(data);
 			$.post("/createIfTag",data, function(data, status){
 				console.log(status);
@@ -209,8 +207,7 @@ $('#submit-modal').on('click',function(){
 			console.log('line');
 			var val_token = $(list_then[i]).find('#val-token').val();
 			var val_message = $(list_then[i]).find('#val-message').val();
-			val_token = val_token.split(',');
-			var data = {ThenLine_id:random_id,ThenLine_token:val_token[1],ThenLine_message:val_message};
+			var data = {ThenLine_id:random_id,ThenLine_token:val_token,ThenLine_message:val_message};
 			$.post("/createThenLine",data, function(data, status){
 				console.log(status);
 			});
@@ -219,8 +216,7 @@ $('#submit-modal').on('click',function(){
 			console.log('control');
 			var val_control = $(list_then[i]).find('#val-control').val();
 			var val_status = $(list_then[i]).find('#val-status').val();
-			val_control = val_control.split(',');
-			var data = {ThenControl_id:random_id,ThenControl_Control_id:val_control[1],ThenControl_status:val_status}
+			var data = {ThenControl_id:random_id,ThenControl_Control_id:val_control,ThenControl_status:val_status}
 			$.post("/createThenControl",data, function(data, status){
 				console.log(status);
 			});
