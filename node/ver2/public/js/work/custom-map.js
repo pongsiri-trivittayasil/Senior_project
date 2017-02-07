@@ -160,7 +160,6 @@ $('#button-initvalue').on('click',function(){
 // $('#modal-initialvalue').modal('show'); // -------------------------------------------------- show immediately
 // $('#init-choose-tag').html("<select class='selectpicker' id='choose-tag'><option value='1'>test</option><option value='3'>test</option></select>");
 var initvalue = function(){
-	console.log('init');
 	$('#modal-initialvalue').modal('show');
 	set_choose_tag();
 }
@@ -170,7 +169,7 @@ $('#start-time').on('click',function(){
 	var fiveMinutes = 60*1,
 	    display = $('#timer');
     microgear.chat('Server',temp.val()+',startinitValue');
-    clearInterval(temp_timer);  // stop setinterval
+    clearset();
 	startTimer(fiveMinutes, display);	
 });
 $('#stop-time').on('click',function(){
@@ -202,19 +201,23 @@ function startTimer(duration, display) {
         //start
         // done
         if (--timer < 0) {
-        	stopTimer();
+        		var temp = $('#choose-tag');
+			    microgear.chat('Server',temp.val()+',stopinitValue');
         }
     }, 1000);
 }
-function stopTimer(){
-	$(".selectpicker").removeAttr('disabled');
-	var temp = $('#choose-tag');
+function clearset(){
 	clearInterval(temp_timer);
-    microgear.chat('Server',temp.val()+',stopinitValue');
 	$('#timer').text('01 : 00');
 	$('#avg-init').text('0');
 	$('#set-init').text("");
 	set_init = [];
+}
+function stopTimer(){
+	clearset();
+	$(".selectpicker").removeAttr('disabled');
+	var temp = $('#choose-tag');
+    microgear.chat('Server',temp.val()+',stopinitValue');
 }
 // submit init
 $('#submit-init').on('click',function(){
