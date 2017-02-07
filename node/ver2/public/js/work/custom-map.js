@@ -173,7 +173,9 @@ $('#start-time').on('click',function(){
 	startTimer(fiveMinutes, display);	
 });
 $('#stop-time').on('click',function(){
-	stopTimer();
+	clearInterval(temp_timer);
+	var temp = $('#choose-tag');
+    microgear.chat('Server',temp.val()+',stopinitValue');
 });
 
 var set_choose_tag = function(){
