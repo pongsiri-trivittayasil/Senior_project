@@ -31,6 +31,8 @@ var newmap = false;
 // initial value
 var temp_timer;
 var set_init = [];
+
+
 /*------------------------------
 	window key up
 ------------------------------*/
@@ -146,6 +148,7 @@ $('#button-rename').on('click',function(){
 	}
 });
 $('#button-initvalue').on('click',function(){
+		initvalue();
 	if(room_selected){
 		initvalue();
 	}
@@ -154,26 +157,39 @@ $('#button-initvalue').on('click',function(){
 /*------------------------------
 	Initial Value
 ------------------------------*/
-$('#modal-initialvalue').modal('show'); // -------------------------------------------------- show immediately
-
+// $('#modal-initialvalue').modal('show'); // -------------------------------------------------- show immediately
+// $('#init-choose-tag').html("<select class='selectpicker' id='choose-tag'><option value='1'>test</option><option value='3'>test</option></select>");
 var initvalue = function(){
 	console.log('init');
 	$('#modal-initialvalue').modal('show');
+	set_choose_tag();
 }
 $('#start-time').on('click',function(){
+	$(".selectpicker").attr('disabled','disabled');
+	var temp = $('#choose-tag');
 	var fiveMinutes = 60*1,
 	    display = $('#timer');
+    microgear.chat('test',temp.val()+',startinitValue');
+    clearInterval(temp_timer);  // stop setinterval
 	startTimer(fiveMinutes, display);	
 });
 $('#stop-time').on('click',function(){
-	clearInterval(temp_timer);
-    microgear.chat('Server','1,stopinitValue');
-	$('#timer').text('00 : 00');
+	stopTimer();
 });
 
+var set_choose_tag = function(){
+	var temp = "<select class='selectpicker' id='choose-tag'>";
+	$.post("/listtag",function(data,status){
+		for (x in data){
+			temp = temp +"<option value='"+String(data[x].Tag_id) +"''>"+String(data[x].Tag_name) +"</option>";
+		}
+		temp = temp + '</select>'
+		$('#init-choose-tag').html(temp);
+		$('.selectpicker').selectpicker();
+	});
+}
 
 function startTimer(duration, display) {
-    clearInterval(temp_timer);  // stop setinterval
     var timer = duration, minutes, seconds;
     	temp_timer  = setInterval(function () {	// start setinterval
         minutes = parseInt(timer / 60, 10)
@@ -184,17 +200,32 @@ function startTimer(duration, display) {
 
         display.text(minutes + " : " + seconds);
         //start
-        microgear.chat('Server','1,startinitValue');
         // done
         if (--timer < 0) {
-        	console.log('done');
-        	clearInterval(temp_timer);  // stop setinterval
-        	//stop
-        	microgear.chat('Server','stopinitValue');
+        	stopTimer();
         }
     }, 1000);
 }
-
+function stopTimer(){
+	$(".selectpicker").removeAttr('disabled');
+	var temp = $('#choose-tag');
+	clearInterval(temp_timer);
+    microgear.chat('test',temp.val()+',stopinitValue');
+	$('#timer').text('00 : 00');
+	$('#avg-init').text('0');
+	$('#set-init').text("");
+	set_init = [];
+}
+// submit init
+$('#submit-init').on('click',function(){
+	var data = {"Room_name":room_selected.attr('title'),"newinit":$('#avg-init').text()}
+	console.log(data);
+    $.post("/editroomInit",data, function(data, status){
+		stopTimer();
+    	console.log(status);
+    	$('#modal-initialvalue').modal('hide');
+    });
+});
 
 
 /*------------------------------
@@ -231,7 +262,7 @@ window.onload = function(){
 	var newImg = new Image();
 	newImg.src = srcImg;
 	newImg.onload = function(){
-		console.log("done");
+		// console.log("done");
 		//set value
 		scale = getImgSize({height:newImg.height,width:newImg.width});
 		// set height for grid

@@ -336,6 +336,7 @@ input:checked + .slider:before {
 .modal-body .bootstrap-select > .dropdown-toggle {
 	width: 70%;
 }
+/*--initial Value--*/
 .modal-body .timer {
 	font-family: 'Quicksand';
 	font-size: 50px;
@@ -343,6 +344,9 @@ input:checked + .slider:before {
 .modal-body .avg-init {
 	font-family: 'Quicksand';
 	font-size: 15px;
+}
+.modal-body .set-init{
+	border-left: 2px solid rgba(0, 0, 0, 0.2);
 }
 .modal-body .header-set-init{	
 	font-family: 'Quicksand';

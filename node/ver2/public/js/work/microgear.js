@@ -1,7 +1,6 @@
   const APPID     = "seniorProject";
   const APPKEY    = "iAeBgu6Vuvl7TKs";
   const APPSECRET = "IfH0R3EnBBUJC27NTIr632TOm";
-
     var microgear = Microgear.create({
         key: APPKEY,
         secret: APPSECRET,
@@ -11,9 +10,15 @@
     microgear.on('message',function(topic,msg) {
         console.log("from python :" + msg);
         var temp = msg.split(',');
-        console.log(temp[0]);
         if(temp[0] == 'init'){
-            set_init.push(temp[1]);
+            set_init.push(parseInt(temp[1]));
+            // console.log(set_init);
+            var sum = set_init.reduce(function(pv, cv) { return pv + cv; }, 0);
+            var avg = Math.round(sum/set_init.length);
+            $('#avg-init').text(avg);
+            var insert = "<div class='init'>" + temp[1] + "</div>"
+            $(insert).appendTo($('#set-init')).slideDown("slow");
+            // $('.set-init').append(insert).slideDown("slow");;
         }
         // showpoint(msg);
     });

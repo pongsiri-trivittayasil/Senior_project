@@ -19,6 +19,7 @@ module.exports = function(app){
 	app.route('/createroom').post(room.create);
 	app.route('/editroom').post(room.edit);
 	app.route('/editroomName').post(room.editName);
+	app.route('/editroomInit').post(room.editInit);
 	app.route('/removeroom').post(room.remove);
 	app.post('/listroom',room.list);
 	app.post('/selectroom',room.select);

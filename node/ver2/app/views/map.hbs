@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-colorselector.css">
     <link rel="stylesheet" type="text/css" href="/lib/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-select.min.css">
 </head>
 <body>
     <!-- ==========================
@@ -348,28 +349,30 @@
                 {{!-- modal-body --}}
                 <div class="modal-body" id="modal-body">
                 <div class='row'>
+                    <div class='col-md-12' id='choose-id-tag'>
+                        <div class='col-md-4 list'>Choose Tag</div>
+                        <div class='col-md-6' id='init-choose-tag'></div>
+                    </div>
                     <div class='col-md-6'>
                         <div class='col-md-12'>
                             <span class='timer' id='timer'>01 : 00</span>
                         </div>
                         <div class='col-md-12'>
-                            <button type="button" class="btn btn-primary" id='start-time'>Start</button>
-                            <button type="button" class="btn btn-primary" id='stop-time'>Stop</button>
+                            <button type="button" class="btn btn-default" id='start-time'>Start</button>
+                            <button type="button" class="btn btn-default" id='stop-time'>Stop</button>
                         </div>
                         <div class='col-md-12'>
                             <span class='avg-init'>avg.Initial Value :</span>
-                            <span class='timer'>0</span>
+                            <span class='timer' id='avg-init'>0</span>
                         </div>
                         <div class='col-md-12'>
-                            <button type="button" class="btn btn-primary" id='submit-init'>Submit</button>
+                            <button type="button" class="btn btn-default" id='submit-init'>Submit</button>
                         </div>
                     </div>
-                    <div class='col-md-6'>
-                        <div class='header-set-init'>Set</div>
-                        <div class='init'> 2 </div>
-                        <div class='init'> 2 </div>
-                        <div class='init'> 2 </div>
-                        <div class='init'> 2 </div>
+                    <div class='col-md-3 set-init text-center'>
+                        <div class='header-set-init'>set</div>
+                        <div id='set-init'>
+                        </div>
                     </div>
                 </div>
                     
@@ -391,6 +394,7 @@
     <script src="/lib/js/bootstrap-colorselector.js"></script>
     <script type="text/javascript" src="/lib/js/raphael.js"></script>    {{!-- raphael js --}}
 	<script type="text/javascript" src="/lib/js/raphael.json.js"></script>	{{!-- raphael js --}}
+    <script src="/lib/js/bootstrap-select.min.js"></script>
 
     {{!-- design js --}}
     <script src="/js/design/custom.js"></script>
