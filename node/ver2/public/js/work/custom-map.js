@@ -148,7 +148,6 @@ $('#button-rename').on('click',function(){
 	}
 });
 $('#button-initvalue').on('click',function(){
-		initvalue();
 	if(room_selected){
 		initvalue();
 	}
@@ -177,7 +176,6 @@ $('#stop-time').on('click',function(){
 	var temp = $('#choose-tag');
     microgear.chat('Server',temp.val()+',stopinitValue');
 });
-
 var set_choose_tag = function(){
 	var temp = "<select class='selectpicker' id='choose-tag'>";
 	$.post("/listtag",function(data,status){

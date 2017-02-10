@@ -384,6 +384,18 @@ input:checked + .slider:before {
 #choose-map .block:hover {
 	background-color:#2980b9;
 }
+#choose-map .block-addroom {
+	margin-top:10px;
+	background-color:#1abc9c;
+	height:50px;
+	width: 350px;
+	border-radius:6px;
+	text-align: center;
+	cursor: pointer;
+}
+#choose-map .block-addroom:hover {
+	background-color:#27ae60;
+}
 #choose-map p{
 	padding-top:10px;
 	color:white;

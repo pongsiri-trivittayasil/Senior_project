@@ -4,8 +4,9 @@
 $('#edit-map').hide();
 $('#saving').hide();
 
-$('#botton_login').on('click',function(){
-	$('#modal_login').modal('show');
+$('#button_login').on('click',function(){
+  console.log('test');
+  $('#modal_login').modal('show');
 });
 
 $('#form_login').submit(function(e){
@@ -18,8 +19,26 @@ $('#form_login').submit(function(e){
         document.getElementById("error").innerHTML = "invalid username or password";
       }
     });
-	e.preventDefault();
+  e.preventDefault();
 });
+/*------------------------------
+  Modal Signup
+------------------------------*/
+$('#button_signup').on('click',function(){
+  $('#modal_Signup').modal('show');
+});
+$('#form_signup').submit(function(e){
+  var data_form = $('#form_signup').serialize();
+    $.post("/signup",data_form, function(data, status){
+      if(status == 'success'){
+        location.reload();
+      }
+    });
+  e.preventDefault();
+});
+/*------------------------------
+  Modal Signup
+------------------------------*/
 // switch edit map
 $('#switch_edit_map').on('click',function(){
   $('#edit-map').slideToggle(500);
