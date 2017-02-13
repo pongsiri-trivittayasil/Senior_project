@@ -44,3 +44,11 @@ $('#switch_edit_map').on('click',function(){
   $('#edit-map').slideToggle(500);
   // $('#edit-map').fadeToggle(500);
 });// switch edit map
+
+/*------------------------------
+  Modal add room
+------------------------------*/
+$('#addmap').on('click',function(){
+  $('#modal-newmap').modal('show');
+});// switch edit map
+

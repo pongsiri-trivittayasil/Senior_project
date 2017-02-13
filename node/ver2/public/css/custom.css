@@ -273,6 +273,10 @@ input:checked + .slider:before {
 	font-family: 'Quicksand';
 	font-size:30px;
 }
+.modal-body input {
+	color:#7f8c8d;
+	font-family: 'Quicksand';
+}
 .modal-body .form-group > label {
 	color:#7f8c8d;
 	font-family: 'Quicksand';
@@ -282,15 +286,6 @@ input:checked + .slider:before {
 	color:#7f8c8d;
 	font-family: 'Quicksand';
 	font-size:20px;	
-}
-
-.modal-body .form-group > fieldset > input {
-	color:#7f8c8d;
-	font-family: 'Quicksand';
-}
-.modal-body .form-group > input {
-	color:#7f8c8d;
-	font-family: 'Quicksand';
 }
 .modal-body .error {
 	color:red;
@@ -384,7 +379,7 @@ input:checked + .slider:before {
 #choose-map .block:hover {
 	background-color:#2980b9;
 }
-#choose-map .block-addroom {
+#choose-map .block-addmap {
 	margin-top:10px;
 	background-color:#1abc9c;
 	height:50px;
@@ -393,7 +388,7 @@ input:checked + .slider:before {
 	text-align: center;
 	cursor: pointer;
 }
-#choose-map .block-addroom:hover {
+#choose-map .block-addmap:hover {
 	background-color:#27ae60;
 }
 #choose-map p{

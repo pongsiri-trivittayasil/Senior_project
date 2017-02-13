@@ -26,7 +26,11 @@ var room_selected,create_room_selected;
 var ap_selected;
 //new map ?
 // var newmap = true;
-var newmap = false;
+if(newmap == 'False'){
+	newmap = false;
+} else {
+	newmap = true;
+}
 
 // initial value
 var temp_timer;

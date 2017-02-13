@@ -55,6 +55,7 @@ exports.render_map = function(req,res){
 				res.render('map',{
 					username:req.user ? req.user.Username : '',			
 					map:req.session.map,
+					newmap:req.body.newmap,
 					Control_list:result.control,
 					Tag_list:result.tag
 				});

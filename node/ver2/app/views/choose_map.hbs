@@ -88,7 +88,8 @@
     		</div>
     		{{#each map}}
 				<form action="/map" method="post" id='{{this.name}}'>
-				<input type='hidden'name='map' value="{{this.name}}">
+                <input type='hidden'name='map' value="{{this.name}}">
+				<input type='hidden'name='newmap' value="False">
 		    		<div class='row'>	{{!-- /Block Map --}}
 		    			<div class='block'onclick="document.forms['{{this.name}}'].submit()">
 		    				<p>{{this.name}}</p>
@@ -96,13 +97,37 @@
 		    		</div>
 		   		</form>
 		   	{{/each}}
-                    <div class='row'>   {{!-- /Block Map --}}
-                        <div class='block-addroom'>
-                            <p>new room</p>
+                    {{!-- <div class='row'> 
+                        <div class='block-addmap' id='addmap'>
+                            <p>new map</p>
                         </div>
-                    </div>
+                    </div> --}}
     	</div>	{{!-- /container --}}
     </section> {{!-- /content --}}
+
+
+    <!-- ==========================
+        
+    =========================== -->
+    {{!-- Control --}}
+    <div class="modal fade" id="modal-newmap" role="dialog">
+        <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="modal-title">Add new Map</div>
+                </div>  {{!-- /modal-header --}}
+                <div class="modal-body">
+                    <div class='head'>Name Map</div>
+                  <input name="name"type="text" class="form-control" id="name-set" value="name">
+                </div>  
+
+
+            </div>    {{!-- /modal-content --}}
+        </div>  
+    </div>  {{!-- /modal --}}
+
 
     <!-- ==========================
     	JS 
