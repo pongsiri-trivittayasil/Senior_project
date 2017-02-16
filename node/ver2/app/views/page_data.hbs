@@ -20,7 +20,7 @@
     	CSS 
     =========================== -->
     <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-colorselector.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap-toggle.min.css">
     <link rel="stylesheet" type="text/css" href="/lib/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
 </head>
@@ -120,9 +120,11 @@
                                         <td  id='control-name'>{{this.name}}</td>
                                         <td id='control-id'>{{this.id}}</td>
                                         {{#if this.status}}
-                                            <td><span class="label label-success">On</span></td>
+                                            {{!-- <td><span class="label label-success">On</span></td> --}}
+                                            <td id="switch-control"><input id="switch" type="checkbox" checked data-toggle="toggle" data-size="small"data-onstyle="success" ></td>
                                         {{else}}
-                                            <td><span class="label label-danger">Off</span></td>
+                                            {{!-- <td><span class="label label-danger">Off</span></td> --}}
+                                            <td id="switch-control"><input id="switch" type="checkbox" data-toggle="toggle" data-size="small"data-onstyle="success"></td>
                                         {{/if}}
                                         <td scope="row"><button type="button" class="btn btn-default btn-sm" id='edit-control'>Edit</button></td>
                                         <td scope="row"><button type="button" class="btn btn-default btn-sm"  id='delete-control'>Delete</button></td>
@@ -417,6 +419,7 @@
                 {{!-- modal-body-line --}}
                 <div class="modal-body" id="modal-body-line">
                     <form id="form_add_line">
+                        <a href="https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1476232700&redirect_uri=https%3A%2F%2Fnotify-bot.line.me%2Flogin%2Fcallback&state=G61ruTyAnwEjZlPEeof1E2&response_mode=form_post">ขอ Token Line</a>
                         <div class="form-group">
                             <label for="username">Line Name:</label>
                             <input name="Line_name"type="text" class="form-control"  value="Name">
@@ -833,12 +836,15 @@
     {{!-- lib --}}
     <script src="/lib/js/jquery-3.1.1.min.js"></script>
     <script src="/lib/js/bootstrap.min.js"></script>
+    <script src="/lib/js/bootstrap-toggle.min.js"></script>
 
     {{!-- design js --}}
     <script src="/js/design/custom.js"></script>
     {{!-- work js --}}
     <script src="/js/work/custom-data.js"></script>
-
+    <!--microgear-->
+    <script src="https://cdn.netpie.io/microgear.js"></script>
+    <script type="text/javascript" src="/js/work/microgear.js"></script>
 
 
 </body>

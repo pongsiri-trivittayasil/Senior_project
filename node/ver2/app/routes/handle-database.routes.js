@@ -7,6 +7,7 @@ module.exports = function(app){
 
 	//control
 	app.route('/createcontrol').post(control.create);
+	app.route('/editstatus').post(control.editstatus);
 	app.route('/editcontrol').post(control.edit);
 	app.route('/removecontrol').post(control.remove);
 	app.post('/listcontrol',control.list);

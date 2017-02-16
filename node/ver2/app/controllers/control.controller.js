@@ -27,6 +27,19 @@ exports.edit = function(req,res,next){
 		console.log(err);
 	}
 };
+exports.editstatus = function(req,res,next){
+	try {
+		Control.findOneAndUpdate({Control_name:req.body.oldname,User:req.user.Username,Map:req.session.map},{Status:req.body.status},function(err,user){
+			if(err){
+				return next(err);
+			}else{
+				res.send('done');
+			}
+		});
+	} catch (err){
+		console.log(err);
+	}
+};
 exports.remove = function(req,res,next){
 	try {
 		Control.findOne({Control_name:req.body.name,User:req.user.Username,Map:req.session.map},function(err,user){

@@ -2,15 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 //control
 var ControlSchema = new Schema({
-	Control_name: {type:String,unique:true,index:true,trim:true,require:true},
-	Control_id: {type:Number,unique:true,trim:true},
+	Control_name: {type:String,unique:false,index:true,trim:true,require:true},
+	Control_id: {type:Number,unique:false,trim:true},
 	Status: Boolean,
 	User: String,
 	Map: String
 });
 //Tag
 var TagSchema = new Schema({
-	Tag_name: {type:String,unique:true,index:true,trim:true,require:true},
+	Tag_name: {type:String,unique:false,index:true,trim:true,require:true},
 	Tag_id: {type:Number,trim:true},
 	room: String,
 	User: String,
@@ -18,7 +18,7 @@ var TagSchema = new Schema({
 });
 //Room
 var RoomSchema = new Schema({
-	Room_name: {type:String,unique:true,index:true,trim:true,require:true},
+	Room_name: {type:String,unique:false,index:true,trim:true,require:true},
 	Room_id:{type:Number,unique:false,trim:true},
 	Room_mac:String,
 	InitialValue:Number,
@@ -32,7 +32,7 @@ var RoomSchema = new Schema({
 });
 //AP
 var APointSchema = new Schema({
-	AP_name: {type:String,unique:true,index:true,trim:true,require:true},
+	AP_name: {type:String,unique:false,index:true,trim:true,require:true},
 	x: Number,
 	y: Number,
 	AP_mac: String,
@@ -40,8 +40,8 @@ var APointSchema = new Schema({
 	Map: String
 });
 var LineSchema = new Schema({
-	Line_name: {type:String,unique:true,index:true,trim:true,require:true},
-	Line_token: {type:String,unique:true,trim:true},
+	Line_name: {type:String,unique:false,index:true,trim:true,require:true},
+	Line_token: {type:String,unique:false,trim:true},
 	User: String,
 	Map: String
 });

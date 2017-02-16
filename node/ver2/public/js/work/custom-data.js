@@ -374,6 +374,36 @@ $('#form_add_line').submit(function(e){
 });
 
 
+/*------------------------------
+  on off switch control
+------------------------------*/
+$('[id^="switch-control"]').each(function(){
+  $(this).on('click',function(){
+    var id = $(this).closest('tr').find('#control-id').html();
+    var oldname = $(this).closest('tr').find('#control-name').html();
+    // console.log(id);
+    checked = $(this).find('#switch').prop('checked');
+    if(!checked){
+      // console.log('on');
+      // update db
+      data_form = {"oldname":oldname,"status":true};
+        $.post("/editstatus",data_form, function(data, status){
+          console.log(status);
+      });
+      // netpie
+      microgear.chat("client_Tag_control",id+",ON")
+    } else {
+      // console.log('off');
+      // update db
+      data_form = {"oldname":oldname,"Status":false};
+        $.post("/editstatus",data_form, function(data, status){
+          console.log(status);
+      });
+      // netpie
+      microgear.chat("client_Tag_control",id+",OFF")
+    }
+  });
+});
 
 /*------------------------------
   End page loding

@@ -8,7 +8,7 @@
     });
 
     microgear.on('message',function(topic,msg) {
-        console.log("from python :" + msg);
+        console.log("message :" + msg);
         var temp = msg.split(',');
         if(temp[0] == 'init'){
             set_init.push(parseInt(temp[1]));
