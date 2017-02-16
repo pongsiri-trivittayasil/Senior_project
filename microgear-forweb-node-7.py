@@ -15,16 +15,21 @@ def subscription(topic,message):
 def disconnect():
   print "disconnect is work"
 
-microgear.setalias("server")
+microgear.setalias("test")
 microgear.on_connect = connection
 microgear.on_message = subscription
 microgear.on_disconnect = disconnect
-microgear.subscribe("/web")
+microgear.subscribe("/WebServer")
 microgear.connect()
 
+
+# microgear.chat("htmlgear",send)
 while(True):
 	try:
 		send = input("what word to send web:")
-		microgear.chat("htmlgear",send)
+		microgear.chat("client_Tag_control",send)
+		# microgear.chat("WebServer",send)
+		# microgear.publish('/WebServer',send)
 	except:
-		microgear.chat("htmlgear","5,10")
+		# microgear.chat("WebServer","init,10")
+		microgear.chat("client_Tag_control","1,OFF")

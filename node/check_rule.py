@@ -4,9 +4,13 @@ import datetime
 from pymongo import MongoClient
 import requests,json
 
-client = MongoClient()
+# client = MongoClient()
+# uri = "mongodb://seniorpj:123456@128.199.119.31/my-project?authSource=admin"
+# db = MongoClient(uri)
 client = MongoClient('128.199.119.31', 27017)
+client.admin.authenticate('seniorpj', '123456', mechanism='SCRAM-SHA-1')
 db = client['my-project']
+
 db_status = db.ifstatuses
 
 url = "https://notify-api.line.me/api/notify"
@@ -182,4 +186,4 @@ def then_control(id,status):
 # ----------------------   example    ------------------------------------------
 		
 check_time_rule()
-check_tag('1','1')
+# check_tag('1','1')
