@@ -16,6 +16,7 @@
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.2",
+    "formidable": "^1.1.1",
     "fs": "0.0.1-security",
     "jsonfile": "^2.4.0",
     "mongoose": "^4.6.8",
@@ -23,6 +24,7 @@
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "querystring": "^0.2.0"
   }
 }

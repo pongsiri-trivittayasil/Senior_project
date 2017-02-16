@@ -61,7 +61,8 @@ $('[id^="edit-room"]').each(function(){
     var oldname = $(this).closest('tr').find('#room-name').html();
     var oldid = $(this).closest('tr').find('#room-id').html();
     var oldmac = $(this).closest('tr').find('#room-mac').html();
-		var oldinitialvalue = $(this).closest('tr').find('#initialvalue').html();
+    var oldinitialvalue = $(this).closest('tr').find('#initialvalue').html();
+		var oldinitialvalueESPAP = $(this).closest('tr').find('#initialvalueESPAP').html();
 		var modal = $('#modal-edit-room');
     console.log(oldinitialvalue);
 		modal.find('#oldname').val(oldname);
@@ -70,6 +71,7 @@ $('[id^="edit-room"]').each(function(){
     modal.find('#newid').val(oldid);
     modal.find('#newmac').val(oldmac);
     modal.find('#newinitialvalue').val(oldinitialvalue);
+    modal.find('#newinitialvalueESPAP').val(oldinitialvalueESPAP);
 	});
 });
 

@@ -292,6 +292,8 @@ input:checked + .slider:before {
 }
 /*--rule--*/
 .modal-body .head {
+	margin-top:10px;
+	margin-bottom:10px;
 	color:#7f8c8d;
 	font-family: 'Quicksand';
 	font-size:25px;	

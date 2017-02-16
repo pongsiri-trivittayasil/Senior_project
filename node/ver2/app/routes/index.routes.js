@@ -51,6 +51,8 @@ module.exports = function(app){
 	//-------------------------file---------------------------------------
 	//file
 	app.post('/savefile',fs.save);
+	//new map
+	app.post('/savemap',fs.savemap);
 
 	//-------------------------test---------------------------------------
 	app.post('/test',index.test);

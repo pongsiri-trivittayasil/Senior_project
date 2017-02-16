@@ -2,11 +2,13 @@
 	Initial Value
 ------------------------------*/
 //image
-var srcImg = "/img/"+nameMap+".jpg";
+// var srcImg = "/img/"+nameMap+".jpg";
+var srcImg = "/uploads/"+nameUser+"-"+nameMap+".jpg";
 // var srcImg = "/img/{{map}}.jpg";
-var pathJSON = "./map_json/"+nameMap+".json";
-// var pathJSON = "./map_json/{{map}}.json";
-var nameSave = nameMap;
+// var pathJSON = "./map_json/"+nameMap+".json";
+var pathJSON = "./map_json/"+nameUser+"-"+nameMap+".json";
+// var nameSave = nameMap;
+var nameSave = nameUser+"-"+nameMap;
 //set grid,image,background,room,ap
 var set_grid,set_background,set_room,set_ap,set_tag;
 //set scale
@@ -301,6 +303,7 @@ var set_function_onload = function(){
 		// new client---------------------
 		background();
 		grid();
+		json_save();
 	} else {
 		// old client------------------
 		json_call();
@@ -783,6 +786,12 @@ var json_save = function(){
 			$("#saving").fadeOut("slow");
 	    });
 	 console.log(typeof json);
+
+	 if(newmap){
+	 	$("#preloader").fadeOut("slow");
+		hide_background();
+		hide_grid();
+	 }
 	 // console.log(json);
 
 	    // set_ap = [];

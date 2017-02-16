@@ -13,7 +13,9 @@ exports.render_home = function(req,res){
 	// }
 };
 
+
 exports.test = function(req,res){
+	console.log(req.body);
 	console.log(typeof req.body);
-	// console.log(JSON.stringify(req.body));
+
 };

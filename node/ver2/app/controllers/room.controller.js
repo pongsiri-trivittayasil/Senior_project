@@ -3,7 +3,7 @@ var Room = require('mongoose').model('Room');
 exports.create = function(req,res,next){
 	try {
 		var room_name = req.body.Room_name;
-		var room = new Room ({Room_name:room_name,Room_id:req.body.Room_id,Room_mac:req.body.Room_mac,InitialValue:req.body.initialvalue, max_x:req.body.max_x,min_x:req.body.min_x,max_y:req.body.max_y,min_y:req.body.min_y,User:req.user.Username,Map:req.session.map});
+		var room = new Room ({Room_name:room_name,Room_id:req.body.Room_id,Room_mac:req.body.Room_mac,InitialValue:req.body.initialvalue,InitialValueESPAP:req.body.initialvalueESPAP,max_x:req.body.max_x,min_x:req.body.min_x,max_y:req.body.max_y,min_y:req.body.min_y,User:req.user.Username,Map:req.session.map});
 		room.save(function(err){
 			if(err){
 				console.log('err');
@@ -19,7 +19,7 @@ exports.create = function(req,res,next){
 };
 exports.edit = function(req,res,next){
 	try {
-		Room.findOneAndUpdate({Room_name:req.body.oldname,User:req.user.Username,Map:req.session.map},{Room_name:req.body.newname,Room_id:req.body.newid,Room_mac:req.body.newmac,InitialValue:req.body.newinitialvalue},function(err,user){
+		Room.findOneAndUpdate({Room_name:req.body.oldname,User:req.user.Username,Map:req.session.map},{Room_name:req.body.newname,Room_id:req.body.newid,Room_mac:req.body.newmac,InitialValue:req.body.newinitialvalue,InitialValueESPAP:req.body.newinitialvalueESPAP},function(err,user){
 			if(err){
 				res.send(err);
 			}else{

@@ -197,7 +197,8 @@
                                         <th>Room Name</th>
                                         <th>Room ID</th>
                                         <th>Room mac</th>
-    									<th>initialvalue</th>
+                                        <th>initialvalue</th>
+    									<th>ESPAP</th>
     									<th></th>
     									<th></th>
     								</tr>
@@ -212,6 +213,7 @@
                                             <td id='room-id'>{{this.id}}</td>
                                             <td id='room-mac'>{{this.mac}}</td>
                                             <td id='initialvalue'>{{this.initialvalue}}</td>
+                                            <td id='initialvalueESPAP'>{{this.initialvalueESPAP}}</td>
                                             <td scope="row"><button type="button" class="btn btn-default btn-sm"id='edit-room'>Edit</button></td>
                                             <td scope="row"><button type="button" class="btn btn-default btn-sm"id='delete-room'>Delete</button></td>
                                         </tr>
@@ -378,6 +380,8 @@
                             <input name="Room_mac"type="text" class="form-control"  value="mac">
                             <label for="initialvalue">Intitial Value:</label>
                             <input name="initialvalue"type="text" class="form-control"  value="-1">
+                            <label for="initialvalue">Intitial Value ESP AP:</label>
+                            <input name="initialvalueESPAP"type="text" class="form-control"  value="-1">
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -546,6 +550,8 @@
                             <input name="newmac"type="text" class="form-control"  value="-1" id='newmac'>
                             <label for="username">New initialValue:</label>
                             <input name="newinitialvalue"type="text" class="form-control"  value="-1" id='newinitialvalue'>
+                            <label for="username">New initialValue ESP AP:</label>
+                            <input name="newinitialvalueESPAP"type="text" class="form-control"  value="-1" id='newinitialvalueESPAP'>
                         </div>
                         <div class="row">
                             <div class="col-md-6">

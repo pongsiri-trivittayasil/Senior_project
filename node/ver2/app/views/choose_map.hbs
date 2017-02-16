@@ -89,7 +89,7 @@
     		{{#each map}}
 				<form action="/map" method="post" id='{{this.name}}'>
                 <input type='hidden'name='map' value="{{this.name}}">
-				<input type='hidden'name='newmap' value="False">
+				{{!-- <input type='hidden'name='newmap' value="False"> --}}
 		    		<div class='row'>	{{!-- /Block Map --}}
 		    			<div class='block'onclick="document.forms['{{this.name}}'].submit()">
 		    				<p>{{this.name}}</p>
@@ -97,11 +97,11 @@
 		    		</div>
 		   		</form>
 		   	{{/each}}
-                    {{!-- <div class='row'> 
-                        <div class='block-addmap' id='addmap'>
-                            <p>new map</p>
-                        </div>
-                    </div> --}}
+                <div class='row'> 
+                    <div class='block-addmap' id='addmap'>
+                        <p>new map</p>
+                    </div>
+                </div>
     	</div>	{{!-- /container --}}
     </section> {{!-- /content --}}
 
@@ -120,9 +120,18 @@
                 </div>  {{!-- /modal-header --}}
                 <div class="modal-body">
                     <div class='head'>Name Map</div>
-                  <input name="name"type="text" class="form-control" id="name-set" value="name">
+                    <div>
+                        <input name="name"type="text" class="form-control" id="name-map" value="" placeholder="name map">
+                    </div>
+                    <div class='head'>Choose Image</div>
+                    <div>
+                        <input type='file' class='filestyle' data-buttonBefore="true" name="uploads[]" id='file-upload'>
+                    </div>
                 </div>  
-
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id='submit-add-map'>Submit</button>
+            </div>
 
             </div>    {{!-- /modal-content --}}
         </div>  
@@ -131,16 +140,50 @@
 
     <!-- ==========================
     	JS 
-    =========================== -->
+    =========================== --> 
     <script src="/lib/js/jquery-3.1.1.min.js"></script>
     <script src="/lib/js/bootstrap.min.js"></script>
+    <script src="/lib/js/bootstrap-filestyle.min.js"></script>
     <script src="/js/design/custom.js"></script>
 
     {{!-- preloading --}}
-{{!-- 
+
     <script type="text/javascript">
-        $("#preloader").fadeOut("slow");
+        // $("#preloader").fadeOut("slow");
+        // $('#modal-newmap').modal('show');
+        $(":file").filestyle({buttonBefore: true,placeholder: "jpg or png"});
+        // button submit
+        $('#submit-add-map').on('click',function(){
+            var file = $('#file-upload').get(0).files[0];
+            var formData = new FormData();
+            if(file.size < 1){
+            } else if(file.type != 'image/png' && file.type != 'image/jpg'&& file.type != 'image/jpeg' ){
+                alert("The file does not match png or jpg");
+            } else {
+                var name_map = $('#name-map').val();
+                if( file.type == 'image/jpg' || file.type == 'image/jpeg'){
+                    name_map = name_map + '.jpg';
+                }
+                if (file.type == 'image/png'){
+                    name_map = name_map + '.png';
+                }
+                formData.append('uploads[]',file,name_map);
+                // formData.append('uploads[]',file,file.name);
+                console.log(formData);
+                $.ajax({
+                    url: '/savemap',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data){
+                        console.log('upload successful!');
+                        window.location.href = '/map';
+                    }
+                });
+            }
+        });
     </script>
-     --}}
+    
 </body>
 </html>

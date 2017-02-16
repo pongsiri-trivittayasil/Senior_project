@@ -48,6 +48,11 @@ exports.render_map = function(req,res){
 		if (!req.session.map){
 			req.session.map = req.body.map;
 		}
+		var newmap = "False";
+		if (req.session.newmap == "True"){
+			newmap = "True";
+			req.session.newmap = "False";
+		}
 			async.parallel({
 				control:find_control.bind(null,req),
 				tag:find_tag.bind(null,req)
@@ -55,7 +60,7 @@ exports.render_map = function(req,res){
 				res.render('map',{
 					username:req.user ? req.user.Username : '',			
 					map:req.session.map,
-					newmap:req.body.newmap,
+					newmap:newmap,
 					Control_list:result.control,
 					Tag_list:result.tag
 				});

@@ -34,7 +34,7 @@ exports.render_choose_map = function(req,res){
 	} else {
 		res.redirect('/');
 	}
-	save_map(req);
+	// save_map(req);
 };
 
 

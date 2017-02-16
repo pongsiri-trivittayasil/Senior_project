@@ -22,6 +22,7 @@ var RoomSchema = new Schema({
 	Room_id:{type:Number,unique:false,trim:true},
 	Room_mac:String,
 	InitialValue:Number,
+	InitialValueESPAP:Number,
 	max_x: Number,
 	min_x: Number,
 	max_y: Number,
