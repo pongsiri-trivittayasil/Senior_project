@@ -66,3 +66,11 @@ exports.savemap = function(req,res,next){
 	form.parse(req);
 	// console.log(JSON.stringify(req.body));
 }
+
+exports.removelist = function(User,Map){
+	var fs = require('fs');
+	var filePathImg = 'public/uploads/'+User+'-'+Map+'.jpg'; 
+	var filePathJson = 'public/map_json/'+User+'-'+Map+'.json'; 
+	fs.unlinkSync(filePathImg);
+	fs.unlinkSync(filePathJson);
+}

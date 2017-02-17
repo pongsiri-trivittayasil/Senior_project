@@ -1,7 +1,7 @@
 var Control = require('mongoose').model('Control');
 var Tag = require('mongoose').model('Tag');
 var async = require('async');
-
+var maps = require('mongoose').model('Map');
 
 // function page data -------------------------------------------------------------
 var find_control = function(req,callback){
@@ -68,4 +68,15 @@ exports.render_map = function(req,res){
 	} else {
 		res.redirect('/');
 	}
+};
+
+
+exports.removelist = function(User,Map){
+	maps.find({User:User,Mapname:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
 };

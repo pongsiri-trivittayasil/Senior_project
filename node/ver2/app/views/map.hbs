@@ -91,7 +91,12 @@
     	<div class='container'>
     		<div class='row'>	{{!-- /Header Name --}}
     			<div class='col-md-5'>
-    				<h3>{{{map}}}<h3> 
+    				<h3>{{{map}}}
+                    <i class="fa fa-cog" aria-hidden="true" data-toggle="dropdown" style="cursor:pointer;font-size:23px;"></i>
+                        <ul class="dropdown-menu">
+                            <li><a id='deletemap' style="cursor:pointer">Destroy this Map</a></li>
+                        </ul>
+                    </h3> 
     			</div>
     			<div class="col-md-7"style='text-align:right'>
     				<a class='block' href="/page_data"><p>data</p></a>
@@ -405,6 +410,16 @@
             var nameMap = "{{map}}";
 			var nameUser = "{{username}}";
             var newmap = "{{newmap}}" ? "{{newmap}}" : "False";
+            $('.fa-cog').hover(function() {
+                $(this).addClass('fa-spin');
+            }, function() {
+                $(this).removeClass('fa-spin');
+            });
+            $('#deletemap').on('click',function(){
+                $.get("/deletemap",function(data,status){
+                    window.location.href = '/choose_map';
+                });
+            })
 		</script>
 	<script type="text/javascript" src="/js/work/global_func.js"></script>
         <!--custom-->

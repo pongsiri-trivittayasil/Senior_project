@@ -196,4 +196,56 @@ exports.remove = function(req,res,next){
 	}
 }
 
-// remove(0.1411899021483609);
+
+exports.removelist = function(User,Map){
+	IfTime.find({User:User,Map:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
+	IfTag.find({User:User,Map:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
+	IfDay.find({User:User,Map:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
+	IfDate.find({User:User,Map:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
+	IfStatus.find({User:User,Map:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
+	ThenLine.find({User:User,Map:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
+	ThenControl.find({User:User,Map:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
+
+};

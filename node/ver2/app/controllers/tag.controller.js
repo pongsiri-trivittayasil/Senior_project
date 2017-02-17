@@ -58,3 +58,13 @@ exports.list = function(req,res,next){
 		console.log(err);
 	}
 };
+
+exports.removelist = function(User,Map){
+	Tag.find({User:User,Map:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
+};

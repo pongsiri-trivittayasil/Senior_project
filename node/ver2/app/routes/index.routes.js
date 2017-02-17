@@ -3,6 +3,7 @@ module.exports = function(app){
 	var choose_map = require('../controllers/choose-map.controller');
 	var map = require('../controllers/map.controller');
 	var page_data = require('../controllers/page-data.controller');
+	var deletemap = require('../controllers/deletemap.controller');
 	var rule = require('../controllers/rule.controller');
 	var user = require('../controllers/user.controller');
 	var fs = require('../controllers/file.controller');
@@ -51,9 +52,10 @@ module.exports = function(app){
 	//-------------------------file---------------------------------------
 	//file
 	app.post('/savefile',fs.save);
-	//new map
+	//-------------------------create Map----------------------------------
 	app.post('/savemap',fs.savemap);
-
+	//-------------------------Delete Map----------------------------------
+	app.get('/deletemap',deletemap.deletemap);
 	//-------------------------test---------------------------------------
 	app.post('/test',index.test);
 

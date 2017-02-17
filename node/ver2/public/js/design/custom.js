@@ -13,7 +13,7 @@ $('#form_login').submit(function(e){
   var data_form = $('#form_login').serialize();
     $.post("/login",data_form, function(data, status){
       if(data == "refresh"){
-        location.reload();
+        window.location.href = '/choose_map';
       }
       if(data == "error"){
         document.getElementById("error").innerHTML = "invalid username or password";

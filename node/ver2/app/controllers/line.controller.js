@@ -88,3 +88,13 @@ exports.select = function(req,res,next){
 function isEmptyObject(obj) {
   return !Object.keys(obj).length;
 }
+
+exports.removelist = function(User,Map){
+	Line.find({User:User,Map:Map},function(err,documents){
+		if(documents.length > 0){
+			for (n in documents){
+				documents[n].remove();
+			}
+		}
+	});
+};
