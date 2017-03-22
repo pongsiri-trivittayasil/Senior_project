@@ -5,13 +5,18 @@ var if_time = "<div class='row list' id='if-time'><div class='col-md-2'>Time</di
 var if_tag = "<div class='row list'id='if-tag'><div class='col-md-1'>Tag</div><div class='col-md-4' ><select class='selectpicker' id='tag-name'>"
 var if_tag2 = "</select></div><div class='col-md-1'>in</div><div class='col-md-4' ><select class='selectpicker'id='room-name'>"
 var if_tag3 = "</select></div><div class='col-md-2' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
+var if_Out = "<div class='row list'id='if-out'><div class='col-md-1'>Tag</div><div class='col-md-4' ><select class='selectpicker' id='tag-name'>"
+var if_Out2 = "</select></div><div class='col-md-1'>Out</div><div class='col-md-4' ><select class='selectpicker'id='room-name'>"
+var if_Out3 = "</select></div><div class='col-md-2' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
+var if_tag_time = "<div class='row list'id='if-tag-time'><div class='col-md-1'>Tag</div><div class='col-md-3' ><select class='selectpicker' id='tag-name'>"
+var if_tag_time2 = "</select></div><div class='col-md-1'>in</div><div class='col-md-3' ><select class='selectpicker'id='room-name'>"
+var if_tag_time3 = "</select></div><div class='col-md-2'>for<select class='selectpicker' id='val-for-time'><option>5 m</option><option>10 m</option><option>20 m</option><option>30 m</option><option>60 m</option></select></div><div class='col-md-1' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
 var if_date = "<div class='row list' id='if-date'><div class='col-md-2' >Date</div><div class='col-md-6 '><input class='form-control datepicker' type='text' id='val-date'></div><div class='col-md-4' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
 var if_day = "<div class='row list' id='if-day'><div class='col-md-2' >Day</div><div class='col-md-6'><select class='selectpicker' id='val-day'><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></div><div class='col-md-4' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
 var then_line = "<div class='row list' id='then-line'><div class='col-md-1' >Line</div><div class='col-md-4' ><select class='selectpicker' id='val-token'>"
 var then_line2 = "</select></div><div class='col-md-2'>Message</div><div class='col-md-4'><input type='text' class='form-control' id='val-message' placeholder='Example input'></div><div class='col-md-1' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
 var then_control = "<div class='row list' id='then-control'><div class='col-md-2'>Control</div><div class='col-md-4' ><select class='selectpicker' id='val-control'>"
 var then_control2 = "</select></div><div class='col-md-4' ><select class='selectpicker' id='val-status'><option>on</option><option>off</option></select></div><div class='col-md-2' style='text-align:right'><i class='fa fa-times remove' aria-hidden='true'></i></div></div>";
-
 /*------------------------------
   button add new rule
 ------------------------------*/
@@ -48,6 +53,57 @@ $('#if-button-tag').on('click',function(){
 	})
 	$(this).hide()
 });
+
+// if Out
+$('#if-button-out').on('click',function(){
+	console.log('Out');
+	// $('#if-list').append( $(if_tag)).slideDown("fast");
+	// $(rule_tag).appendTo($('.if-list')).slideDown("slow");
+	var temp = if_Out;
+	$.post("/listtag",function(data,status){
+		for (x in data){
+			console.log(data[x].Tag_name);
+			temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+		}
+		temp = temp + if_Out2;
+		$.post("/listroom",function(data,status){
+			for (x in data){
+				// console.log(data[x]);
+				temp = temp + "<option value='"+ String(data[x].Room_id)+"'>"+String(data[x].Room_name)+"</option>";
+			}
+		temp = temp + if_Out3;
+		$('#if-list').append( $(temp)).slideDown("fast");
+		$('.selectpicker').selectpicker();
+		})
+	})
+	$(this).hide()
+});
+
+// if tag + time
+$('#if-button-tag-time').on('click',function(){
+	console.log('tag+time');
+	// $('#if-list').append( $(if_tag)).slideDown("fast");
+	// $(rule_tag).appendTo($('.if-list')).slideDown("slow");
+	var temp = if_tag_time;
+	$.post("/listtag",function(data,status){
+		for (x in data){
+			console.log(data[x].Tag_name);
+			temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+		}
+		temp = temp + if_tag_time2;
+		$.post("/listroom",function(data,status){
+			for (x in data){
+				// console.log(data[x]);
+				temp = temp + "<option value='"+ String(data[x].Room_id)+"'>"+String(data[x].Room_name)+"</option>";
+			}
+		temp = temp + if_tag_time3;
+		$('#if-list').append( $(temp)).slideDown("fast");
+		$('.selectpicker').selectpicker();
+		})
+	})
+	$(this).hide()
+});
+
 //  if time
 $('#if-button-time').on('click',function(){
 	console.log('time');
@@ -120,6 +176,12 @@ $(document).on('click', '.remove', function(e) {
 	if(temp[0].id == 'if-tag'){
 		$('#if-button-tag').show();
 	}
+	if(temp[0].id == 'if-out'){
+		$('#if-button-out').show();
+	}
+	else if(temp[0].id == 'if-tag-time'){
+		$('#if-button-tag-time').show();
+	}
 	else if(temp[0].id == 'if-time'){
 		$('#if-button-time').show();
 	}
@@ -139,7 +201,7 @@ $(document).on('click', '.remove', function(e) {
 ------------------------------*/
 $('#submit-modal').on('click',function(){
 	var random_id = String(Math.random());
-	var data_status = {IfID:random_id,IfTime:'-',IfDay:'-',IfDate:'-',IfTag:'-'}
+	var data_status = {IfID:random_id,IfTime:'-',IfDay:'-',IfDate:'-',IfTag:'-',IfTagTime:'-',IfOut:'-'}
 	var list_if = $('#if-list').children();
 	for (i = 0; i < list_if.length; i++) { 
 		console.log(list_if[i].id);
@@ -148,12 +210,49 @@ $('#submit-modal').on('click',function(){
 			var tag_name = $(list_if[i]).find('#tag-name').val();
 			var room_name = $(list_if[i]).find('#room-name').val();
 			console.log("tag-name : "+String(tag_name)+" in room-name : " + String(room_name))
-			var data = {IfTag_id:random_id,IfTag_name:tag_name,IfTag_room:room_name};
+			var data = {IfTag_id:random_id,IfTag_name:tag_name,IfTag_room:room_name,For_Time:"0"};
 			console.log(data);
 			$.post("/createIfTag",data, function(data, status){
 				console.log(status);
 			});
 			data_status['IfTag'] = '0';
+		}
+		// Out
+		if(list_if[i].id == 'if-out'){
+			console.log('if-out');
+			var tag_name = $(list_if[i]).find('#tag-name').val();
+			var room_name = $(list_if[i]).find('#room-name').val();
+			console.log("tag-name : "+String(tag_name)+" in room-name : " + String(room_name))
+			var data = {IfOut_id:random_id,IfOut_name:tag_name,IfOut_room:room_name};
+			console.log(data);
+			$.post("/createIfOut",data, function(data, status){
+				console.log(status);
+			});
+			data_status['IfOut'] = '0';
+		}
+		// tag + time
+		if(list_if[i].id == 'if-tag-time'){
+			var tag_name = $(list_if[i]).find('#tag-name').val();
+			var room_name = $(list_if[i]).find('#room-name').val();
+			var for_time = $(list_if[i]).find('#val-for-time').val();
+			if(for_time == '5 m'){
+				for_time = 5;
+			} else if (for_time == '10 m'){
+				for_time = 10;
+			} else if (for_time == '20 m'){
+				for_time = 20;
+			} else if (for_time == '30 m'){
+				for_time = 30;
+			} else if (for_time == '60 m'){
+				for_time = 60;
+			}
+			console.log("tag-name : "+String(tag_name)+" in room-name : " + String(room_name) + "for-time : " + String(for_time));
+			var data = {IfTag_id:random_id,IfTag_name:tag_name,IfTag_room:room_name,For_Time:for_time};
+			console.log(data);
+			$.post("/createIfTag",data, function(data, status){
+				console.log(status);
+			});
+			data_status['IfTagTime'] = '0';
 		}
 		// time
 		else if (list_if[i].id == 'if-time'){
@@ -232,6 +331,8 @@ $('#submit-modal').on('click',function(){
 	$('#if-button-day').show();
 	$('#if-button-date').show();
 	$('#if-button-tag').show();
+	$('#if-button-out').show();
+	$('#if-button-tag-time').show();
 	$('#if-button-time').show();
 	$('#modal-add-rule').modal('toggle');
 	location.reload();
@@ -284,6 +385,15 @@ window.onload = function(){
 				// if Tag
 				if(data[n].IfTag != undefined){
 					temp = temp + "<span> Tag : " + data[n].IfTag.IfTag_name + " In room : " + data[n].IfTag.IfTag_room+ "</span>";
+				}
+				// if Out
+				if(data[n].IfOut != undefined){
+					temp = temp + "<span> Tag : " + data[n].IfOut.IfTag_name + " Out room : " + data[n].IfOut.IfTag_room+ "</span>";
+				}
+				// if Tag Time
+				if(data[n].IfTagTime != undefined){
+					// console.log('tagtime');
+					temp = temp + "<span> Tag : " + data[n].IfTagTime.IfTag_name + " In room : " + data[n].IfTagTime.IfTag_room + " For : " + data[n].IfTagTime.For_Time +"</span>";
 				}
 				// then
 				temp = temp + "<span> Then </span>";

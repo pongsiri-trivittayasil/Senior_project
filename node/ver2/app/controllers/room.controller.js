@@ -107,6 +107,30 @@ exports.select = function(req,res,next){
 };
 
 
+exports.select_mac_id = function(req,res,next){
+	try {
+		Room.find({Room_name:req.body.name,User:req.user.Username,Map:req.session.map},function(err,room){
+			if(err){
+				res.send(err);
+
+			}else{
+				console.log(room);
+				if(isEmptyObject(room)){
+					// console.log('not found');ww
+					res.send('err');
+				} else {
+					res.send(room);
+					// console.log(room);
+				}
+			}
+		});
+	} catch (err){
+		console.log(err);
+	}
+};
+
+
+
 // check empty
 function isEmptyObject(obj) {
   return !Object.keys(obj).length;

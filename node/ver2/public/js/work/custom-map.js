@@ -38,7 +38,6 @@ if(newmap == 'False'){
 var temp_timer;
 var set_init = [];
 
-
 /*------------------------------
 	window key up
 ------------------------------*/
@@ -164,16 +163,23 @@ $('#button-initvalue').on('click',function(){
 ------------------------------*/
 // $('#modal-initialvalue').modal('show'); // -------------------------------------------------- show immediately
 // $('#init-choose-tag').html("<select class='selectpicker' id='choose-tag'><option value='1'>test</option><option value='3'>test</option></select>");
+var room_selected_mac;
 var initvalue = function(){
 	$('#modal-initialvalue').modal('show');
 	set_choose_tag();
+	data = {name:room_selected.attrs.title};
+	console.log(data);
+	$.post("/selectMacId",data, function(data, status){
+		room_selected_mac = data[0].Room_mac;
+		console.log(room_selected_mac);
+    });
 }
 $('#start-time').on('click',function(){
 	$(".selectpicker").attr('disabled','disabled');
 	var temp = $('#choose-tag');
 	var fiveMinutes = 60*1,
 	    display = $('#timer');
-    microgear.chat('Server',temp.val()+',startinitValue');
+    microgear.chat('Server',temp.val()+',startinitValue'+','+room_selected_mac);
     clearset();
 	startTimer(fiveMinutes, display);	
 });
@@ -207,9 +213,9 @@ function startTimer(duration, display) {
         //start
         // done
         if (--timer < 0) {
-        		clearInterval(temp_timer);
-        		var temp = $('#choose-tag');
-			    microgear.chat('Server',temp.val()+',stopinitValue');
+    		clearInterval(temp_timer);
+    		var temp = $('#choose-tag');
+		    microgear.chat('Server',temp.val()+',stopinitValue');
         }
     }, 1000);
 }

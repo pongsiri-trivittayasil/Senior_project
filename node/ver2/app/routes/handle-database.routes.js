@@ -24,6 +24,7 @@ module.exports = function(app){
 	app.route('/removeroom').post(room.remove);
 	app.post('/listroom',room.list);
 	app.post('/selectroom',room.select);
+	app.post('/selectMacId',room.select_mac_id);
 	//ap
 	app.route('/createap').post(ap.create);
 	app.route('/editap').post(ap.edit);

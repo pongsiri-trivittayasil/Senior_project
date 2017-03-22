@@ -5,6 +5,7 @@ module.exports = function(app){
 	var page_data = require('../controllers/page-data.controller');
 	var deletemap = require('../controllers/deletemap.controller');
 	var rule = require('../controllers/rule.controller');
+	var history = require('../controllers/history.controller');
 	var user = require('../controllers/user.controller');
 	var fs = require('../controllers/file.controller');
 	var passport = require('passport');
@@ -24,7 +25,10 @@ module.exports = function(app){
 	app.get('/back',map.render_map);
 
 	//-------------------------Rule---------------------------------------
-	app.get('/rule',rule.render_rule);
+	app.get('/page_rule',rule.render_rule);
+	//-------------------------History---------------------------------------
+	app.get('/page_history',history.render_history);
+	app.post('/tag_history',history.list_history);
 
 	//-------------------------User---------------------------------------
 	app.route('/signup').get(user.rendersignup).post(user.signup);

@@ -6,9 +6,19 @@ var IfTagSchema = new Schema({
 	IfTag_id : {type:String,unique:true},
 	IfTag_name : String,
 	IfTag_room : String,
+	For_Time : String,
+	count : Number,
 	User:String,
 	Map:String
-}) 
+});
+// if Out
+var IfOutSchema = new Schema({
+	IfOut_id : {type:String,unique:true},
+	IfOut_name : String,
+	IfOut_room : String,
+	User:String,
+	Map:String
+});
 // if time
 var IfTimeSchema = new Schema({
 	IfTime_id : {type:String,unique:true},
@@ -37,6 +47,8 @@ var IfStatusSchema = new Schema({
 	IfDay : String,
 	IfDate : String,
 	IfTag : String,
+	IfOut : String,
+	IfTagTime : String,
 	User:String,
 	Map:String
 });
@@ -61,6 +73,7 @@ mongoose.model('IfTime',IfTimeSchema);
 mongoose.model('IfDay',IfDaySchema);
 mongoose.model('IfDate',IfDateSchema);
 mongoose.model('IfTag',IfTagSchema);
+mongoose.model('IfOut',IfOutSchema);
 mongoose.model('IfStatus',IfStatusSchema);
 mongoose.model('ThenLine',ThenLineSchema);
 mongoose.model('ThenControl',ThenControlSchema);

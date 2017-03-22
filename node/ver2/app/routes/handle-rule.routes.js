@@ -6,6 +6,8 @@ module.exports = function(app){
 	app.post('/createIfTime',rule.If_Create_Time);
 	// if tag
 	app.post('/createIfTag',rule.If_Create_Tag);
+	// if out
+	app.post('/createIfOut',rule.If_Create_Out);
 	// if day
 	app.post('/createIfDay',rule.If_Create_Day);
 	// if date

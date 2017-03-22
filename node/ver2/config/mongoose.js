@@ -12,6 +12,7 @@ module.exports = function(){
 	require('../app/models/map.model');
 	require('../app/models/data.model');
 	require('../app/models/rule.model');
+	require('../app/models/history.model');
 
 	return db;
 }

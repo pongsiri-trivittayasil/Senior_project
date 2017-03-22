@@ -1,5 +1,6 @@
 var IfTime = require('mongoose').model('IfTime');
 var IfTag = require('mongoose').model('IfTag');
+var IfOut = require('mongoose').model('IfOut');
 var IfDay = require('mongoose').model('IfDay');
 var IfDate = require('mongoose').model('IfDate');
 var IfStatus = require('mongoose').model('IfStatus');
@@ -9,12 +10,27 @@ var ThenControl = require('mongoose').model('ThenControl');
 // if tag
 exports.If_Create_Tag = function(req,res,next){
 	try {
-		var tag = new IfTag ({IfTag_id:req.body.IfTag_id,IfTag_name:req.body.IfTag_name,IfTag_room:req.body.IfTag_room,User:req.user.Username,Map:req.session.map});
+		var tag = new IfTag ({IfTag_id:req.body.IfTag_id,IfTag_name:req.body.IfTag_name,IfTag_room:req.body.IfTag_room,For_Time:req.body.For_Time,count:-1,User:req.user.Username,Map:req.session.map});
 		tag.save(function(err){
 			if(err){
 				return next(err);
 			} else {
 				res.send(tag);
+			}
+		});
+	} catch (err){
+		console.log(err);
+	}
+};
+// if out
+exports.If_Create_Out = function(req,res,next){
+	try {
+		var out = new IfOut ({IfOut_id:req.body.IfOut_id,IfOut_name:req.body.IfOut_name,IfOut_room:req.body.IfOut_room,User:req.user.Username,Map:req.session.map});
+		out.save(function(err){
+			if(err){
+				return next(err);
+			} else {
+				res.send(out);
 			}
 		});
 	} catch (err){
@@ -70,7 +86,7 @@ exports.If_Create_Date = function(req,res,next){
 // if Status
 exports.If_Create_Status = function(req,res,next){
 	try {
-		var status = new IfStatus ({IfID:req.body.IfID,IfTime:req.body.IfTime,IfDay:req.body.IfDay,IfDate:req.body.IfDate,IfTag:req.body.IfTag,User:req.user.Username,Map:req.session.map});
+		var status = new IfStatus ({IfID:req.body.IfID,IfTime:req.body.IfTime,IfDay:req.body.IfDay,IfDate:req.body.IfDate,IfTag:req.body.IfTag,IfTagTime:req.body.IfTagTime,IfOut:req.body.IfOut,User:req.user.Username,Map:req.session.map});
 		status.save(function(err){
 			if(err){
 				return next(err);
@@ -123,6 +139,16 @@ exports.remove = function(req,res,next){
 			} else {
 				if(times != null){
 					times.remove();
+				}
+			}
+		});
+		// IfTime.findOne({IfTime_id:id},function(err,times){
+		IfOut.findOne({IfOut_id:req.body.id},function(err,outs){
+			if(err){
+				return next(err);
+			} else {
+				if(outs != null){
+					outs.remove();
 				}
 			}
 		});

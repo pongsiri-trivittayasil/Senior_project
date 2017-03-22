@@ -22,6 +22,7 @@ $('#form-edit-control').submit(function(e){
   $.post("/editcontrol",data_form, function(data, status){
         console.log(status);
         $('#modal-edit-control').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -48,6 +49,7 @@ $('#form-edit-tag').submit(function(e){
   $.post("/edittag",data_form, function(data, status){
         console.log(status);
         $('#modal-edit-tag').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -81,6 +83,7 @@ $('#form-edit-room').submit(function(e){
   $.post("/editroom",data_form, function(data, status){
         console.log(status);
         $('#modal-edit-room').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -107,6 +110,7 @@ $('#form-edit-ap').submit(function(e){
   $.post("/editap",data_form, function(data, status){
         console.log(status);
         $('#modal-edit-ap').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -133,6 +137,7 @@ $('#form-edit-line').submit(function(e){
   $.post("/editline",data_form, function(data, status){
         console.log(status);
         $('#modal-edit-line').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -160,6 +165,7 @@ $('#form-delete-control').submit(function(e){
   $.post("/removecontrol",data_form, function(data, status){
         console.log(status);
         $('#modal-delete-control').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -182,6 +188,7 @@ $('#form-delete-tag').submit(function(e){
   $.post("/removetag",data_form, function(data, status){
         console.log(status);
         $('#modal-delete-tag').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -204,6 +211,7 @@ $('#form-delete-room').submit(function(e){
   $.post("/removeroom",data_form, function(data, status){
         console.log(status);
         $('#modal-delete-room').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -227,6 +235,7 @@ $('#form-delete-ap').submit(function(e){
   $.post("/removeap",data_form, function(data, status){
         console.log(status);
         $('#modal-delete-ap').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -249,6 +258,7 @@ $('#form-delete-line').submit(function(e){
   $.post("/removeline",data_form, function(data, status){
         console.log(status);
         $('#modal-delete-line').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -309,6 +319,7 @@ $('#form_add_tag').submit(function(e){
         console.log(status);
         $('#modal_add').modal('hide');
         $('#modal-body-control').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -328,6 +339,7 @@ $('#form_add_room').submit(function(e){
         console.log(status);
         $('#modal_add').modal('hide');
         $('#modal-body-control').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -348,6 +360,7 @@ $('#form_add_ap').submit(function(e){
         console.log(status);
         $('#modal_add').modal('hide');
         $('#modal-body-ap').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();
@@ -368,6 +381,7 @@ $('#form_add_line').submit(function(e){
         console.log(status);
         $('#modal_line').modal('hide');
         $('#modal-body-line').hide();
+        microgear.chat("Server","redata");
         location.reload();
   });
   e.preventDefault();

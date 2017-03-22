@@ -83,11 +83,11 @@
     	Section Your Rule
     =========================== -->
     
-    <section id='rule' class='content'>
+    <section id='history' class='content'>
         <div class='container'>
             <div class='row'>   {{!-- /Header Name --}}
                 <div class='col-md-5'>
-                    <h3>{{{map}}} <span class='help-title'>rule</span><h3> 
+                    <h3>{{{map}}} <span class='help-title'>history</span><h3> 
                 </div>
                 <div class="col-md-7"style='text-align:right'>
                     <a class='block' href="/map"><p>back</p></a>
@@ -95,103 +95,38 @@
             </div>  {{!-- /row --}}
 
 
-            <!-- start rule list -->
-            <div id='rule-list'>
-                {{!-- <div class='row rule'>
-                    <div class='col-md-11'>
-                    <span>If</span>
-                    <span>tag in room</span>
-                    <span>date :</span>
-                    <span>day :</span>
-                    <span>time :</span>
-                    <span>then</span>
-                    <span>tag</span>
-                    <span>line</span>
-                    </div>
-                    <div class='col-md-1' style='text-align:right'><i class='fa fa-times removelist' aria-hidden='true'></i></div>
-                </div> --}}
+            <div class='row' id='list-tag-room'>
             </div>
+ 
+
+                {{!-- Tag table--}}
+                    <div class='panel' style="margin-top:20px"> {{!-- panel --}}
+                        <div class='panel-body' style="padding:0px;">
+                            <table class="table table-striped table-hover">
+                                <thead style="text-align:center">       {{!-- head table --}}
+                                    <tr>    
+                                        <th>Time</th>
+                                        <th>Room</th>  
+                                    </tr>
+                                </thead>    {{!-- /.head table--}}
+                                {{!-- table body --}}
+                                <tbody id='table-history'>     
+                                </tbody>
+                            </table>    {{!-- /table--}}
+                        </div>  {{!-- / panel body--}}
+
+                    </div> {{!-- /end panel --}}
 
 
-            <!-- new rule -->
-            <div class='row'>
-                <button type="button" class="btn btn-primary" id='add-rule' title='new rule'>new rule</button>   
-            </div>
+
+
+
 
 
         </div>
 
 
     </section>
-
-
-
-    <!-- ==========================
-        Modal add rule
-    =========================== -->
-    <div class="modal fade" id="modal-add-rule" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                    <div class="modal-title">Add new rule</div>
-                </div>  {{!-- /modal-header --}}
-                {{!-- modal-body --}}
-                <div class="modal-body" id="modal-body">
-
-                <!-- ==========================
-                    If
-                =========================== -->
-                    <div class='row'>
-                    <div class="col-md-2 head">If</div>
-                    <div class='col-md-10'>                    
-                        {{!-- button choose if rule --}}
-                            <button type="button" class="btn btn-default" id='if-button-tag'>In</button>
-                            <button type="button" class="btn btn-default" id='if-button-out'>Out</button>
-                            <button type="button" class="btn btn-default" id='if-button-tag-time'>In+Time</button>
-                            <button type="button" class="btn btn-default" id='if-button-time'>Time</button>
-                            <button type="button" class="btn btn-default" id='if-button-date'>Date</button>
-                            <button type="button" class="btn btn-default" id='if-button-day'>Day</button>
-                    </div>
-                    </div>
-
-
-                    <!-- ==========================
-                        If List
-                    =========================== -->
-                    <div id='if-list'>
-                    </div> {{!-- /if-list --}}
-
-                <!-- ==========================
-                    then
-                =========================== -->
-                    <div class='row '>
-                        <div class="col-md-2 head">Then</div>
-                        <div class='col-md-10'>
-                            <button type="button" class="btn btn-default" id='then-button-line'>Notify Line</button>
-                            <button type="button" class="btn btn-default" id='then-button-control'>Control Tag</button>
-                        </div>
-                    </div>
-
-                    <!-- ==========================
-                        then List
-                    =========================== -->
-                    <div id='then-list'>
-                    </div> {{!-- /if-list --}}
-
-
-                {{!-- Submit --}}
-                    <div class='submit'>
-                        <button type="submit" class="btn btn-primary" id="submit-modal">Submit</button>
-                        <button type="submit" class="btn btn-primary" id='cancel-modal'>Cancel</button>
-                    </div>
-
-                </div>  {{!-- /modal-body --}}
-
-            </div> {{!-- /modal content --}}
-        </div>
-    </div> {{!-- /modal --}}
 
 
 
@@ -210,7 +145,7 @@
     {{!-- design js --}}
     <script src="/js/design/custom.js"></script>
     {{!-- work js --}}
-    <script src="/js/work/custom-rule.js"></script>
+    <script src="/js/work/custom-history.js"></script>
 
 
 

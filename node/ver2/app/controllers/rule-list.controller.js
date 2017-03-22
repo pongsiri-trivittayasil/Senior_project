@@ -1,5 +1,6 @@
 var IfTime = require('mongoose').model('IfTime');
 var IfTag = require('mongoose').model('IfTag');
+var IfOut = require('mongoose').model('IfOut');
 var IfDay = require('mongoose').model('IfDay');
 var IfDate = require('mongoose').model('IfDate');
 var IfStatus = require('mongoose').model('IfStatus');
@@ -28,6 +29,7 @@ var Main_temp = function(){
 	async.parallel({
 		list:Rule_temp.bind(null,'test'),
 	},function(err,result){
+		console.log('fuck done');
 		console.log(result.list);
 	});
 }
@@ -46,6 +48,7 @@ var Rule_temp = function(req,callback){
 			}else{
 				if(ids.length > 0){
 					for( n in ids){
+						// console.log(ids[n].IfID);
 						async.parallel({
 							id:id.bind(null,ids[n].IfID),
 							num:num.bind(null,n),
@@ -53,9 +56,13 @@ var Rule_temp = function(req,callback){
 							date:Date_list.bind(null,ids[n].IfID,ids[n].IfDate),
 							day:Day_list.bind(null,ids[n].IfID,ids[n].IfDay),
 							tag:Tag_list.bind(null,ids[n].IfID,ids[n].IfTag),
+							out:Out_list.bind(null,ids[n].IfID,ids[n].IfOut),
+							tagtime:Tag_Time_list.bind(null,ids[n].IfID,ids[n].IfTagTime),
 							line:Line_list.bind(null,ids[n].IfID),
 							control:Control_list.bind(null,ids[n].IfID),
 						},function(err,result){
+							console.log('fucking shit');
+							// console.log(ids.length);
 							// console.log('result ::::: ', result);
 							var temp_rule_list_id = {};
 							count++; // count for max
@@ -77,6 +84,14 @@ var Rule_temp = function(req,callback){
 							if(result.tag != 'None'){
 								temp_rule_list_id['IfTag'] = result.tag;
 							}
+							// out
+							if(result.out != 'None'){
+								temp_rule_list_id['IfOut'] = result.out;
+							}
+							// tag + time
+							if(result.tagtime != 'None'){
+								temp_rule_list_id['IfTagTime'] = result.tagtime;
+							}
 							// line
 							if(result.line != 'None'){
 								temp_rule_list_id['Line'] = result.line;
@@ -86,6 +101,7 @@ var Rule_temp = function(req,callback){
 								temp_rule_list_id['Control'] = result.control;
 							}
 							temp_rule_list.push(temp_rule_list_id);
+							// console.log(temp_rule_list);
 							if(count == ids.length){
 								callback(null,temp_rule_list);
 							}
@@ -183,14 +199,76 @@ var Tag_list = function(id,status,callback){
 					return next(err);
 				} else {
 					for (n in documents){
+						if(documents[n].For_Time == "0"){
 						var data;
 						// find name tag and name room
-						Tag.findOne({Tag_id:documents[n].IfTag_name},function(err,tags){
+							Tag.findOne({Tag_id:documents[n].IfTag_name},function(err,tags){
+								if(err){
+									console.log(err);
+								} else {
+									if(tags != null){   // found tag
+										Room.findOne({Room_id:documents[n].IfTag_room},function(err,rooms){
+											if(err){
+												console.log(err);
+											} else {
+												if(rooms != null ){  // found room
+													data = {IfTag_name:tags.Tag_name,IfTag_room:rooms.Room_name};
+													callback(null,data);
+
+												} else {  // not found rooms
+													data = {IfTag_name:tags.Tag_name,IfTag_room:'None'};
+													callback(null,data);
+												}
+											}
+										})
+									} else {   // not found tag
+										Room.findOne({Room_id:documents[n].IfTag_room},function(err,rooms){
+											if(err){
+												console.log(err);
+											} else {
+												if(rooms != null ){  // found room
+													data = {IfTag_name:'None',IfTag_room:rooms.Room_name};
+													callback(null,data);
+
+												} else {  // not found rooms
+													data = {IfTag_name:'None',IfTag_room:'None'};
+													callback(null,data);
+												}
+											}
+										})	//end room.findOne
+									}	// end else
+								}	// end else
+							});	// end tag.findone
+						} // end if
+					}
+				}
+			});
+		} catch(err){
+			console.log(err);
+		}
+	} // end if
+	else {
+		callback(null,'None');
+	} // end else
+} // end func
+
+var Out_list = function(id,status,callback){
+	if(status == '0' || status == '1'){
+		try{
+			// find id if tag
+			IfOut.find({IfOut_id:id},function(err,documents){
+				if(err){
+					return next(err);
+				} else {
+					for (n in documents){
+						var data;
+						// find name tag and name room
+						Tag.findOne({Tag_id:documents[n].IfOut_name},function(err,tags){
 							if(err){
 								console.log(err);
 							} else {
 								if(tags != null){   // found tag
-									Room.findOne({Room_id:documents[n].IfTag_room},function(err,rooms){
+									Room.findOne({Room_id:documents[n].IfOut_room},function(err,rooms){
 										if(err){
 											console.log(err);
 										} else {
@@ -205,7 +283,7 @@ var Tag_list = function(id,status,callback){
 										}
 									})
 								} else {   // not found tag
-									Room.findOne({Room_id:documents[n].IfTag_room},function(err,rooms){
+									Room.findOne({Room_id:documents[n].IfOut_room},function(err,rooms){
 										if(err){
 											console.log(err);
 										} else {
@@ -218,10 +296,77 @@ var Tag_list = function(id,status,callback){
 												callback(null,data);
 											}
 										}
-									})
-								}
-							}
-						});
+									})	//end room.findOne
+								}	// end else
+							}	// end else
+						});	// end tag.findone
+					}
+				}
+			});
+		} catch(err){
+			console.log(err);
+		}
+	} // end if
+	else {
+		callback(null,'None');
+	} // end else
+} // end func
+
+var Tag_Time_list = function(id,status,callback){
+	// console.log(id,'::::',status);
+	if(status == '0' || status == '1'){
+		try{
+			// find id if tag
+			IfTag.find({IfTag_id:id},function(err,documents){
+				if(err){
+					return next(err);
+				} else {
+					for (n in documents){
+						// console.log('find',documents[n]);
+						if(documents[n].For_Time != "0"){
+							// console.log('in');
+						var data;
+						// find name tag and name room
+							Tag.findOne({Tag_id:documents[n].IfTag_name},function(err,tags){
+								if(err){
+									console.log(err);
+								} else {
+									if(tags != null){   // found tag
+										Room.findOne({Room_id:documents[n].IfTag_room},function(err,rooms){
+											if(err){
+												console.log(err);
+											} else {
+												if(rooms != null ){  // found room
+													data = {IfTag_name:tags.Tag_name,IfTag_room:rooms.Room_name,For_Time:documents[n].For_Time};
+													callback(null,data);
+
+												} else {  // not found rooms
+													data = {IfTag_name:tags.Tag_name,IfTag_room:'None',For_Time:documents[n].For_Time};
+													callback(null,data);
+												}
+											}
+										})
+									} else {   // not found tag
+										Room.findOne({Room_id:documents[n].IfTag_room},function(err,rooms){
+											if(err){
+												console.log(err);
+											} else {
+												if(rooms != null ){  // found room
+													data = {IfTag_name:'None',IfTag_room:rooms.Room_name,For_Time:documents[n].For_Time};
+													callback(null,data);
+
+												} else {  // not found rooms
+													data = {IfTag_name:'None',IfTag_room:'None',For_Time:documents[n].For_Time};
+													callback(null,data);
+												}
+											}
+										})	//end room.findOne
+									}	// end else
+								}	// end else
+							});	// end tag.findone
+						} else { // end if 
+							callback(null,'None');
+						}
 					}
 				}
 			});
@@ -315,11 +460,6 @@ var Control_list = function(id,callback){
 			console.log(err);
 		}
 } // end func
-
-
-
-
-
 
 
 

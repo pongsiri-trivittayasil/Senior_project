@@ -58,6 +58,20 @@ def check_minute(time):
 		# print document
 		db_status.update({'IfID':document['IfTime_id']},{'$set':{'IfTime':'1'}})
 		check_status(str(document['IfTime_id']))
+	# find count if tag+time for ++
+	cursor = db.iftags.find({"count":{'$ne': -1}})
+	for document in cursor:
+		# print document
+		db.iftags.update({'IfTag_id':document['IfTag_id']},{'$set':{'count':int(document['count']) +1 }})
+		# check ( count == for_time)
+		# print int(document['For_Time'])
+		# print int(document['count']) +1
+		if (int(document['count']) +1 == int(document['For_Time'])):
+			print 'for time done'
+			db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTimeTag':'1'}})
+			check_status(str(document['IfTag_id']))
+
+
 
 '''---------------------------------
 	clear status *** set status to 0
@@ -91,8 +105,10 @@ def check_status(id):
 		if (check['IfDay'] == '1' or check['IfDay'] == '-'):
 			if (check['IfDate'] == '1' or check['IfDate'] == '-'):
 				if (check['IfTag'] == '1' or check['IfTag'] == '-'):
-					print 'check then'
-					check_then(id)
+					if (check['IfTagTime'] == '1' or check['IfTagTime'] == '-'):
+						if (check['IfOut'] == '1' or check['IfOut'] == '-'):
+							print 'check then'
+							check_then(id)
 
 '''---------------------------------
 	function then
@@ -141,6 +157,8 @@ def check_time_rule():
 '''---------------------------------
 	clear status for tag
 	with old room
+	set count = 0 for if tag time
+	set status ifout = 1 when if out
 ----------------------------------'''
 
 def clear_status_tag(tagid):
@@ -149,7 +167,24 @@ def clear_status_tag(tagid):
 	if(temp != None):
 		cursor = db.iftags.find({'IfTag_name':tagid , 'IfTag_room':temp['room']})
 		for document in cursor:
-			db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTag':'0'}})
+			if(document['For_Time'] == '0'):
+				# set status = 0
+				db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTag':'0'}})
+			else:
+				# set count = 0 out of room if tag time 
+				db.iftags.update({'IfTag_name':tagid , 'IfTag_room':temp['room']},{'$set':{'count':-1}})
+		# check if out room
+		cursor = db.ifouts.find({'IfOut_name':tagid , 'IfOut_room':temp['room']})
+		for document in cursor:
+			db_status.update({'IfID':document['IfOut_id']},{'$set':{'IfOut':'1'}})
+			check_status(document['IfOut_id'])
+
+
+def clear_if_out(tagid,inroomid):
+	print 'clear if out'
+	cursor = db.ifouts.find({'IfOut_name':tagid , 'IfOut_room':inroomid})
+	for document in cursor:
+		db_status.update({'IfID':document['IfOut_id']},{'$set':{'IfOut':'0'}})
 
 '''---------------------------------
 	check tag rule and set room in db_tag
@@ -159,11 +194,16 @@ def clear_status_tag(tagid):
 def check_tag(tagid,inroomid):
 	db_tag = db.iftags
 	clear_status_tag(tagid)
+	clear_if_out(tagid,inroomid)
 	db.tags.update({'Tag_id':int(tagid)},{'$set':{'room':inroomid}})
 	cursor = db_tag.find({'IfTag_name':tagid , 'IfTag_room':inroomid})
 	for document in cursor:
-		db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTag':'1'}})
-		check_status(document['IfTag_id'])
+		if (document['For_Time'] == '0'):
+			db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTag':'1'}})
+			check_status(document['IfTag_id'])
+		else:
+			# print "count = 0"
+			db.iftags.update({'IfTag_name':tagid , 'IfTag_room':inroomid},{'$set':{'count':'0'}})
 
 '''---------------------------------
 	then Control 
@@ -186,4 +226,4 @@ def then_control(id,status):
 # ----------------------   example    ------------------------------------------
 		
 check_time_rule()
-# check_tag('1','1')
+check_tag('1','1')
