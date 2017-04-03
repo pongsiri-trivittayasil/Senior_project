@@ -14,7 +14,7 @@ exports.list_history = function(req,res){
 		History.find({tagid:req.body.tagid},function(err,documents){
 			if(documents.length > 0){
 				for (n in documents){
-					list.push({"time":documents[n].time,"room":documents[n].roomid});
+					list.push({"time":documents[n].time,"room":documents[n].roomid,"day":documents[n].day});
 				}
 				// console.log(list);
 				res.send(list);

@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 var historySchema = new Schema({
 	time: String,
 	tagid:String,
-	roomid:String
+	roomid:String,
+	day:String
 })
 
 mongoose.model('History',historySchema);

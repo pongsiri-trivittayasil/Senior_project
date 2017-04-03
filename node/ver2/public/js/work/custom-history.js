@@ -29,11 +29,9 @@ window.onload = function(){
 	$('.selectpicker').selectpicker();
 	endpreload();
 }
-var a;
 var find = function(){
 	$('#table-history').children().remove();
 	var tag_id = $('#history').find('#tag-id').val();
-	a = tag_id;
 	console.log(tag_id);
 	if(tag_id != "null"){
 		console.log('ok');
@@ -46,10 +44,10 @@ var find = function(){
 					var index = list_room_id.indexOf(data[n].room);
 					console.log(index);
 					if(index != -1){
-						var temp = "<tr><td>"+data[n].time+"</td><td>"+list_room_name[index]+"</td></tr>"
+						var temp = "<tr><td>"+data[n].day+"</td><td>"+data[n].time+"</td><td>"+list_room_name[index]+"</td></tr>"
 						$('#table-history').append(temp);
 					} else {
-						var temp = "<tr><td>"+data[n].time+"</td><td>"+"None"+"</td></tr>"
+						var temp = "<tr><td>"+data[n].day+"</td><td>"+data[n].time+"</td><td>"+"None"+"</td></tr>"
 						$('#table-history').append(temp);						
 					}
 				}
