@@ -24,6 +24,7 @@ var then_control2 = "</select></div><div class='col-md-4' ><select class='select
 $('#add-rule').on('click',function(){
 	// console.log('ok');
 	$('#modal-add-rule').modal('show');
+	if_button_show();
 });
 
 /*------------------------------
@@ -38,13 +39,18 @@ $('#if-button-tag').on('click',function(){
 	$.post("/listtag",function(data,status){
 		for (x in data){
 			console.log(data[x].Tag_name);
-			temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+			if(data[x].Tag_id != undefined){
+				temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+			}
 		}
 		temp = temp + if_tag2;
 		$.post("/listroom",function(data,status){
 			for (x in data){
 				// console.log(data[x]);
-				temp = temp + "<option value='"+ String(data[x].Room_id)+"'>"+String(data[x].Room_name)+"</option>";
+				console.log(data[x].Room_id);
+				if(data[x].Room_id != undefined){
+					temp = temp + "<option value='"+ String(data[x].Room_id)+"'>"+String(data[x].Room_name)+"</option>";
+				}
 			}
 		temp = temp + if_tag3;
 		$('#if-list').append( $(temp)).slideDown("fast");
@@ -325,15 +331,9 @@ $('#submit-modal').on('click',function(){
 		}
 		// then control
 	}
-
 	$('#if-list').children().remove();
 	$('#then-list').children().remove();
-	$('#if-button-day').show();
-	$('#if-button-date').show();
-	$('#if-button-tag').show();
-	$('#if-button-out').show();
-	$('#if-button-tag-time').show();
-	$('#if-button-time').show();
+	if_button_show();
 	$('#modal-add-rule').modal('toggle');
 	location.reload();
 	// console.log($('#if-time').val());
@@ -345,6 +345,15 @@ $('#cancel-modal').on('click',function(){
 	$('#then-list').children().remove();
 	$('#modal-add-rule').modal('toggle');
 });
+
+var if_button_show = function(){
+	$('#if-button-day').show();
+	$('#if-button-date').show();
+	$('#if-button-tag').show();
+	$('#if-button-out').show();
+	$('#if-button-tag-time').show();
+	$('#if-button-time').show();
+};
 
 /*------------------------------
   window onload
