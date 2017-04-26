@@ -69,13 +69,17 @@ $('#if-button-out').on('click',function(){
 	$.post("/listtag",function(data,status){
 		for (x in data){
 			console.log(data[x].Tag_name);
-			temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+			if(data[x].Tag_id != undefined){
+				temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+			}
 		}
 		temp = temp + if_Out2;
 		$.post("/listroom",function(data,status){
 			for (x in data){
 				// console.log(data[x]);
-				temp = temp + "<option value='"+ String(data[x].Room_id)+"'>"+String(data[x].Room_name)+"</option>";
+				if(data[x].Room_id != undefined){
+					temp = temp + "<option value='"+ String(data[x].Room_id)+"'>"+String(data[x].Room_name)+"</option>";
+				}
 			}
 		temp = temp + if_Out3;
 		$('#if-list').append( $(temp)).slideDown("fast");
@@ -94,13 +98,17 @@ $('#if-button-tag-time').on('click',function(){
 	$.post("/listtag",function(data,status){
 		for (x in data){
 			console.log(data[x].Tag_name);
-			temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+			if(data[x].Tag_id != undefined){
+				temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+			}
 		}
 		temp = temp + if_tag_time2;
 		$.post("/listroom",function(data,status){
 			for (x in data){
 				// console.log(data[x]);
-				temp = temp + "<option value='"+ String(data[x].Room_id)+"'>"+String(data[x].Room_name)+"</option>";
+				if(data[x].Room_id != undefined){
+					temp = temp + "<option value='"+ String(data[x].Room_id)+"'>"+String(data[x].Room_name)+"</option>";
+				}
 			}
 		temp = temp + if_tag_time3;
 		$('#if-list').append( $(temp)).slideDown("fast");
@@ -222,6 +230,7 @@ $('#submit-modal').on('click',function(){
 				console.log(status);
 			});
 			data_status['IfTag'] = '0';
+			microgear.publish('/dataControl','check_tag_immediately,'+tag_name+','+room_name+','+random_id);
 		}
 		// Out
 		if(list_if[i].id == 'if-out'){
