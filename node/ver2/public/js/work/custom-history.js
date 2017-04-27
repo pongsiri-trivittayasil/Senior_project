@@ -39,6 +39,7 @@ var find = function(){
 		$.post("/tag_history",data,function(data,status){
 			console.log(data);
 			if(data.length > 0){
+				data.reverse();
 				for (n in data){
 					console.log(data[n]);
 					var index = list_room_id.indexOf(data[n].room);
@@ -47,7 +48,7 @@ var find = function(){
 						var temp = "<tr><td>"+data[n].day+"</td><td>"+data[n].time+"</td><td>"+list_room_name[index]+"</td></tr>"
 						$('#table-history').append(temp);
 					} else {
-						var temp = "<tr><td>"+data[n].day+"</td><td>"+data[n].time+"</td><td>"+"None"+"</td></tr>"
+						var temp = "<tr><td>"+data[n].day+"</td><td>"+data[n].time+"</td><td>"+"Out of room"+"</td></tr>"
 						$('#table-history').append(temp);						
 					}
 				}
