@@ -21,6 +21,7 @@
     =========================== -->
     <link rel="stylesheet" type="text/css" href="/lib/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
 </head>
 <body>
@@ -87,9 +88,9 @@
            Title
         =========================== -->  
         <div class='container'>
-            <div class='row'>
-                <h2>Smart Home</h2>
-                <p>New Trend New World</p>
+            <div class='row first' style="margin-top:25%">
+                <h2 class='wow fadeInDown' data-wow-delay="0.3s">Smart Home WiFi</h2>
+                <p class='wow fadeIn' data-wow-delay="0.7s">New Trend New World</p>
             </div>  {{!-- /row --}}
 
             {{!-- <div class='row'>
@@ -190,16 +191,18 @@
     	JS 
     =========================== -->
     {{!-- lib --}}
+    <script src="/lib/js/wow.min.js"></script>
     <script src="/lib/js/jquery-3.1.1.min.js"></script>
     <script src="/lib/js/bootstrap.min.js"></script>
     {{!-- design --}}
     <script src="/js/design/custom.js"></script>
 
 {{!-- preloading --}}
-{{!-- 
+
     <script type="text/javascript">
-        $("#preloader").fadeOut("slow");
+        // $("#preloader").fadeOut("slow");
+        new WOW().init();
     </script>
-     --}}
+    
 </body>
 </html>

@@ -758,19 +758,20 @@ input:checked + .slider:before {
 	Content --- home
 ------------------------------*/
 #home {
-	margin-top:50px;
+	// margin-top:50px;
 	text-align: center;
+	height:100vh;
 }
 #home .row{
 	overflow: hidden;
 }
 #home h2{
-	font-size: 30px;
+	font-size: 45px;
 	font-family: 'Montserrat';
 	color:#2c3e50;
 }
 #home p{
-	font-size: 20px;
+	font-size: 25px;
 	font-family: 'Montserrat';
 	color:#2c3e50;	
 }
