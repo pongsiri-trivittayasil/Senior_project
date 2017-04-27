@@ -280,13 +280,15 @@
     								</tr>
     							</thead>	{{!-- /.head table--}}
 	    						{{!-- table body --}}
-		                        <tbody>		
-		                        	{{#each Tag_list}}
+		                        <tbody id='tag-list'>		
+                                {{!-- 
+                                    {{#each Tag_list}}
                                     <tr>
                                         <td id='tag-name'>{{this.name}}</td>
                                         <td>{{this.room}}</td>
                                     </tr>
                                     {{/each}}
+                                 --}}
 
 								</tbody>
 	                        </table>	{{!-- /table--}}

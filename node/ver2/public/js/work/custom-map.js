@@ -280,6 +280,7 @@ var cant_draw = function(){
 	Onload
 ------------------------------*/
 window.onload = function(){
+	call_tag();
 	var newImg = new Image();
 	newImg.src = srcImg;
 	newImg.onload = function(){
@@ -292,6 +293,41 @@ window.onload = function(){
 		setwidth = Math.round(scale.width/10);
 		set_function_onload();
 	};
+}
+var list_room_name = [];
+var list_room_id = [];
+
+// call tag
+var call_tag = function(){
+	var temp;
+	// list room
+	$.post("/listroom",function(data,status){
+		for (x in data){
+			// temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+			if(data[x].Room_id != undefined){
+				list_room_name.push(data[x].Room_name);
+				list_room_id.push(data[x].Room_id);
+				// list tag
+				$.post("/listtag",function(data,status){
+					for (x in data){
+						// temp = temp +"<option value='"+ String(data[x].Tag_id) +"'>"+String(data[x].Tag_name) +"</option>";
+						var index = list_room_id.indexOf(parseInt(data[x].room));
+						console.log(data[x]);
+						console.log('----------------------');
+						console.log(index);
+						// console.log(list_room_name);
+						// console.log(list_room_name[index]);
+						if(index != -1){
+							temp =  "<tr><td>"+data[x].Tag_name+"</td><td>"+list_room_name[index]+"</td></tr>";
+						} else {
+							temp =  "<tr><td>"+data[x].Tag_name+"</td><td>"+"out of room"+"</td></tr>";
+						}
+						$('#tag-list').append(temp);
+					}
+				})
+			}
+		}
+	})
 }
 
 var set_function_onload = function(){

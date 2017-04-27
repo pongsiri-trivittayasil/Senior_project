@@ -767,12 +767,12 @@ input:checked + .slider:before {
 }
 #home h2{
 	font-size: 45px;
-	font-family: 'Montserrat';
+	font-family: 'Gudea';
 	color:#2c3e50;
 }
 #home p{
 	font-size: 25px;
-	font-family: 'Montserrat';
+	font-family: 'Gudea';
 	color:#2c3e50;	
 }
 #home .left-side{
