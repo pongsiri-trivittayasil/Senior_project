@@ -4,6 +4,7 @@ import datetime
 from pymongo import MongoClient
 import requests,json
 import microgear.client as microgear
+
 # client = MongoClient()
 # uri = "mongodb://seniorpj:123456@128.199.119.31/my-project?authSource=admin"
 # db = MongoClient(uri)
@@ -68,7 +69,7 @@ def check_minute(time):
 		# print int(document['count']) +1
 		if (int(document['count']) +1 == int(document['For_Time'])):
 			print 'for time done'
-			db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTimeTag':'1'}})
+			db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTagTime':'1'}})
 			check_status(str(document['IfTag_id']))
 
 
@@ -161,13 +162,12 @@ def check_time_rule():
 	set status ifout = 1 when if out
 ----------------------------------'''
 
-def clear_status_tag(tagid):
+def clear_status_tag(tagid,inroomid):
 	print 'clear status tag ...'
 	temp = db.tags.find_one({'Tag_id':int(tagid)})
 	if(temp != None):
 		cursor = db.iftags.find({'IfTag_name':tagid , 'IfTag_room':temp['room']})
 		for document in cursor:
-			# check for time
 			if(document['For_Time'] == '0'):
 				# set status = 0
 				db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTag':'0'}})
@@ -175,10 +175,11 @@ def clear_status_tag(tagid):
 				# set count = 0 out of room if tag time 
 				db.iftags.update({'IfTag_name':tagid , 'IfTag_room':temp['room']},{'$set':{'count':-1}})
 		# check if out room
-		cursor = db.ifouts.find({'IfOut_name':tagid , 'IfOut_room':temp['room']})
-		for document in cursor:
-			db_status.update({'IfID':document['IfOut_id']},{'$set':{'IfOut':'1'}})
-			check_status(document['IfOut_id'])
+		if(inroomid != temp['room']):
+			cursor = db.ifouts.find({'IfOut_name':tagid , 'IfOut_room':temp['room']})
+			for document in cursor:
+				db_status.update({'IfID':document['IfOut_id']},{'$set':{'IfOut':'1'}})
+				check_status(document['IfOut_id'])
 
 
 def clear_if_out(tagid,inroomid):
@@ -193,15 +194,18 @@ def clear_if_out(tagid,inroomid):
 ----------------------------------'''
 
 def check_tag(tagid,inroomid):
-	tagid=str(tagid)
-	inroomid=str(inroomid)
+	print tagid,inroomid,"-------------------------------- check tag"
+	tagid = str(tagid)
+	inroomid = str(inroomid)
 	db_tag = db.iftags
-	clear_status_tag(tagid)
+	clear_status_tag(tagid,inroomid)
 	clear_if_out(tagid,inroomid)
 	db.tags.update({'Tag_id':int(tagid)},{'$set':{'room':inroomid}})
 	cursor = db_tag.find({'IfTag_name':tagid , 'IfTag_room':inroomid})
 	for document in cursor:
+		print document,'-------------in'
 		if (document['For_Time'] == '0'):
+			print 'found in'
 			db_status.update({'IfID':document['IfTag_id']},{'$set':{'IfTag':'1'}})
 			check_status(document['IfTag_id'])
 		else:
@@ -219,7 +223,6 @@ def chek_tag_immediately(tagid,inroomid,IfId):
 	for document in cursor:
 		db_status.update({'IfID':IfId},{'$set':{'IfTag':'1'}})
 		check_status(IfId)
-
 
 '''---------------------------------
 	then Control 
@@ -240,23 +243,25 @@ def then_control(id,status):
 		#  do something .. netpie
 		controlTag(int(id),False)
 
+
 def controlTag(number,Order_bool):
     send = ""
     print Order_bool
     if Order_bool is True:
         send = str(number) + "," + "ON"
         print send
-        # time.sleep(0.5)
-        # microgear.chat("client_Tag_control",send)
+    	microgear.chat("client_Tag_control",send)
+    	# microgear.chat("test",send)
+    	# microgear.publish('/ct',send)
     elif Order_bool is False:
         send = str(number) + "," + "OFF"
         print send
-        # microgear.chat("client_Tag_control",send)
+        microgear.chat("client_Tag_control",send)
+        # microgear.chat("test",send)
+    	# microgear.publish('/ct',send)
 
 # def initial_value(RoomId,RSSI):
 # 	db.rooms.update({'Room_id':int(RoomId)},{'$set':{'rssi':int(RSSI)}})
-
-
 	
 def returnChat(message):
 	microgear.chat("WebServer",message)
@@ -275,7 +280,5 @@ def put_history(tag,room):
 
 # ----------------------   example    ------------------------------------------
 		
-# check_time_rule()
-check_tag('1','1')
-# check_tag('1','out of room')
-# chek_tag_immediately('1','1');
+check_time_rule()
+# check_tag('1','1')

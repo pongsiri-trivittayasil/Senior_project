@@ -20,16 +20,22 @@ microgear.on_connect = connection
 microgear.on_message = subscription
 microgear.on_disconnect = disconnect
 microgear.subscribe("/WebServer")
+microgear.subscribe("/dataControl")
+microgear.subscribe("/ct")
 microgear.connect()
 
 
 # microgear.chat("htmlgear",send)
 while(True):
 	try:
-		send = input("what word to send web:")
-		microgear.chat("client_Tag_control",send)
+		send = input("::")
+		# send = input("what word to send web:")
+		# microgear.chat("Server",send)
+		microgear.publish('/dataControl',send)
 		# microgear.chat("WebServer",send)
 		# microgear.publish('/WebServer',send)
 	except:
+		print 'except'
 		# microgear.chat("WebServer","init,10")
-		microgear.chat("client_Tag_control","1,OFF")
+		# microgear.chat("Server","1,OFF")
+		# microgear.publish('/test','test')
